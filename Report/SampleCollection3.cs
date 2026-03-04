@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Thulliam.Report {
+namespace Pinnacle.Report {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace Thulliam.Report {
         
         public override string FullResourceName {
             get {
-                return "Thulliam.Report.SampleCollection3.rpt";
+                return "Pinnacle.Report.SampleCollection3.rpt";
             }
             set {
                 // Do nothing

@@ -779,9 +779,7 @@ namespace Pinnacle
                     case "SampleInwardEntry":
                         CommonFunctions.ShowPopUpForm(Pinnacle.Transactions.SampleInwardEntry.Instance, this); button1.Show(); return;
 
-                    case "OrderHistory":
-                        CommonFunctions.ShowPopUpForm(Pinnacle.Transactions.SM.OrderHistory.Instance, this); button1.Show(); return;
-
+                   
                     case "SampleIssueEntry":
                         CommonFunctions.ShowPopUpForm(Pinnacle.Transactions.SampleIssueEntry.Instance, this); button1.Show(); return;
 
