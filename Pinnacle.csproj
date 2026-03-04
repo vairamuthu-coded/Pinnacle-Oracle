@@ -1110,12 +1110,6 @@
     <Compile Include="Hostel\MonthMaster.Designer.cs">
       <DependentUpon>MonthMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\GatePass.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\GatePass.Designer.cs">
-      <DependentUpon>GatePass.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hostel\GatePass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2054,9 +2048,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\DataTransfer.resx">
       <DependentUpon>DataTransfer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\GatePass.resx">
-      <DependentUpon>GatePass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hostel\GatePass.resx">
       <DependentUpon>GatePass.cs</DependentUpon>
