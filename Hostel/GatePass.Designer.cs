@@ -40,6 +40,7 @@
             this.butheader = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblempPhoto = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checknative = new System.Windows.Forms.CheckBox();
@@ -136,7 +137,6 @@
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.lblempPhoto = new System.Windows.Forms.Label();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -243,7 +243,6 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.ContextMenuStrip = this.contextMenuStrip2;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -313,13 +312,26 @@
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.tabControl2);
             this.tabPage1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1124, 383);
+            this.tabPage1.Size = new System.Drawing.Size(1124, 386);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "HostelGatePass";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // lblempPhoto
+            // 
+            this.lblempPhoto.AutoSize = true;
+            this.lblempPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblempPhoto.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblempPhoto.ForeColor = System.Drawing.Color.Black;
+            this.lblempPhoto.Location = new System.Drawing.Point(383, 100);
+            this.lblempPhoto.Margin = new System.Windows.Forms.Padding(0);
+            this.lblempPhoto.Name = "lblempPhoto";
+            this.lblempPhoto.Size = new System.Drawing.Size(68, 15);
+            this.lblempPhoto.TabIndex = 112;
+            this.lblempPhoto.Text = "Emp Photo";
             // 
             // label1
             // 
@@ -594,7 +606,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Location = new System.Drawing.Point(-209, 70);
+            this.pictureBox2.Location = new System.Drawing.Point(-207, 70);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(123, 109);
@@ -867,7 +879,7 @@
             this.lvLogs1.Margin = new System.Windows.Forms.Padding(5);
             this.lvLogs1.Name = "lvLogs1";
             this.lvLogs1.ShowItemToolTips = true;
-            this.lvLogs1.Size = new System.Drawing.Size(53, 0);
+            this.lvLogs1.Size = new System.Drawing.Size(53, 3);
             this.lvLogs1.TabIndex = 76;
             this.lvLogs1.UseCompatibleStateImageBehavior = false;
             this.lvLogs1.View = System.Windows.Forms.View.Details;
@@ -1179,12 +1191,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.ContextMenuStrip = this.contextMenuStrip1;
             this.tabControl2.Controls.Add(this.tabPage2);
-            this.tabControl2.Location = new System.Drawing.Point(492, 4);
+            this.tabControl2.Location = new System.Drawing.Point(475, 4);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.Padding = new System.Drawing.Point(6, 6);
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(629, 365);
+            this.tabControl2.Size = new System.Drawing.Size(646, 368);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage2
@@ -1201,7 +1213,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(621, 331);
+            this.tabPage2.Size = new System.Drawing.Size(638, 334);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Gate Pass Details";
             // 
@@ -1213,10 +1225,10 @@
             this.panel4.Controls.Add(this.lblattcount);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.ForeColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(0, 305);
+            this.panel4.Location = new System.Drawing.Point(0, 308);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(621, 26);
+            this.panel4.Size = new System.Drawing.Size(638, 26);
             this.panel4.TabIndex = 79;
             // 
             // lblip
@@ -1263,7 +1275,7 @@
             this.panel3.Margin = new System.Windows.Forms.Padding(5);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(1);
-            this.panel3.Size = new System.Drawing.Size(621, 31);
+            this.panel3.Size = new System.Drawing.Size(638, 31);
             this.panel3.TabIndex = 77;
             // 
             // butview
@@ -1378,7 +1390,7 @@
             this.lvLogs.MultiSelect = false;
             this.lvLogs.Name = "lvLogs";
             this.lvLogs.ShowItemToolTips = true;
-            this.lvLogs.Size = new System.Drawing.Size(590, 270);
+            this.lvLogs.Size = new System.Drawing.Size(607, 273);
             this.lvLogs.TabIndex = 75;
             this.lvLogs.UseCompatibleStateImageBehavior = false;
             this.lvLogs.View = System.Windows.Forms.View.Details;
@@ -1442,10 +1454,10 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.crystalReportViewer1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 27);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1143, 403);
+            this.tabPage3.Size = new System.Drawing.Size(1124, 386);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Print Priview";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1458,26 +1470,13 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(3, 3);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1137, 397);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1118, 380);
             this.crystalReportViewer1.TabIndex = 111;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
-            // 
-            // lblempPhoto
-            // 
-            this.lblempPhoto.AutoSize = true;
-            this.lblempPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblempPhoto.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblempPhoto.ForeColor = System.Drawing.Color.Black;
-            this.lblempPhoto.Location = new System.Drawing.Point(383, 100);
-            this.lblempPhoto.Margin = new System.Windows.Forms.Padding(0);
-            this.lblempPhoto.Name = "lblempPhoto";
-            this.lblempPhoto.Size = new System.Drawing.Size(68, 15);
-            this.lblempPhoto.TabIndex = 112;
-            this.lblempPhoto.Text = "Emp Photo";
             // 
             // GatePass
             // 

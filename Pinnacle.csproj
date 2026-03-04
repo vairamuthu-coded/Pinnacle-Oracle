@@ -718,6 +718,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Report\BuyerSampleReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\BuyerSampleReport.designer.cs">
+      <DependentUpon>BuyerSampleReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\Canteen\Canteen.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1133,12 +1139,6 @@
     </Compile>
     <Compile Include="ReportFormate\PendingOutPassReport.Designer.cs">
       <DependentUpon>PendingOutPassReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Report\BuyerSampleReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Report\BuyerSampleReport.Designer.cs">
-      <DependentUpon>BuyerSampleReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\CompanywiseSecurityDataSet1.cs">
       <DependentUpon>CompanywiseSecurityDataSet1.xsd</DependentUpon>
@@ -1653,6 +1653,9 @@
       <LastGenOutput>OutPassReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\BuyerSampleReport.resx">
+      <DependentUpon>BuyerSampleReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\Canteen\CanteenReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CanteenReport.cs</LastGenOutput>
@@ -1879,9 +1882,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFormate\PendingOutPassReport.resx">
       <DependentUpon>PendingOutPassReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\BuyerSampleReport.resx">
-      <DependentUpon>BuyerSampleReport.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="Images\Anugraha_logo.jpg" />
     <Content Include="Images\backward.png" />
