@@ -1,0 +1,2743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{632E66FD-2B09-4302-BD6B-3F1CD5878850}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Pinnacle</RootNamespace>
+    <AssemblyName>Pinnacle</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>C:\Thulliam\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Thulliam</ProductName>
+    <PublisherName>Thulliam</PublisherName>
+    <SuiteName>Thulliam</SuiteName>
+    <WebPage>Thulliam</WebPage>
+    <AutorunEnabled>true</AutorunEnabled>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <ExcludeDeploymentUrl>true</ExcludeDeploymentUrl>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>default</LangVersion>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <PreferNativeArm64>false</PreferNativeArm64>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AttLogo5.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6365418903C0FAAA44B9FE0A9D9568E8AC29B729</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Thulliam_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>default</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Pinnacle.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.AxShockwaveFlashObjects.13.0.4003\lib\net40\AxShockwaveFlashObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="BarcodeLib, Version=1.2.0.0, Culture=neutral, PublicKeyToken=5f09bda868cc39e7, processorArchitecture=MSIL">
+      <HintPath>packages\BarcodeLib.1.2.0.0\lib\net20\BarcodeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.Engine.13.0.4003\lib\net40\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.ClientDoc.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.CommLayer.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.CommonControls.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.CommonObjectModel.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.CommonObjectModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.Controllers.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.CubeDefModel.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.CubeDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.DataDefModel.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.DataSetConversion.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.ObjectFactory.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Prompting, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.Prompting.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.Prompting.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.ReportDefModel.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.ReportDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportAppServer.XmlSerialize.13.0.4003\lib\net40\CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.ReportSource.13.0.4003\lib\net40\CrystalDecisions.ReportSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.Shared.13.0.4003\lib\net40\CrystalDecisions.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalReports.Windows.Forms.13.0.4000\lib\net40\CrystalDecisions.Windows.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <HintPath>packages\CrystalReports.FlashControlV71.13.0.3500\lib\net20\FlashControlV71.dll</HintPath>
+    </Reference>
+    <Reference Include="FoxLearn.License">
+      <HintPath>..\FoxLearn.License fix\FoxLearn.License.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.12\lib\net40\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=1.10.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>packages\MailKit.1.10.0\lib\net40\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MessagingToolkit.QRCode.1.3.0\lib\MessagingToolkit.QRCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.12.0.4518.1014\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=1.18.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>packages\MimeKit.1.18.0\lib\net40\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.6.9.12\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>packages\Oracle.ManagedDataAccess.19.10.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.3.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\QRCoder.1.3.9\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.23.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>packages\SharpCompress.0.23.0\lib\net35\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <HintPath>packages\CrystalReports.FlashControlV71.13.0.3500\lib\net20\ShockwaveFlashObjects.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackIDCardUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BackIDCardUserControl.Designer.cs">
+      <DependentUpon>BackIDCardUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\CanteenCategoryMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\CanteenCategoryMaster.Designer.cs">
+      <DependentUpon>CanteenCategoryMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\CanteenEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\CanteenEntry.Designer.cs">
+      <DependentUpon>CanteenEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\CanteenItemMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\CanteenItemMaster.Designer.cs">
+      <DependentUpon>CanteenItemMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\CanteenMenuItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\CanteenMenuItem.Designer.cs">
+      <DependentUpon>CanteenMenuItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\Item Master.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\Item Master.Designer.cs">
+      <DependentUpon>Item Master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\FK\CantenTokenDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\FK\CantenTokenDetails.Designer.cs">
+      <DependentUpon>CantenTokenDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\ItemPermissionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\ItemPermissionDetails.Designer.cs">
+      <DependentUpon>ItemPermissionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\Token.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\Token.Designer.cs">
+      <DependentUpon>Token.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\TokenCancel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\TokenCancel.Designer.cs">
+      <DependentUpon>TokenCancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\TokenPrintOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Canteen\TokenPrintOut.Designer.cs">
+      <DependentUpon>TokenPrintOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="CrystalReport4.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport4.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl.Designer.cs">
+      <DependentUpon>CustomControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\AGF\AGFOutPassDataSet.cs">
+      <DependentUpon>AGFOutPassDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\AGF\AGFOutPassDataSet.designer.cs">
+      <DependentUpon>AGFOutPassDataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\auvittable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>auvittable.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\BuyerSample.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BuyerSample.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\IDCardDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IDCardDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\Lovely\AllPaySlipDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AllPaySlipDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="DataSets\Lovely\SalarySlip.cs">
+      <DependentUpon>SalarySlip.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\Lovely\SalarySlip.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SalarySlip.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="DataSets\MonthWiseFuel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthWiseFuel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\MonthwiseFuelReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthwiseFuelReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\OrderHostory1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderHostory1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\OutPassCrossTabDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutPassCrossTabDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\OutPassLiveReportDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutPassLiveReportDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ReverseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReverseDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ReverseDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReverseDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\SampleCollection.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleCollection.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\SM\OrderHostory1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderHostory1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\StockReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StockReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\TokenDetailsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TokenDetailsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fuel\FuelToken.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fuel\FuelToken.Designer.cs">
+      <DependentUpon>FuelToken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fuel\PetrolBunk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fuel\PetrolBunk.Designer.cs">
+      <DependentUpon>PetrolBunk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fuel\FuelRateMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fuel\FuelRateMaster.Designer.cs">
+      <DependentUpon>FuelRateMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fuel\VehicleMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fuel\VehicleMaster.Designer.cs">
+      <DependentUpon>VehicleMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fuel\WeighBridge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fuel\WeighBridge.Designer.cs">
+      <DependentUpon>WeighBridge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontIDCardUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrontIDCardUserControl.Designer.cs">
+      <DependentUpon>FrontIDCardUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hostel\GatePassManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hostel\GatePassManual.Designer.cs">
+      <DependentUpon>GatePassManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\BinMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\BinMaster.Designer.cs">
+      <DependentUpon>BinMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\BrandMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\BrandMaster.Designer.cs">
+      <DependentUpon>BrandMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\BuyerMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\BuyerMaster.Designer.cs">
+      <DependentUpon>BuyerMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\ColorMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\ColorMaster.Designer.cs">
+      <DependentUpon>ColorMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CountsMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\CountsMaster.Designer.cs">
+      <DependentUpon>CountsMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CurrencyMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\CurrencyMaster.Designer.cs">
+      <DependentUpon>CurrencyMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FabricMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FabricMaster.Designer.cs">
+      <DependentUpon>FabricMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\GaugeMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\GaugeMaster.Designer.cs">
+      <DependentUpon>GaugeMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\GsmMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\GsmMaster.Designer.cs">
+      <DependentUpon>GsmMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SequenceMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SequenceMaster.Designer.cs">
+      <DependentUpon>SequenceMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\IPEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\IPEntry.Designer.cs">
+      <DependentUpon>IPEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Lovely\EmployeeMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\Lovely\EmployeeMaster.Designer.cs">
+      <DependentUpon>EmployeeMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\RackMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\RackMaster.Designer.cs">
+      <DependentUpon>RackMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SampleCollection\PopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SampleCollection\PopUp.Designer.cs">
+      <DependentUpon>PopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SampleCollection\ResponsePersonMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SampleCollection\ResponsePersonMaster.designer.cs">
+      <DependentUpon>ResponsePersonMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SampleTypeMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SampleTypeMaster.Designer.cs">
+      <DependentUpon>SampleTypeMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SampleDepartmentMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SampleDepartmentMaster.Designer.cs">
+      <DependentUpon>SampleDepartmentMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SampleCategoryMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SampleCategoryMaster.Designer.cs">
+      <DependentUpon>SampleCategoryMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SamplePackTypeMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SamplePackTypeMaster.Designer.cs">
+      <DependentUpon>SamplePackTypeMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SeasonMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SeasonMaster.Designer.cs">
+      <DependentUpon>SeasonMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SizeMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SizeMaster.Designer.cs">
+      <DependentUpon>SizeMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\StyleMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\StyleMaster.Designer.cs">
+      <DependentUpon>StyleMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SubStyleMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\SubStyleMaster.Designer.cs">
+      <DependentUpon>SubStyleMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Canteen\CanteenItemMasterModel.cs" />
+    <Compile Include="Models\CommonClass.cs" />
+    <Compile Include="Models\CommonFunctions.cs" />
+    <Compile Include="Models\CrystalReportShow.cs" />
+    <Compile Include="Models\DataImportModel.cs" />
+    <Compile Include="Models\DayShuffleModel.cs" />
+    <Compile Include="Models\DeviceCommunication.cs" />
+    <Compile Include="Models\GlobalVariables.cs" />
+    <Compile Include="Models\Hostel.cs" />
+    <Compile Include="Models\HrPayModel.cs" />
+    <Compile Include="Models\ItemPermission.cs" />
+    <Compile Include="Models\Lovely\Employee.cs" />
+    <Compile Include="Models\MailModel.cs" />
+    <Compile Include="Models\MsSQLAcc.cs" />
+    <Compile Include="Models\NHdaymodel.cs" />
+    <Compile Include="Models\SMSResponse.cs" />
+    <Compile Include="Models\ToolStripAccess.cs" />
+    <Compile Include="OracleHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportFormate\AGF\PopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\AGF\PopUp.Designer.cs">
+      <DependentUpon>PopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\AGF\SampleReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\AGF\SampleReport.designer.cs">
+      <DependentUpon>SampleReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\SampleCollectionReport.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\SampleCollectionReport.Designer.cs">
+      <DependentUpon>SampleCollectionReport.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Report\AGF\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\AGF\HostelReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HostelReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\AGF\DateWise.cs">
+      <DependentUpon>DateWise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\AGF\OutPassReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutPassReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Report\Canteen\Canteen.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Canteen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Canteen\CanteenReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CanteenReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Report\CompanyVehicleCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyVehicleCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\HostelGatePassPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\HostelGatePassPrint.designer.cs">
+      <DependentUpon>HostelGatePassPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\IDCard\ReverseCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReverseCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\LovelySalarySlip1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LovelySalarySlip1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\LovelySalarySlip2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LovelySalarySlip2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Sample\CrossTabCrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrossTabCrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\IDCard\BackCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BackCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\IDCard\FrontCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrontCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\IDCard\IDCardFrontBackCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IDCardFrontBackCrystalReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Canteen\ReverseCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReverseCrystalReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\ALLPaySlip.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ALLPaySlip.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\AllSlip.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AllSlip.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\AllSlip2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AllSlip2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\AllSlip3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AllSlip3.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\CommonReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\CommonReport2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonReport2.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Lovely\SalarySlip1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SalarySlip.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MonthFuelChart.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthFuelChart.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MonthWiseFuelReport2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthWiseFuelReport2.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MonthWiseFuelReport3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthWiseFuelReport3.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MonthWiseFuelReport1.cs">
+      <DependentUpon>MonthWiseFuelReport1.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Samplependingreport.cs">
+      <DependentUpon>Samplependingreport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Sample\Brand-Category.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Brand-Category.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Sample\SampleCollectionMultiple.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleCollectionMultiple.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Sample\SampleCollectionPrintFormate.cs">
+      <DependentUpon>SampleCollectionPrintFormate.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Sample\SampleCollectionCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleCollectionCrystalReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SampleCollectionReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleCollectionReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SampleCollectionReport3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleCollectionReport3.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Sample\SampleCorrection.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleCorrection.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Sample\StockReport.cs">
+      <DependentUpon>StockReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\AccIssueReceiptReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccIssueReceiptReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\AccpoInwardReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccpoInwardReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\DyeingIssueReceiptReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DyeingIssueReceiptReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftBackFrontReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftBackFrontReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\YarnIssueReceipt2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YarnIssueReceipt2.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\YarnFabricStock.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YarnFabricStock.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftLeft13Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftLeft13Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftLeft3Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftLeft3Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftLeft1Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftLeft1Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\MainReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftLeft5Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftLeft5Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\Swiftleft7Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Swiftleft7Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftLeft9Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftLeft9Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftRight10Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftRight10Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftRight12Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftRight12Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftRight14Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftRight14Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftRight2Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftRight2Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftRight4Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftRight4Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\SwiftRight6Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SwiftRight6Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\AccStock.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccStock.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SM\YarnIssueToKnitReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YarnIssueToKnitReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\TotalCountDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TotalCountDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Transactions\Attendance\IDCardRemove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Attendance\IDCardRemove.designer.cs">
+      <DependentUpon>IDCardRemove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\BuyersSample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\BuyersSample.designer.cs">
+      <DependentUpon>BuyersSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\DataImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\DataImport.Designer.cs">
+      <DependentUpon>DataImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\DataTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\DataTransfer.Designer.cs">
+      <DependentUpon>DataTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hostel\MonthMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hostel\MonthMaster.Designer.cs">
+      <DependentUpon>MonthMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\GatePass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\GatePass.Designer.cs">
+      <DependentUpon>GatePass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hostel\GatePass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hostel\GatePass.Designer.cs">
+      <DependentUpon>GatePass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hostel\HostelMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hostel\HostelMaster.Designer.cs">
+      <DependentUpon>HostelMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hostel\MachineMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hostel\MachineMaster.Designer.cs">
+      <DependentUpon>MachineMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hostel\ReasonMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hostel\ReasonMaster.Designer.cs">
+      <DependentUpon>ReasonMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CityMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\CityMaster.Designer.cs">
+      <DependentUpon>CityMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CompanyMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\CompanyMaster.Designer.cs">
+      <DependentUpon>CompanyMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CountryMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\CountryMaster.Designer.cs">
+      <DependentUpon>CountryMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\DashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\DashBoard.Designer.cs">
+      <DependentUpon>DashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\MovementReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\MovementReport.Designer.cs">
+      <DependentUpon>MovementReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\TokenReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\TokenReport.Designer.cs">
+      <DependentUpon>TokenReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\VehicleTableMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\VehicleTableMatch.Designer.cs">
+      <DependentUpon>VehicleTableMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\EmployeeMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\EmployeeMaster.Designer.cs">
+      <DependentUpon>EmployeeMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FinYearMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FinYearMaster.Designer.cs">
+      <DependentUpon>FinYearMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\InOutSequenceMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\InOutSequenceMaster.Designer.cs">
+      <DependentUpon>InOutSequenceMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PartyMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\PartyMaster.Designer.cs">
+      <DependentUpon>PartyMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\StateMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\StateMaster.Designer.cs">
+      <DependentUpon>StateMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuyerSample.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Device.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\FuelRateMasterModel.cs" />
+    <Compile Include="Models\FuelTokenModel.cs" />
+    <Compile Include="Models\HostelGate.cs" />
+    <Compile Include="Models\HRVehicle.cs" />
+    <Compile Include="Models\MenuName.cs" />
+    <Compile Include="Models\Navigation.cs" />
+    <Compile Include="Models\Validate.cs" />
+    <Compile Include="MongoImages.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Registration\AboutMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registration\AboutMaster.Designer.cs">
+      <DependentUpon>AboutMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registration\GenerateMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registration\GenerateMaster.Designer.cs">
+      <DependentUpon>GenerateMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registration\RegistrationMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registration\RegistrationMaster.Designer.cs">
+      <DependentUpon>RegistrationMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\FuelAverageReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\FuelAverageReport.Designer.cs">
+      <DependentUpon>FuelAverageReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\FuelComparisonReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\FuelComparisonReport.Designer.cs">
+      <DependentUpon>FuelComparisonReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\OutPassLiveReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\OutPassLiveReport.Designer.cs">
+      <DependentUpon>OutPassLiveReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFormate\PendingOutPassReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\PendingOutPassReport.Designer.cs">
+      <DependentUpon>PendingOutPassReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\BuyerSampleReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\BuyerSampleReport.Designer.cs">
+      <DependentUpon>BuyerSampleReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CompanywiseSecurityDataSet1.cs">
+      <DependentUpon>CompanywiseSecurityDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CompanywiseSecurityDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanywiseSecurityDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CompanywiseSecurityReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanywiseSecurityReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\MonthWiseFuelReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFormate\MonthWiseFuelReport.Designer.cs">
+      <DependentUpon>MonthWiseFuelReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\FuelAverage.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FuelAverage.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MonthWiseFuelReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthWiseFuelReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MovementReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MovementReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\OutPassLiveReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutPassLiveReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\PendingOutPassReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PendingOutPassReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\QrCodeCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QrCodeCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SecurityCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\TokenDetails.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TokenDetails.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\VehicleTableMatch.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleTableMatch.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SequenceMaster\HostelSequence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SequenceMaster\HostelSequence.Designer.cs">
+      <DependentUpon>HostelSequence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\TableCreateMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tables\TableCreateMaster.Designer.cs">
+      <DependentUpon>TableCreateMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\CompanyWiseSecurityInventry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\CompanyWiseSecurityInventry.Designer.cs">
+      <DependentUpon>CompanyWiseSecurityInventry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DataTableHostelgatepass.cs">
+      <DependentUpon>DataTableHostelgatepass.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DataTableHostelgatepass.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataTableHostelgatepass.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\FuelCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FuelCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\dsFueltoken.cs">
+      <DependentUpon>dsFueltoken.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\dsFueltoken.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFueltoken.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\FuelPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\FuelPrint.Designer.cs">
+      <DependentUpon>FuelPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\QrCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\QrCode.Designer.cs">
+      <DependentUpon>QrCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PinnacleMdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PinnacleMdi.Designer.cs">
+      <DependentUpon>PinnacleMdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CityMasterModel.cs" />
+    <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\Companay.cs" />
+    <Compile Include="Models\GenFun.cs" />
+    <Compile Include="Models\LoginPage.cs" />
+    <Compile Include="Models\Master.cs" />
+    <Compile Include="Models\SecInventryModel.cs" />
+    <Compile Include="Models\TreeviewModel.cs" />
+    <Compile Include="Models\UserMaster.cs" />
+    <Compile Include="Models\UserRihgts.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Transactions\LogsRemove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\LogsRemove.Designer.cs">
+      <DependentUpon>LogsRemove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\DeviceCommunication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\DeviceCommunication.Designer.cs">
+      <DependentUpon>DeviceCommunication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\IDCardPrintDetails.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\IDCardPrintDetails.Designer.cs">
+      <DependentUpon>IDCardPrintDetails.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Transactions\Lovely\ALLSalarySlip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Lovely\ALLSalarySlip.Designer.cs">
+      <DependentUpon>ALLSalarySlip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\MachineMasters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\MachineMasters.Designer.cs">
+      <DependentUpon>MachineMasters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Lovely\MonthPermissionp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Lovely\MonthPermissionp.Designer.cs">
+      <DependentUpon>MonthPermissionp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Lovely\SalarySlip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Lovely\SalarySlip.Designer.cs">
+      <DependentUpon>SalarySlip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Lovely\MonthPermission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Lovely\MonthPermission.Designer.cs">
+      <DependentUpon>MonthPermission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hostel\NHDayEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hostel\NHDayEntry.Designer.cs">
+      <DependentUpon>NHDayEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\SampleInwardEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\SampleInwardEntry.Designer.cs">
+      <DependentUpon>SampleInwardEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\SampleIssueEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\SampleIssueEntry.Designer.cs">
+      <DependentUpon>SampleIssueEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\SecurityDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\SecurityDelivery.Designer.cs">
+      <DependentUpon>SecurityDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\SecurityInventry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\SecurityInventry.Designer.cs">
+      <DependentUpon>SecurityInventry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\SM\OrderHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\SM\OrderHistory.Designer.cs">
+      <DependentUpon>OrderHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeView\ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\DepartmentMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeView\DepartmentMaster.Designer.cs">
+      <DependentUpon>DepartmentMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\MenuNameMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeView\MenuNameMaster.Designer.cs">
+      <DependentUpon>MenuNameMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\NavigationMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeView\NavigationMaster.Designer.cs">
+      <DependentUpon>NavigationMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\ParameterMaster .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeView\ParameterMaster .Designer.cs">
+      <DependentUpon>ParameterMaster .cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\TreeViewMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeView\TreeViewMaster.Designer.cs">
+      <DependentUpon>TreeViewMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\UserMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeView\UserMaster.Designer.cs">
+      <DependentUpon>UserMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\UserRights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreeView\UserRights.Designer.cs">
+      <DependentUpon>UserRights.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UICO.cs" />
+    <Compile Include="UserControls\CanteenCustom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CanteenCustom.Designer.cs">
+      <DependentUpon>CanteenCustom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Colors.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Colors.Designer.cs">
+      <DependentUpon>Colors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MonthControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\MonthControl.designer.cs">
+      <DependentUpon>MonthControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PaySlipPrint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PaySlipPrint.Designer.cs" />
+    <Compile Include="Report\Sample\SampleCollectionUserControlCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleCollectionUserControlCrystalReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCComboBox.Designer.cs" />
+    <Compile Include="UserControls\UCDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDataGridView.Designer.cs">
+      <DependentUpon>UCDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCDateTimePicker.Designer.cs" />
+    <Compile Include="UserControls\UCListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCListView.Designer.cs">
+      <DependentUpon>UCListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCPopUpBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCPopUpBox.Designer.cs" />
+    <Compile Include="UserControls\UCTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCTextBox.Designer.cs" />
+    <Compile Include="VisualStudioTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utility.cs" />
+    <Content Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
+    <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
+    <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
+    <Content Include="INDEX.txt" />
+    <EmbeddedResource Include="BackIDCardUserControl.resx">
+      <DependentUpon>BackIDCardUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\CanteenCategoryMaster.resx">
+      <DependentUpon>CanteenCategoryMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\CanteenEntry.resx">
+      <DependentUpon>CanteenEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\CanteenItemMaster.resx">
+      <DependentUpon>CanteenItemMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\CanteenMenuItem.resx">
+      <DependentUpon>CanteenMenuItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\Item Master.resx">
+      <DependentUpon>Item Master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\FK\CantenTokenDetails.resx">
+      <DependentUpon>CantenTokenDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\ItemPermissionDetails.resx">
+      <DependentUpon>ItemPermissionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\Token.resx">
+      <DependentUpon>Token.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\TokenCancel.resx">
+      <DependentUpon>TokenCancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canteen\TokenPrintOut.resx">
+      <DependentUpon>TokenPrintOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport4.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport4.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl.resx">
+      <DependentUpon>CustomControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSets\StockReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>StockReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fuel\FuelToken.resx">
+      <DependentUpon>FuelToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fuel\PetrolBunk.resx">
+      <DependentUpon>PetrolBunk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fuel\FuelRateMaster.resx">
+      <DependentUpon>FuelRateMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fuel\VehicleMaster.resx">
+      <DependentUpon>VehicleMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fuel\WeighBridge.resx">
+      <DependentUpon>WeighBridge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontIDCardUserControl.resx">
+      <DependentUpon>FrontIDCardUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hostel\GatePassManual.resx">
+      <DependentUpon>GatePassManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hostel\MonthMaster.resx">
+      <DependentUpon>MonthMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hostel\NHDayEntry.resx">
+      <DependentUpon>NHDayEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\BinMaster.resx">
+      <DependentUpon>BinMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\BrandMaster.resx">
+      <DependentUpon>BrandMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\BuyerMaster.resx">
+      <DependentUpon>BuyerMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\ColorMaster.resx">
+      <DependentUpon>ColorMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\CountsMaster.resx">
+      <DependentUpon>CountsMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\CurrencyMaster.resx">
+      <DependentUpon>CurrencyMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FabricMaster.resx">
+      <DependentUpon>FabricMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\GaugeMaster.resx">
+      <DependentUpon>GaugeMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\GsmMaster.resx">
+      <DependentUpon>GsmMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SequenceMaster.resx">
+      <DependentUpon>SequenceMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\IPEntry.resx">
+      <DependentUpon>IPEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\Lovely\EmployeeMaster.resx">
+      <DependentUpon>EmployeeMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\RackMaster.resx">
+      <DependentUpon>RackMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SampleCollection\PopUp.resx">
+      <DependentUpon>PopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SampleCollection\ResponsePersonMaster.resx">
+      <DependentUpon>ResponsePersonMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SampleTypeMaster.resx">
+      <DependentUpon>SampleTypeMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SampleDepartmentMaster.resx">
+      <DependentUpon>SampleDepartmentMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SampleCategoryMaster.resx">
+      <DependentUpon>SampleCategoryMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SamplePackTypeMaster.resx">
+      <DependentUpon>SamplePackTypeMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SeasonMaster.resx">
+      <DependentUpon>SeasonMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SizeMaster.resx">
+      <DependentUpon>SizeMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\StyleMaster.resx">
+      <DependentUpon>StyleMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\SubStyleMaster.resx">
+      <DependentUpon>SubStyleMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\AGF\PopUp.resx">
+      <DependentUpon>PopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\AGF\SampleReport.resx">
+      <DependentUpon>SampleReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\SampleCollectionReport.resx">
+      <DependentUpon>SampleCollectionReport.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\AGF\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\AGF\HostelReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HostelReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\AGF\DateWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DateWise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\AGF\OutPassReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OutPassReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Canteen\CanteenReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CanteenReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\CompanyVehicleCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CompanyVehicleCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\HostelGatePassPrint.resx">
+      <DependentUpon>HostelGatePassPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\IDCard\ReverseCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReverseCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\LovelySalarySlip1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LovelySalarySlip1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\LovelySalarySlip2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LovelySalarySlip2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Report1.rdlc" />
+    <EmbeddedResource Include="Report\Report2.rdlc" />
+    <EmbeddedResource Include="Report\Sample\CrossTabCrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrossTabCrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\IDCard\BackCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BackCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\IDCard\FrontCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FrontCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\IDCard\IDCardFrontBackCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>IDCardFrontBackCrystalReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Canteen\ReverseCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReverseCrystalReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\ALLPaySlip.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ALLPaySlip.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\AllSlip.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AllSlip.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\AllSlip2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AllSlip2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\AllSlip3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AllSlip3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\CommonReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CommonReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\CommonReport2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CommonReport2.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Lovely\SalarySlip.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SalarySlip1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MonthFuelChart.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MonthFuelChart.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MonthWiseFuelReport2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MonthWiseFuelReport2.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MonthWiseFuelReport3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MonthWiseFuelReport3.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MonthWiseFuelReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MonthWiseFuelReport1.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Samplependingreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Samplependingreport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sample\Brand-Category.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Brand-Category.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sample\SampleCollectionMultiple.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SampleCollectionMultiple.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sample\SampleCollectionPrintFormate.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SampleCollectionPrintFormate.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sample\SampleCollectionCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SampleCollectionCrystalReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SampleCollectionReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SampleCollectionReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SampleCollectionReport3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SampleCollectionReport3.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sample\SampleCorrection.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SampleCorrection.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sample\StockReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>StockReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\AccIssueReceiptReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AccIssueReceiptReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\AccpoInwardReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AccpoInwardReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\DyeingIssueReceiptReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DyeingIssueReceiptReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftBackFrontReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftBackFrontReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\YarnIssueReceipt2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YarnIssueReceipt2.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\YarnFabricStock.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YarnFabricStock.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftLeft13Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftLeft13Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftLeft3Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftLeft3Report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftLeft1Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftLeft1Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\MainReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MainReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftLeft5Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftLeft5Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\Swiftleft7Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Swiftleft7Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftLeft9Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftLeft9Report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftRight10Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftRight10Report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftRight12Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftRight12Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftRight14Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftRight14Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftRight2Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftRight2Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftRight4Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftRight4Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\SwiftRight6Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SwiftRight6Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\AccStock.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AccStock.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SM\YarnIssueToKnitReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YarnIssueToKnitReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Attendance\IDCardRemove.resx">
+      <DependentUpon>IDCardRemove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\BuyersSample.resx">
+      <DependentUpon>BuyersSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\DataImport.resx">
+      <DependentUpon>DataImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\DataTransfer.resx">
+      <DependentUpon>DataTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\GatePass.resx">
+      <DependentUpon>GatePass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hostel\GatePass.resx">
+      <DependentUpon>GatePass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hostel\HostelMaster.resx">
+      <DependentUpon>HostelMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hostel\MachineMaster.resx">
+      <DependentUpon>MachineMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hostel\ReasonMaster.resx">
+      <DependentUpon>ReasonMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\CityMaster.resx">
+      <DependentUpon>CityMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\CompanyMaster.resx">
+      <DependentUpon>CompanyMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\CountryMaster.resx">
+      <DependentUpon>CountryMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\DashBoard.resx">
+      <DependentUpon>DashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\MovementReport.resx">
+      <DependentUpon>MovementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\TokenReport.resx">
+      <DependentUpon>TokenReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\VehicleTableMatch.resx">
+      <DependentUpon>VehicleTableMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\EmployeeMaster.resx">
+      <DependentUpon>EmployeeMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FinYearMaster.resx">
+      <DependentUpon>FinYearMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\InOutSequenceMaster.resx">
+      <DependentUpon>InOutSequenceMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\PartyMaster.resx">
+      <DependentUpon>PartyMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\StateMaster.resx">
+      <DependentUpon>StateMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registration\AboutMaster.resx">
+      <DependentUpon>AboutMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registration\GenerateMaster.resx">
+      <DependentUpon>GenerateMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registration\RegistrationMaster.resx">
+      <DependentUpon>RegistrationMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\FuelAverageReport.resx">
+      <DependentUpon>FuelAverageReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\FuelComparisonReport.resx">
+      <DependentUpon>FuelComparisonReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\OutPassLiveReport.resx">
+      <DependentUpon>OutPassLiveReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFormate\PendingOutPassReport.resx">
+      <DependentUpon>PendingOutPassReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BuyerSampleReport.resx">
+      <DependentUpon>BuyerSampleReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Images\Anugraha_logo.jpg" />
+    <Content Include="Images\backward.png" />
+    <EmbeddedResource Include="Transactions\Lovely\ALLSalarySlip.resx">
+      <DependentUpon>ALLSalarySlip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\MachineMasters.resx">
+      <DependentUpon>MachineMasters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Lovely\MonthPermissionp.resx">
+      <DependentUpon>MonthPermissionp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Lovely\SalarySlip.resx">
+      <DependentUpon>SalarySlip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\SecurityDelivery.resx">
+      <DependentUpon>SecurityDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Colors.resx">
+      <DependentUpon>Colors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\MonthControl.resx">
+      <DependentUpon>MonthControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCListView.resx">
+      <DependentUpon>UCListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCPopUpBox.resx" />
+    <EmbeddedResource Include="VisualStudioTabControl.resx">
+      <DependentUpon>VisualStudioTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DataSets\AGF\AGFOutPassDataSet.xsc">
+      <DependentUpon>AGFOutPassDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\AGF\AGFOutPassDataSet.xsd" />
+    <None Include="DataSets\AGF\AGFOutPassDataSet.xss">
+      <DependentUpon>AGFOutPassDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\auvittable.xsc">
+      <DependentUpon>auvittable.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\auvittable.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>auvittable.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\auvittable.xss">
+      <DependentUpon>auvittable.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\BuyerSample.xsc">
+      <DependentUpon>BuyerSample.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\BuyerSample.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BuyerSample.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\BuyerSample.xss">
+      <DependentUpon>BuyerSample.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\IDCardDataSet.xsc">
+      <DependentUpon>IDCardDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\IDCardDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IDCardDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\IDCardDataSet.xss">
+      <DependentUpon>IDCardDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\Lovely\AllPaySlipDataSet.xsc">
+      <DependentUpon>AllPaySlipDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSets\Lovely\AllPaySlipDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AllPaySlipDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSets\Lovely\AllPaySlipDataSet.xss">
+      <DependentUpon>AllPaySlipDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSets\Lovely\SalarySlip.xsc">
+      <DependentUpon>SalarySlip.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSets\Lovely\SalarySlip.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SalarySlip.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSets\Lovely\SalarySlip.xss">
+      <DependentUpon>SalarySlip.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSets\MonthWiseFuel.xsc">
+      <DependentUpon>MonthWiseFuel.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\MonthWiseFuel.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MonthWiseFuel.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\MonthWiseFuel.xss">
+      <DependentUpon>MonthWiseFuel.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\MonthwiseFuelReportDataSet.xsc">
+      <DependentUpon>MonthwiseFuelReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\MonthwiseFuelReportDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MonthwiseFuelReportDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\MonthwiseFuelReportDataSet.xss">
+      <DependentUpon>MonthwiseFuelReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\OrderHostory1.xsc">
+      <DependentUpon>OrderHostory1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\OrderHostory1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OrderHostory1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\OrderHostory1.xss">
+      <DependentUpon>OrderHostory1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\OutPassCrossTabDataSet1.xsc">
+      <DependentUpon>OutPassCrossTabDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\OutPassCrossTabDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OutPassCrossTabDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\OutPassCrossTabDataSet1.xss">
+      <DependentUpon>OutPassCrossTabDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\OutPassLiveReportDataset.xsc">
+      <DependentUpon>OutPassLiveReportDataset.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\OutPassLiveReportDataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OutPassLiveReportDataset.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\OutPassLiveReportDataset.xss">
+      <DependentUpon>OutPassLiveReportDataset.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ReverseDataSet.xsc">
+      <DependentUpon>ReverseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ReverseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReverseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\ReverseDataSet.xss">
+      <DependentUpon>ReverseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ReverseDataSet2.xsc">
+      <DependentUpon>ReverseDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ReverseDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReverseDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\ReverseDataSet2.xss">
+      <DependentUpon>ReverseDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\SampleCollection.xsc">
+      <DependentUpon>SampleCollection.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\SampleCollection.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SampleCollection.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\SampleCollection.xss">
+      <DependentUpon>SampleCollection.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\SM\OrderHostory1.xsc">
+      <DependentUpon>OrderHostory1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\SM\OrderHostory1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OrderHostory1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\SM\OrderHostory1.xss">
+      <DependentUpon>OrderHostory1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TokenDetailsDataSet.xsc">
+      <DependentUpon>TokenDetailsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\TokenDetailsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TokenDetailsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\TokenDetailsDataSet.xss">
+      <DependentUpon>TokenDetailsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Images\download.png" />
+    <Content Include="Images\FLFLOGO.jpg" />
+    <Content Include="Images\FLFLOGO1.jpg" />
+    <Content Include="Images\free-logoa.jpg" />
+    <Content Include="Images\SKL.jpg" />
+    <Content Include="Images\Treeshow.jpg" />
+    <Content Include="Images\BVKIMAGE.jpg" />
+    <None Include="Images\Exit-image.png" />
+    <Content Include="Report\CompanywiseSecurityReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CompanywiseSecurityReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="ReportFormate\MonthWiseFuelReport.resx">
+      <DependentUpon>MonthWiseFuelReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\FuelAverage.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FuelAverage.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MonthWiseFuelReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MonthWiseFuelReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MovementReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MovementReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\OutPassLiveReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OutPassLiveReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\PendingOutPassReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PendingOutPassReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\QrCodeCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>QrCodeCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SecurityCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SecurityCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\TokenDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TokenDetails.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\VehicleTableMatch.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VehicleTableMatch.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tables\TableCreateMaster.resx">
+      <DependentUpon>TableCreateMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\CompanyWiseSecurityInventry.resx">
+      <DependentUpon>CompanyWiseSecurityInventry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\FuelCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FuelCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\FuelPrint.resx">
+      <DependentUpon>FuelPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\QrCode.resx">
+      <DependentUpon>QrCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PinnacleMdi.resx">
+      <DependentUpon>PinnacleMdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\LogsRemove.resx">
+      <DependentUpon>LogsRemove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\DeviceCommunication.resx">
+      <DependentUpon>DeviceCommunication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\IDCardPrintDetails.resx">
+      <DependentUpon>IDCardPrintDetails.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Lovely\MonthPermission.resx">
+      <DependentUpon>MonthPermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\SampleInwardEntry.resx">
+      <DependentUpon>SampleInwardEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\SampleIssueEntry.resx">
+      <DependentUpon>SampleIssueEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\SecurityInventry.resx">
+      <DependentUpon>SecurityInventry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\SM\OrderHistory.resx">
+      <DependentUpon>OrderHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeView\ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeView\DepartmentMaster.resx">
+      <DependentUpon>DepartmentMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeView\MenuNameMaster.resx">
+      <DependentUpon>MenuNameMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeView\NavigationMaster.resx">
+      <DependentUpon>NavigationMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeView\ParameterMaster .resx">
+      <DependentUpon>ParameterMaster .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeView\TreeViewMaster.resx">
+      <DependentUpon>TreeViewMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeView\UserMaster.resx">
+      <DependentUpon>UserMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeView\UserRights.resx">
+      <DependentUpon>UserRights.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CanteenCustom.resx">
+      <DependentUpon>CanteenCustom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PaySlipPrint.resx" />
+    <EmbeddedResource Include="Report\Sample\SampleCollectionUserControlCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SampleCollectionUserControlCrystalReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Report\Canteen\Canteen.xsc">
+      <DependentUpon>Canteen.xsd</DependentUpon>
+    </None>
+    <None Include="Report\Canteen\Canteen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Canteen.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\Canteen\Canteen.xss">
+      <DependentUpon>Canteen.xsd</DependentUpon>
+    </None>
+    <None Include="Report\CompanywiseSecurityDataSet1.xsc">
+      <DependentUpon>CompanywiseSecurityDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Report\CompanywiseSecurityDataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CompanywiseSecurityDataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\CompanywiseSecurityDataSet1.xss">
+      <DependentUpon>CompanywiseSecurityDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DataTableHostelgatepass.xsc">
+      <DependentUpon>DataTableHostelgatepass.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DataTableHostelgatepass.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataTableHostelgatepass.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\DataTableHostelgatepass.xss">
+      <DependentUpon>DataTableHostelgatepass.xsd</DependentUpon>
+    </None>
+    <None Include="Report\dsFueltoken.xsc">
+      <DependentUpon>dsFueltoken.xsd</DependentUpon>
+    </None>
+    <None Include="Report\dsFueltoken.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFueltoken.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\dsFueltoken.xss">
+      <DependentUpon>dsFueltoken.xsd</DependentUpon>
+    </None>
+    <None Include="Report\TotalCountDataSet.xsc">
+      <DependentUpon>TotalCountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Report\TotalCountDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TotalCountDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\TotalCountDataSet.xss">
+      <DependentUpon>TotalCountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\lunch" />
+    <None Include="Resources\tea1" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="zkemkeeper">
+      <Guid>{FE9DED34-E159-408E-8490-B720A5E632C7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AttLogo5.ico" />
+    <Content Include="Images\Lorry.jpg" />
+    <Content Include="Images\AttLogo1.ico" />
+    <Content Include="Images\AttLogo5.ico" />
+    <Content Include="Images\bt_Clear.bmp" />
+    <Content Include="Images\coombo.bmp" />
+    <Content Include="Images\forward.png" />
+    <Content Include="Images\pause-button.png" />
+    <None Include="Resources\AGF-IN.png" />
+    <None Include="Resources\AGF-OUT.png" />
+    <None Include="Resources\OUT.png" />
+    <None Include="Resources\AGF-OUT-2.png" />
+    <None Include="Resources\IN.png" />
+    <None Include="Resources\Back.jpg" />
+    <None Include="Resources\Anugraha_logo %283%29.jpg" />
+    <None Include="Resources\Anugraha_logo.jpg" />
+    <None Include="Resources\360_F_31460029_bmtpNXdtWogh6varosTMdWf8NFWUhYq8.jpg" />
+    <Content Include="Report\TextFile1.txt" />
+    <Content Include="Resources\BSAIMAGE.jpg" />
+    <None Include="Resources\pinacle.jpeg" />
+    <None Include="Resources\pinalcle.png" />
+    <None Include="Resources\hospital1.jpg" />
+    <None Include="Resources\Selvas Logo.jpeg" />
+    <None Include="Resources\vel.jpeg.jpg" />
+    <None Include="Resources\VEL1.png" />
+    <None Include="Resources\flfd.png" />
+    <None Include="Resources\lovely.png" />
+    <None Include="Resources\printer %281%29.svg" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\Prints1.jpg" />
+    <None Include="Resources\Prints2.jpg" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tables\ALLQUERY.txt" />
+    <Content Include="Tables\CanteenGategory.txt" />
+    <Content Include="Tables\Canteentoken.txt" />
+    <Content Include="Tables\CantenItemMaster.txt" />
+    <Content Include="Tables\FuelRateMaster.txt" />
+    <Content Include="Tables\FuelToken.txt" />
+    <Content Include="Tables\HRVehicle.txt" />
+    <Content Include="Tables\PetrolBunk.txt" />
+    <Content Include="Tables\Treeview.txt" />
+    <Content Include="Tables\Trs_tempattlog.txt" />
+    <Content Include="Tables\vehicle.txt" />
+    <Content Include="Tables\Vehicletoken.txt" />
+    <Content Include="Images\person.png" />
+    <Content Include="Images\phone.png" />
+    <Content Include="Images\placeholder.png" />
+    <Content Include="Images\refresh.bmp" />
+    <Content Include="Images\Toolbar.bmp" />
+    <None Include="Resources\Image1.bmp" />
+    <Content Include="Images\woman.png" />
+    <None Include="Resources\garment.png" />
+    <None Include="Resources\cotton.png" />
+    <None Include="Resources\canteen.png" />
+    <None Include="Resources\tea2" />
+    <None Include="Resources\tiffen.jpg" />
+    <None Include="Resources\tea.jpg" />
+    <None Include="Resources\tea1.jpg" />
+    <None Include="Resources\tea2.jpg" />
+    <None Include="Resources\lunch.jpg" />
+    <None Include="Resources\round image.jpg" />
+    <None Include="Resources\roundpanel1.jpg" />
+    <None Include="Resources\lodingimage.jpg" />
+    <None Include="Resources\close image.jpg" />
+    <None Include="Resources\close image1.jpg" />
+    <None Include="Resources\close image2.jpg" />
+    <None Include="Resources\clearimage.jpg" />
+    <None Include="Resources\clearimage1.jpg" />
+    <None Include="Resources\clearimage11.jpg" />
+    <None Include="Resources\Snacks.jpg" />
+    <Content Include="MenuItems\Coffee\tea1.jpg" />
+    <Content Include="MenuItems\Dinner\1.jpg" />
+    <Content Include="MenuItems\Dinner\101.jpg" />
+    <Content Include="MenuItems\Dinner\2.jpg" />
+    <Content Include="MenuItems\Lunch\101.jpg" />
+    <Content Include="MenuItems\Lunch\11.jpg" />
+    <Content Include="MenuItems\Lunch\6.jpg" />
+    <Content Include="MenuItems\Snacks\101.jpg" />
+    <Content Include="MenuItems\Snacks\2 - Copy %282%29.jpg" />
+    <Content Include="MenuItems\Snacks\2 - Copy.jpg" />
+    <Content Include="MenuItems\Snacks\2.jpg" />
+    <Content Include="MenuItems\Snacks\Snacks.jpg" />
+    <Content Include="MenuItems\Tea\tea.jpg" />
+    <Content Include="MenuItems\Tea\tea2.jpg" />
+    <Content Include="MenuItems\Tiffin\101.jpg" />
+    <Content Include="MenuItems\Tiffin\paniaram.jpg" />
+    <Content Include="MenuItems\Tiffin\poori.jpg" />
+    <Content Include="Tables\Attendance.txt" />
+    <Content Include="Tables\dept.txt" />
+    <Content Include="Tables\Employee.txt" />
+    <Content Include="Tables\Finyear.txt" />
+    <Content Include="Tables\HostelGatePass.txt" />
+    <Content Include="Tables\hotelmas.txt" />
+    <Content Include="Tables\MachineMaster.txt" />
+    <Content Include="Tables\menuname.txt" />
+    <Content Include="Tables\Navigation.txt" />
+    <Content Include="Tables\ReasonMaster.txt" />
+    <Content Include="Tables\UserMaster.txt" />
+    <Content Include="Tables\City.txt" />
+    <Content Include="Tables\Company.txt" />
+    <Content Include="Tables\CountryMaster.txt" />
+    <Content Include="Tables\UserRights.txt" />
+    <Content Include="Tables\SecurityInventry.txt" />
+    <Content Include="Tables\MachineIpEntry.txt" />
+    <Content Include="Tables\Parameter.txt" />
+    <Content Include="Tables\Garment.txt" />
+    <Content Include="Tables\qr.txt" />
+    <Content Include="Tables\StateMaster.txt" />
+    <Content Include="Tables\TFTDevice.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="Master\Bank\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\MongoDB.Driver.Core.2.11.0\build\MongoDB.Driver.Core.targets" Condition="Exists('packages\MongoDB.Driver.Core.2.11.0\build\MongoDB.Driver.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\MongoDB.Driver.Core.2.11.0\build\MongoDB.Driver.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MongoDB.Driver.Core.2.11.0\build\MongoDB.Driver.Core.targets'))" />
+    <Error Condition="!Exists('packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets'))" />
+  </Target>
+  <Import Project="packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />
+</Project>

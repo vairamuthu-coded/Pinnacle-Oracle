@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OutPassLiveReportDataset" targetNamespace="http://tempuri.org/OutPassLiveReportDataset.xsd" xmlns:mstns="http://tempuri.org/OutPassLiveReportDataset.xsd" xmlns="http://tempuri.org/OutPassLiveReportDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OutPassLiveReportDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="OutPassLiveReportDataset" msprop:Generator_UserDSName="OutPassLiveReportDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="OutPassLiveReportTable" msprop:Generator_TableClassName="OutPassLiveReportTableDataTable" msprop:Generator_TableVarName="tableOutPassLiveReportTable" msprop:Generator_TablePropName="OutPassLiveReportTable" msprop:Generator_RowDeletingName="OutPassLiveReportTableRowDeleting" msprop:Generator_RowChangingName="OutPassLiveReportTableRowChanging" msprop:Generator_RowEvHandlerName="OutPassLiveReportTableRowChangeEventHandler" msprop:Generator_RowDeletedName="OutPassLiveReportTableRowDeleted" msprop:Generator_UserTableName="OutPassLiveReportTable" msprop:Generator_RowChangedName="OutPassLiveReportTableRowChanged" msprop:Generator_RowEvArgName="OutPassLiveReportTableRowChangeEvent" msprop:Generator_RowClassName="OutPassLiveReportTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ASPTBLHOSTELGATEPASSID" msprop:Generator_ColumnVarNameInTable="columnASPTBLHOSTELGATEPASSID" msprop:Generator_ColumnPropNameInRow="ASPTBLHOSTELGATEPASSID" msprop:Generator_ColumnPropNameInTable="ASPTBLHOSTELGATEPASSIDColumn" msprop:Generator_UserColumnName="ASPTBLHOSTELGATEPASSID" type="xs:string" minOccurs="0" />
+              <xs:element name="COMPCODE" msprop:Generator_ColumnVarNameInTable="columnCOMPCODE" msprop:Generator_ColumnPropNameInRow="COMPCODE" msprop:Generator_ColumnPropNameInTable="COMPCODEColumn" msprop:Generator_UserColumnName="COMPCODE" type="xs:string" minOccurs="0" />
+              <xs:element name="MIDCARD" msprop:Generator_ColumnVarNameInTable="columnMIDCARD" msprop:Generator_ColumnPropNameInRow="MIDCARD" msprop:Generator_ColumnPropNameInTable="MIDCARDColumn" msprop:Generator_UserColumnName="MIDCARD" type="xs:string" minOccurs="0" />
+              <xs:element name="FNAME" msprop:Generator_ColumnVarNameInTable="columnFNAME" msprop:Generator_ColumnPropNameInRow="FNAME" msprop:Generator_ColumnPropNameInTable="FNAMEColumn" msprop:Generator_UserColumnName="FNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="DISPNAME" msprop:Generator_ColumnVarNameInTable="columnDISPNAME" msprop:Generator_ColumnPropNameInRow="DISPNAME" msprop:Generator_ColumnPropNameInTable="DISPNAMEColumn" msprop:Generator_UserColumnName="DISPNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="CONTACTNO" msprop:Generator_ColumnVarNameInTable="columnCONTACTNO" msprop:Generator_ColumnPropNameInRow="CONTACTNO" msprop:Generator_ColumnPropNameInTable="CONTACTNOColumn" msprop:Generator_UserColumnName="CONTACTNO" type="xs:string" minOccurs="0" />
+              <xs:element name="HOSTELNAME" msprop:Generator_ColumnVarNameInTable="columnHOSTELNAME" msprop:Generator_ColumnPropNameInRow="HOSTELNAME" msprop:Generator_ColumnPropNameInTable="HOSTELNAMEColumn" msprop:Generator_UserColumnName="HOSTELNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BLOCKFLOOR" msprop:Generator_ColumnVarNameInTable="columnBLOCKFLOOR" msprop:Generator_ColumnPropNameInRow="BLOCKFLOOR" msprop:Generator_ColumnPropNameInTable="BLOCKFLOORColumn" msprop:Generator_UserColumnName="BLOCKFLOOR" type="xs:string" minOccurs="0" />
+              <xs:element name="ROOMNO" msprop:Generator_ColumnVarNameInTable="columnROOMNO" msprop:Generator_ColumnPropNameInRow="ROOMNO" msprop:Generator_ColumnPropNameInTable="ROOMNOColumn" msprop:Generator_UserColumnName="ROOMNO" type="xs:string" minOccurs="0" />
+              <xs:element name="REASON" msprop:Generator_ColumnVarNameInTable="columnREASON" msprop:Generator_ColumnPropNameInRow="REASON" msprop:Generator_ColumnPropNameInTable="REASONColumn" msprop:Generator_UserColumnName="REASON" type="xs:string" minOccurs="0" />
+              <xs:element name="PERMISSIONHRS" msprop:Generator_ColumnVarNameInTable="columnPERMISSIONHRS" msprop:Generator_ColumnPropNameInRow="PERMISSIONHRS" msprop:Generator_ColumnPropNameInTable="PERMISSIONHRSColumn" msprop:Generator_UserColumnName="PERMISSIONHRS" type="xs:string" minOccurs="0" />
+              <xs:element name="INTIME" msprop:Generator_ColumnVarNameInTable="columnINTIME" msprop:Generator_ColumnPropNameInRow="INTIME" msprop:Generator_ColumnPropNameInTable="INTIMEColumn" msprop:Generator_UserColumnName="INTIME" type="xs:string" minOccurs="0" />
+              <xs:element name="OUTTIME" msprop:Generator_ColumnVarNameInTable="columnOUTTIME" msprop:Generator_ColumnPropNameInRow="OUTTIME" msprop:Generator_ColumnPropNameInTable="OUTTIMEColumn" msprop:Generator_UserColumnName="OUTTIME" type="xs:string" minOccurs="0" />
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" type="xs:string" minOccurs="0" />
+              <xs:element name="DESIGNATION" msprop:Generator_ColumnVarNameInTable="columnDESIGNATION" msprop:Generator_ColumnPropNameInRow="DESIGNATION" msprop:Generator_ColumnPropNameInTable="DESIGNATIONColumn" msprop:Generator_UserColumnName="DESIGNATION" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

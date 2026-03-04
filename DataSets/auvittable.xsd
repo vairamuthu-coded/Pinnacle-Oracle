@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="auvittable" targetNamespace="http://tempuri.org/auvittable.xsd" xmlns:mstns="http://tempuri.org/auvittable.xsd" xmlns="http://tempuri.org/auvittable.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="auvittable" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="auvittable" msprop:Generator_UserDSName="auvittable">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ASPTBLVEHTOKENID" msprop:Generator_ColumnVarNameInTable="columnASPTBLVEHTOKENID" msprop:Generator_ColumnPropNameInRow="ASPTBLVEHTOKENID" msprop:Generator_ColumnPropNameInTable="ASPTBLVEHTOKENIDColumn" msprop:Generator_UserColumnName="ASPTBLVEHTOKENID" type="xs:string" minOccurs="0" />
+              <xs:element name="COMPCODE" msprop:Generator_ColumnVarNameInTable="columnCOMPCODE" msprop:Generator_ColumnPropNameInRow="COMPCODE" msprop:Generator_ColumnPropNameInTable="COMPCODEColumn" msprop:Generator_UserColumnName="COMPCODE" type="xs:string" minOccurs="0" />
+              <xs:element name="VEHICLENOS" msprop:Generator_ColumnVarNameInTable="columnVEHICLENOS" msprop:Generator_ColumnPropNameInRow="VEHICLENOS" msprop:Generator_ColumnPropNameInTable="VEHICLENOSColumn" msprop:Generator_UserColumnName="VEHICLENOS" type="xs:string" minOccurs="0" />
+              <xs:element name="VEHICLEMASID" msprop:Generator_ColumnVarNameInTable="columnVEHICLEMASID" msprop:Generator_ColumnPropNameInRow="VEHICLEMASID" msprop:Generator_ColumnPropNameInTable="VEHICLEMASIDColumn" msprop:Generator_UserColumnName="VEHICLEMASID" type="xs:string" minOccurs="0" />
+              <xs:element name="VEHICLENO" msprop:Generator_ColumnVarNameInTable="columnVEHICLENO" msprop:Generator_ColumnPropNameInRow="VEHICLENO" msprop:Generator_ColumnPropNameInTable="VEHICLENOColumn" msprop:Generator_UserColumnName="VEHICLENO" type="xs:string" minOccurs="0" />
+              <xs:element name="FNAME" msprop:Generator_ColumnVarNameInTable="columnFNAME" msprop:Generator_ColumnPropNameInRow="FNAME" msprop:Generator_ColumnPropNameInTable="FNAMEColumn" msprop:Generator_UserColumnName="FNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="TOKENDATE" msprop:Generator_ColumnVarNameInTable="columnTOKENDATE" msprop:Generator_ColumnPropNameInRow="TOKENDATE" msprop:Generator_ColumnPropNameInTable="TOKENDATEColumn" msprop:Generator_UserColumnName="TOKENDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="TOKENNO" msprop:Generator_ColumnVarNameInTable="columnTOKENNO" msprop:Generator_ColumnPropNameInRow="TOKENNO" msprop:Generator_ColumnPropNameInTable="TOKENNOColumn" msprop:Generator_UserColumnName="TOKENNO" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

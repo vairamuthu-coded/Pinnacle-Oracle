@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AGFOutPassDataSet" targetNamespace="http://tempuri.org/AGFOutPassDataSet.xsd" xmlns:mstns="http://tempuri.org/AGFOutPassDataSet.xsd" xmlns="http://tempuri.org/AGFOutPassDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AGFOutPassDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AGFOutPassDataSet" msprop:Generator_UserDSName="AGFOutPassDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TOKENNO" msprop:Generator_ColumnVarNameInTable="columnTOKENNO" msprop:Generator_ColumnPropNameInRow="TOKENNO" msprop:Generator_ColumnPropNameInTable="TOKENNOColumn" msprop:Generator_UserColumnName="TOKENNO" type="xs:long" minOccurs="0" />
+              <xs:element name="COMPCODE" msprop:Generator_ColumnVarNameInTable="columnCOMPCODE" msprop:Generator_ColumnPropNameInRow="COMPCODE" msprop:Generator_ColumnPropNameInTable="COMPCODEColumn" msprop:Generator_UserColumnName="COMPCODE" type="xs:string" minOccurs="0" />
+              <xs:element name="IDCARDNO" msprop:Generator_ColumnVarNameInTable="columnIDCARDNO" msprop:Generator_ColumnPropNameInRow="IDCARDNO" msprop:Generator_ColumnPropNameInTable="IDCARDNOColumn" msprop:Generator_UserColumnName="IDCARDNO" type="xs:long" minOccurs="0" />
+              <xs:element name="EMPNAME" msprop:Generator_ColumnVarNameInTable="columnEMPNAME" msprop:Generator_ColumnPropNameInRow="EMPNAME" msprop:Generator_ColumnPropNameInTable="EMPNAMEColumn" msprop:Generator_UserColumnName="EMPNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="DEPARTMENT" msprop:Generator_ColumnVarNameInTable="columnDEPARTMENT" msprop:Generator_ColumnPropNameInRow="DEPARTMENT" msprop:Generator_ColumnPropNameInTable="DEPARTMENTColumn" msprop:Generator_UserColumnName="DEPARTMENT" type="xs:string" minOccurs="0" />
+              <xs:element name="CONTACTNO" msprop:Generator_ColumnVarNameInTable="columnCONTACTNO" msprop:Generator_ColumnPropNameInRow="CONTACTNO" msprop:Generator_ColumnPropNameInTable="CONTACTNOColumn" msprop:Generator_UserColumnName="CONTACTNO" type="xs:long" minOccurs="0" />
+              <xs:element name="HOSTELNAME" msprop:Generator_ColumnVarNameInTable="columnHOSTELNAME" msprop:Generator_ColumnPropNameInRow="HOSTELNAME" msprop:Generator_ColumnPropNameInTable="HOSTELNAMEColumn" msprop:Generator_UserColumnName="HOSTELNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="HOSTELBLOCK" msprop:Generator_ColumnVarNameInTable="columnHOSTELBLOCK" msprop:Generator_ColumnPropNameInRow="HOSTELBLOCK" msprop:Generator_ColumnPropNameInTable="HOSTELBLOCKColumn" msprop:Generator_UserColumnName="HOSTELBLOCK" type="xs:string" minOccurs="0" />
+              <xs:element name="HOSTELROOM" msprop:Generator_ColumnVarNameInTable="columnHOSTELROOM" msprop:Generator_ColumnPropNameInRow="HOSTELROOM" msprop:Generator_ColumnPropNameInTable="HOSTELROOMColumn" msprop:Generator_UserColumnName="HOSTELROOM" type="xs:string" minOccurs="0" />
+              <xs:element name="REASON" msprop:Generator_ColumnVarNameInTable="columnREASON" msprop:Generator_ColumnPropNameInRow="REASON" msprop:Generator_ColumnPropNameInTable="REASONColumn" msprop:Generator_UserColumnName="REASON" type="xs:string" minOccurs="0" />
+              <xs:element name="PERHRS" msprop:Generator_ColumnVarNameInTable="columnPERHRS" msprop:Generator_ColumnPropNameInRow="PERHRS" msprop:Generator_ColumnPropNameInTable="PERHRSColumn" msprop:Generator_UserColumnName="PERHRS" type="xs:string" minOccurs="0" />
+              <xs:element name="DATETIME" msprop:Generator_ColumnVarNameInTable="columnDATETIME" msprop:Generator_ColumnPropNameInRow="DATETIME" msprop:Generator_ColumnPropNameInTable="DATETIMEColumn" msprop:Generator_UserColumnName="DATETIME" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="QRCODE" msprop:Generator_ColumnVarNameInTable="columnQRCODE" msprop:Generator_ColumnPropNameInRow="QRCODE" msprop:Generator_ColumnPropNameInTable="QRCODEColumn" msprop:Generator_UserColumnName="QRCODE" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EMPIMAGE" msprop:Generator_ColumnVarNameInTable="columnEMPIMAGE" msprop:Generator_ColumnPropNameInRow="EMPIMAGE" msprop:Generator_ColumnPropNameInTable="EMPIMAGEColumn" msprop:Generator_UserColumnName="EMPIMAGE" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="REMARKS" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_UserColumnName="REMARKS" type="xs:string" minOccurs="0" />
+              <xs:element name="FINYEAR" msprop:Generator_ColumnVarNameInTable="columnFINYEAR" msprop:Generator_ColumnPropNameInRow="FINYEAR" msprop:Generator_ColumnPropNameInTable="FINYEARColumn" msprop:Generator_UserColumnName="FINYEAR" type="xs:string" minOccurs="0" />
+              <xs:element name="DESIGN" msprop:Generator_ColumnVarNameInTable="columnDESIGN" msprop:Generator_ColumnPropNameInRow="DESIGN" msprop:Generator_ColumnPropNameInTable="DESIGNColumn" msprop:Generator_UserColumnName="DESIGN" type="xs:string" minOccurs="0" />
+              <xs:element name="CONTACTAGF" msprop:Generator_ColumnVarNameInTable="columnCONTACTAGF" msprop:Generator_ColumnPropNameInRow="CONTACTAGF" msprop:Generator_ColumnPropNameInTable="CONTACTAGFColumn" msprop:Generator_UserColumnName="CONTACTAGF" type="xs:string" minOccurs="0" />
+              <xs:element name="CONTACTFLF" msprop:Generator_ColumnVarNameInTable="columnCONTACTFLF" msprop:Generator_ColumnPropNameInRow="CONTACTFLF" msprop:Generator_ColumnPropNameInTable="CONTACTFLFColumn" msprop:Generator_UserColumnName="CONTACTFLF" type="xs:string" minOccurs="0" />
+              <xs:element name="CONTACTFLFD" msprop:Generator_ColumnVarNameInTable="columnCONTACTFLFD" msprop:Generator_ColumnPropNameInRow="CONTACTFLFD" msprop:Generator_ColumnPropNameInTable="CONTACTFLFDColumn" msprop:Generator_UserColumnName="CONTACTFLFD" type="xs:string" minOccurs="0" />
+              <xs:element name="CONTACTAGFM" msprop:Generator_ColumnVarNameInTable="columnCONTACTAGFM" msprop:Generator_ColumnPropNameInRow="CONTACTAGFM" msprop:Generator_ColumnPropNameInTable="CONTACTAGFMColumn" msprop:Generator_UserColumnName="CONTACTAGFM" type="xs:string" minOccurs="0" />
+              <xs:element name="TEST1" msprop:Generator_ColumnVarNameInTable="columnTEST1" msprop:Generator_ColumnPropNameInRow="TEST1" msprop:Generator_ColumnPropNameInTable="TEST1Column" msprop:Generator_UserColumnName="TEST1" type="xs:string" minOccurs="0" />
+              <xs:element name="TEST2" msprop:Generator_ColumnVarNameInTable="columnTEST2" msprop:Generator_ColumnPropNameInRow="TEST2" msprop:Generator_ColumnPropNameInTable="TEST2Column" msprop:Generator_UserColumnName="TEST2" type="xs:string" minOccurs="0" />
+              <xs:element name="TEST3" msprop:Generator_ColumnVarNameInTable="columnTEST3" msprop:Generator_ColumnPropNameInRow="TEST3" msprop:Generator_ColumnPropNameInTable="TEST3Column" msprop:Generator_UserColumnName="TEST3" type="xs:string" minOccurs="0" />
+              <xs:element name="DIGITALSIGN" msprop:Generator_ColumnVarNameInTable="columnDIGITALSIGN" msprop:Generator_ColumnPropNameInRow="DIGITALSIGN" msprop:Generator_ColumnPropNameInTable="DIGITALSIGNColumn" msprop:Generator_UserColumnName="DIGITALSIGN" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
