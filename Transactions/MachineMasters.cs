@@ -24,7 +24,7 @@ namespace Pinnacle.Transactions
             butheader.BackColor = Class.Users.BackColors;
             this.BackColor = Class.Users.BackColors;
             panel2.BackColor = Class.Users.BackColors;
-            panel3.BackColor = Class.Users.BackColors;
+            panel3.BackColor = Class.Users.BackColors;Class.Users.UserTime = 0;
         }
 
         ListView listfilter = new ListView();
@@ -53,7 +53,7 @@ namespace Pinnacle.Transactions
             combo_compcode.Text = ""; txtsessiontime.Text = ""; comboMTYPE2.Text = ""; comboMTYPE2.SelectedIndex = -1;
             comboipaddress.Text = "";
             combowardenname.Text = "";
-           
+            Class.Users.UserTime = 0;
             butheader.BackColor = Class.Users.BackColors;
             this.BackColor = Class.Users.BackColors;
             this.Font = Class.Users.FontName;

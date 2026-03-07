@@ -216,10 +216,10 @@ namespace Pinnacle.Master
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Location = new System.Drawing.Point(4, 30);
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1251, 460);
+            this.tabPage1.Size = new System.Drawing.Size(1251, 463);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sequence";
             // 
@@ -516,7 +516,7 @@ namespace Pinnacle.Master
             this.tabControl2.Location = new System.Drawing.Point(523, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(725, 454);
+            this.tabControl2.Size = new System.Drawing.Size(725, 457);
             this.tabControl2.TabIndex = 113;
             // 
             // tabPage2
@@ -527,10 +527,10 @@ namespace Pinnacle.Master
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Controls.Add(this.listView1);
             this.tabPage2.Font = new System.Drawing.Font("Roboto Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(717, 423);
+            this.tabPage2.Size = new System.Drawing.Size(717, 429);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Details";
             // 
@@ -623,7 +623,7 @@ namespace Pinnacle.Master
             // 
             this.lbltotal.AutoSize = true;
             this.lbltotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbltotal.Location = new System.Drawing.Point(3, 392);
+            this.lbltotal.Location = new System.Drawing.Point(3, 398);
             this.lbltotal.Name = "lbltotal";
             this.lbltotal.Size = new System.Drawing.Size(37, 18);
             this.lbltotal.TabIndex = 2;
@@ -633,7 +633,7 @@ namespace Pinnacle.Master
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(3, 410);
+            this.panel2.Location = new System.Drawing.Point(3, 416);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(711, 10);
             this.panel2.TabIndex = 1;
@@ -659,7 +659,7 @@ namespace Pinnacle.Master
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 34);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(714, 355);
+            this.listView1.Size = new System.Drawing.Size(714, 361);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;

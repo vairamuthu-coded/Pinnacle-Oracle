@@ -183,113 +183,91 @@ namespace Pinnacle.Master.Lovely
                 string s = ""; DataTable dtcheck = new DataTable();
                 OracleCommand ascmd = new OracleCommand();
                 int CNT = dataGridView1.Rows.Count;
-                //string sel0 = "SELECT A.IDCARDNO FROM  ASPTBLEMP A  WHERE A.IDCARDNO=" + txtmidcard.Text;
-                //DataSet ds0 = Utility.ExecuteSelectQuery(sel0, "ASPTBLEMP");
-                //DataTable dt0 = ds0.Tables["ASPTBLEMP"];
-                //if (dt0.Rows.Count <= 0)
-                //{
 
-                    if (Checks() == true)
+                if (Checks() == true)
+                {
+
+                    dtcheck.Rows.Clear();
+
+                    em.ASPTBLEMPID = Convert.ToInt64("0" + txtempid.Text);
+                    em.COMPCODE = Convert.ToInt64("0" + empcompcode.SelectedValue);
+                    em.COMNAME = Convert.ToInt64("0" + empcompcode.SelectedValue);
+                    em.EMPNAME = Convert.ToString(comboempname.Text);
+                    em.EMPID = Convert.ToInt64("0" + comboempname.SelectedValue.ToString());
+                    em.LASTNAME = Convert.ToString(txtlastname.Text.ToUpper());
+                    em.ADDRESS = Convert.ToString(txtaddress.Text);
+                    if (radiomale.Checked == true) { em.GENDER = "T"; } else { radiofemale.Checked = false; em.GENDER = "F"; }
+                    em.EMPLOYEETYPE = Convert.ToString(comboEmpType.Text);
+                    em.DATEOFBIRTH = Convert.ToString(txtdateofbirth.Text);
+                    em.DEPARTMENT = Convert.ToInt64("0" + combodept.SelectedValue);
+                    em.DATEOFJOIN = Convert.ToString(txtdateofjoin.Text);
+                    em.IDCARDNO = Convert.ToInt64("0" + comboidcardno.Text);
+                    em.CONTACT = Convert.ToString(txtcontactno.Text);
+                    em.BLOODGROUP = Convert.ToString(combobroup.Text);
+                    em.bytename = txtnameintamil.Text;
+                    em.bytedesig = txtdesigtamil.Text;
+                    if (checkactive.Checked == true)
                     {
+                        em.ACTIVE = "T";
 
-                        dtcheck.Rows.Clear();
-                        //if (Convert.ToInt64(comboempname.SelectedValue) > 0 && Convert.ToInt64(txtidcardno.Text) > 0 && pictureBox3.Image != null)
-                        //{
-                            em.ASPTBLEMPID = Convert.ToInt64("0" + txtempid.Text);
-                            em.COMPCODE = Convert.ToInt64("0" + empcompcode.SelectedValue);
-                            em.COMNAME = Convert.ToInt64("0" + empcompcode.SelectedValue);
-                            em.EMPNAME = Convert.ToString(comboempname.Text);
-                            em.EMPID = Convert.ToInt64("0" + comboempname.SelectedValue.ToString());
-                            em.LASTNAME = Convert.ToString(txtlastname.Text.ToUpper());
-                            em.ADDRESS = Convert.ToString(txtaddress.Text);
-                            if (radiomale.Checked == true) { em.GENDER = "T"; } else { radiofemale.Checked = false; em.GENDER = "F"; }
-                            em.EMPLOYEETYPE = Convert.ToString(comboEmpType.Text);
-                            em.DATEOFBIRTH = Convert.ToString(txtdateofbirth.Text);
-                            em.DEPARTMENT = Convert.ToInt64("0" + combodept.SelectedValue);
-                            em.DATEOFJOIN = Convert.ToString(txtdateofjoin.Text);
-                            em.IDCARDNO = Convert.ToInt64("0" + comboidcardno.Text);
-                            em.CONTACT = Convert.ToString(txtcontactno.Text);
-                            em.BLOODGROUP = Convert.ToString(combobroup.Text);
-                            em.bytename = txtnameintamil.Text;
-                            em.bytedesig = txtdesigtamil.Text;
-                            if (checkactive.Checked == true)
-                            {
-                                em.ACTIVE = "T";
 
-                                dtcheck = em.select(em.ACTIVE);
-                                em.ACTIVE = "F";
-                                if (Convert.ToInt64(dtcheck.Rows[0]["ACTIVE"].ToString()) > 1)
-                                {
-                                    checkactive.Checked = false; em.ACTIVE = "F";
-                                }
-                                if (Convert.ToInt64(dtcheck.Rows[0]["ACTIVE"].ToString()) <= 0)
-                                {
-                                    checkactive.Checked = true;
-                                    em.ACTIVE = "T";
-                                }
-                            }
-                            else
-                            {
-                                checkactive.Checked = false; em.ACTIVE = "F";
-                            }
+                    }
+                    else
+                    {
+                        checkactive.Checked = false; em.ACTIVE = "F";
+                    }
 
 
 
-                            em.USERNAME = Convert.ToInt64("0" + Class.Users.USERID);
-                            em.IPADDRESS = Class.Users.IPADDRESS;
-                            em.CREATEDON = Convert.ToString(Class.Users.CREATED);
-                            em.MODIFIEDON = Convert.ToString(Class.Users.CREATED);
-                            if (bytesinname == null)
-                            {
-                                em.imageName = 1;
-                            }
-                            else
-                            {
-                                em.imageDeign = Convert.ToInt64("0" + bytesintdesign.Length.ToString());
-                            }
-                            if (bytesintdesign == null)
-                            {
-                                em.imageDeign = 1;
-                            }
-                            else { em.imageDeign = Convert.ToInt64("0" + bytesintdesign.Length.ToString()); }
+                    em.USERNAME = Convert.ToInt64("0" + Class.Users.USERID);
+                    em.IPADDRESS = Class.Users.IPADDRESS;
+                    em.CREATEDON = Convert.ToString(Class.Users.CREATED);
+                    em.MODIFIEDON = Convert.ToString(Class.Users.CREATED);
+                    if (bytesinname == null)
+                    {
+                        em.imageName = 1;
+                    }
+                    else
+                    {
+                        em.imageDeign = Convert.ToInt64("0" + bytesintdesign.Length.ToString());
+                    }
+                    if (bytesintdesign == null)
+                    {
+                        em.imageDeign = 1;
+                    }
+                    else { em.imageDeign = Convert.ToInt64("0" + bytesintdesign.Length.ToString()); }
 
-                            em.bytesign = Sbytes;
-                            em.image = Convert.ToInt64("0" + Sbytes.Length);
-                            em.imagesign = Convert.ToInt64("0" + Sbytes.Length);
+                    em.bytesign = Sbytes;
+                    em.image = Convert.ToInt64("0" + Sbytes.Length);
+                    em.imagesign = Convert.ToInt64("0" + Sbytes.Length);
 
 
 
 
-                            DataTable dt = em.select(em.COMPCODE, em.ASPTBLEMPID, em.IDCARDNO, em.ACTIVE, em.imagesign, em.imageName, em.imageDeign);
-                            if (dt.Rows.Count != 0)
-                            {
-                                MessageBox.Show("Child Record Found", "Exception"); empty();
-                            }
-                            else if (dt.Rows.Count != 0 && em.ASPTBLEMPID == 0 || em.ASPTBLEMPID == 0)
-                            {
-                        //   string ins = "INSERT INTO ASPTBLEMP (COMPCODE,COMNAME,EMPNAME,EMPID,LASTNAME,GENDER,DATEOFBIRTH,ADDRESS,DEPARTMENT,DATEOFJOIN,IDCARDNO,ACTIVE,USERNAME,IPADDRESS,CREATEDBY,CREATEDON,MODIFIEDON,SIGNATURE,IMAGEBYTES,BYTESNAME,BYTESDESIGN,NAMEBYTES,DESIGNBYTES) VALUES('"+em.COMPCODE+ "','" + em.COMNAME + "','" + em.EMPNAME + "','" + em.EMPID + "','" + em.LASTNAME + "','" + em.GENDER + "',:DATEOFBIRTH,:ADDRESS,:DEPARTMENT,:DATEOFJOIN,:IDCARDNO,:ACTIVE,:USERNAME,:IPADDRESS,:CREATEDBY,:CREATEDON,:MODIFIEDON,:SIGNATURE,:IMAGEBYTES,:BYTESNAME,:BYTESDESIGN,:NAMEBYTES,:DESIGNBYTES)";
+                    DataTable dt = em.select(em.COMPCODE, em.ASPTBLEMPID, em.IDCARDNO, em.ACTIVE, em.imagesign, em.imageName, em.imageDeign);
+                    if (dt.Rows.Count != 0)
+                    {
+                        MessageBox.Show("Child Record Found", "Exception"); empty();
+                    }
+                    else if (dt.Rows.Count != 0 && em.ASPTBLEMPID == 0 || em.ASPTBLEMPID == 0)
+                    {
                         string ins = "INSERT INTO ASPTBLEMP (COMPCODE,COMNAME,EMPNAME,EMPID,LASTNAME,GENDER,DATEOFBIRTH,ADDRESS,DEPARTMENT,DATEOFJOIN,IDCARDNO,ACTIVE,USERNAME,IPADDRESS,CREATEDBY,CREATEDON,MODIFIEDON,BYTESNAME,BYTESDESIGN,NAMEBYTES,DESIGNBYTES,SIGNATURE,IMAGEBYTES) VALUES('" + em.COMPCODE + "','" + em.COMNAME + "','" + em.EMPNAME + "','" + em.EMPID + "','" + em.LASTNAME + "','" + em.GENDER + "','" + em.DATEOFBIRTH + "','" + em.ADDRESS + "','" + em.DEPARTMENT + "','" + em.DATEOFJOIN + "','" + em.IDCARDNO + "','" + em.ACTIVE + "','" + em.USERNAME + "','" + em.IPADDRESS + "','" + em.CREATEDBY + "','" + em.CREATEDON + "','" + em.MODIFIEDON + "','" + em.bytename + "','" + em.bytedesig + "','" + em.imageName + "','" + em.imageDeign + "',:SIGNATURE,:IMAGEBYTES)";
 
                         ExecuteNonQuery1(ins, Sbytes, bytes);
-         
-                        MessageBox.Show("Record Saved Saved Successfully", "Success"); GridLoad(); empty();
-                            }
-                            else
-                            {
-                        string UP = "UPDATE   ASPTBLEMP SET COMPCODE='"+ em.COMPCODE + "',COMNAME='" + em.COMNAME + "',EMPNAME='" + em.EMPNAME + "',EMPID='" + em.EMPID + "',LASTNAME='" + em.LASTNAME + "',GENDER='" + em.GENDER + "',DATEOFBIRTH='" + em.DATEOFBIRTH + "',ADDRESS='" + em.ADDRESS + "',DEPARTMENT='" + em.DEPARTMENT + "',DATEOFJOIN='" + em.DATEOFJOIN + "',IDCARDNO='" + em.IDCARDNO + "',ACTIVE='" + em.ACTIVE + "',USERNAME='" + em.USERNAME + "',IPADDRESS='" + em.IPADDRESS + "',CREATEDBY='" + em.CREATEDBY + "',CREATEDON='" + em.CREATEDON + "',MODIFIEDON='" + em.MODIFIEDON + "'" +
-                            " ,BYTESNAME='" + em.bytename + "',BYTESDESIGN='" + em.bytedesig + "' ,NAMEBYTES='" + em.imageName + "',DESIGNBYTES='" + em.imageDeign + "' WHERE ASPTBLEMPID='" + em.ASPTBLEMPID + "'";
-                        ExecuteNonQuery1(UP, Sbytes, bytes); 
-                       
-                        MessageBox.Show("Record Updated  Successfully", "Success"); GridLoad(); empty();
-                            }
 
-                        }
-                    //}
-                //}
-                //else
-                //{
-                //    MessageBox.Show("This IDCardNO already Saved"+ comboidcardno.Text);empty();
-                //}
+                        MessageBox.Show("Record Saved Saved Successfully", "Success"); GridLoad(); empty();
+                    }
+                    else
+                    {
+                        string UP = "UPDATE   ASPTBLEMP SET COMPCODE='" + em.COMPCODE + "',COMNAME='" + em.COMNAME + "',EMPNAME='" + em.EMPNAME + "',EMPID='" + em.EMPID + "',LASTNAME='" + em.LASTNAME + "',GENDER='" + em.GENDER + "',DATEOFBIRTH='" + em.DATEOFBIRTH + "',ADDRESS='" + em.ADDRESS + "',DEPARTMENT='" + em.DEPARTMENT + "',DATEOFJOIN='" + em.DATEOFJOIN + "',IDCARDNO='" + em.IDCARDNO + "',ACTIVE='" + em.ACTIVE + "',USERNAME='" + em.USERNAME + "',IPADDRESS='" + em.IPADDRESS + "',CREATEDBY='" + em.CREATEDBY + "',CREATEDON='" + em.CREATEDON + "',MODIFIEDON='" + em.MODIFIEDON + "'" +
+                            " ,BYTESNAME='" + em.bytename + "',BYTESDESIGN='" + em.bytedesig + "' ,NAMEBYTES='" + em.imageName + "',DESIGNBYTES='" + em.imageDeign + "' WHERE ASPTBLEMPID='" + em.ASPTBLEMPID + "'";
+                        ExecuteNonQuery1(UP, Sbytes, bytes);
+
+                        MessageBox.Show("Record Updated  Successfully", "Success"); GridLoad(); empty();
+                    }
+
+                }
+                    
             }
             catch (Exception EX)
             {

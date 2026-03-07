@@ -38,7 +38,7 @@ namespace Pinnacle.UserControls
             // 
             // bgcol2
             // 
-            this.bgcol2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.bgcol2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bgcol2.FlatAppearance.BorderSize = 0;
             this.bgcol2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.bgcol2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -81,7 +81,7 @@ namespace Pinnacle.UserControls
             // 
             // bgcol4
             // 
-            this.bgcol4.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.bgcol4.BackColor = System.Drawing.Color.SlateBlue;
             this.bgcol4.FlatAppearance.BorderSize = 0;
             this.bgcol4.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.bgcol4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -95,7 +95,7 @@ namespace Pinnacle.UserControls
             // 
             // bgcol3
             // 
-            this.bgcol3.BackColor = System.Drawing.Color.MediumPurple;
+            this.bgcol3.BackColor = System.Drawing.Color.SlateGray;
             this.bgcol3.FlatAppearance.BorderSize = 0;
             this.bgcol3.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.bgcol3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -192,7 +192,6 @@
             this.btnClearDataUserInfo = new System.Windows.Forms.Button();
             this.GetDeviceTime = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.poweroffdevice = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.tab5CardReader = new System.Windows.Forms.TabPage();
             this.lvCard = new System.Windows.Forms.ListView();
@@ -394,7 +393,7 @@
             this.checkBox1.ForeColor = System.Drawing.Color.Black;
             this.checkBox1.Location = new System.Drawing.Point(1187, 14);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(42, 20);
+            this.checkBox1.Size = new System.Drawing.Size(41, 20);
             this.checkBox1.TabIndex = 78;
             this.checkBox1.Text = "All";
             this.checkBox1.UseVisualStyleBackColor = false;
@@ -522,7 +521,7 @@
             this.label3.Location = new System.Drawing.Point(315, 13);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 16);
+            this.label3.Size = new System.Drawing.Size(28, 16);
             this.label3.TabIndex = 39;
             this.label3.Text = "Port";
             // 
@@ -791,11 +790,11 @@
             this.listviewchecklistip.GridLines = true;
             this.listviewchecklistip.HideSelection = false;
             this.listviewchecklistip.LabelEdit = true;
-            this.listviewchecklistip.Location = new System.Drawing.Point(477, 0);
+            this.listviewchecklistip.Location = new System.Drawing.Point(382, 0);
             this.listviewchecklistip.Margin = new System.Windows.Forms.Padding(0);
             this.listviewchecklistip.Name = "listviewchecklistip";
             this.listviewchecklistip.ShowItemToolTips = true;
-            this.listviewchecklistip.Size = new System.Drawing.Size(370, 250);
+            this.listviewchecklistip.Size = new System.Drawing.Size(477, 250);
             this.listviewchecklistip.TabIndex = 47;
             this.listviewchecklistip.UseCompatibleStateImageBehavior = false;
             this.listviewchecklistip.View = System.Windows.Forms.View.Details;
@@ -809,7 +808,7 @@
             // list3ip
             // 
             this.list3ip.Text = "IP Address";
-            this.list3ip.Width = 125;
+            this.list3ip.Width = 250;
             // 
             // list3enable
             // 
@@ -849,11 +848,12 @@
             this.listViewupload.Margin = new System.Windows.Forms.Padding(1);
             this.listViewupload.Name = "listViewupload";
             this.listViewupload.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.listViewupload.Size = new System.Drawing.Size(475, 266);
+            this.listViewupload.Size = new System.Drawing.Size(380, 266);
             this.listViewupload.TabIndex = 46;
             this.listViewupload.UseCompatibleStateImageBehavior = false;
             this.listViewupload.View = System.Windows.Forms.View.Details;
             this.listViewupload.ItemActivate += new System.EventHandler(this.ListViewupload_ItemActivate);
+            this.listViewupload.SelectedIndexChanged += new System.EventHandler(this.listViewupload_SelectedIndexChanged);
             // 
             // columnHeader51
             // 
@@ -1459,7 +1459,7 @@
             // columnHeader14
             // 
             this.columnHeader14.Text = "IP Address";
-            this.columnHeader14.Width = 132;
+            this.columnHeader14.Width = 200;
             // 
             // columnHeader15
             // 
@@ -1743,7 +1743,6 @@
             this.gbEvent.Controls.Add(this.btnClearDataUserInfo);
             this.gbEvent.Controls.Add(this.GetDeviceTime);
             this.gbEvent.Controls.Add(this.button5);
-            this.gbEvent.Controls.Add(this.poweroffdevice);
             this.gbEvent.Controls.Add(this.button3);
             this.gbEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbEvent.Location = new System.Drawing.Point(3, 32);
@@ -1775,7 +1774,7 @@
             this.lbltotemp.ForeColor = System.Drawing.Color.White;
             this.lbltotemp.Location = new System.Drawing.Point(102, 8);
             this.lbltotemp.Name = "lbltotemp";
-            this.lbltotemp.Size = new System.Drawing.Size(60, 16);
+            this.lbltotemp.Size = new System.Drawing.Size(59, 16);
             this.lbltotemp.TabIndex = 94;
             this.lbltotemp.Text = "Total Emp";
             // 
@@ -1786,7 +1785,7 @@
             this.label21.ForeColor = System.Drawing.Color.White;
             this.label21.Location = new System.Drawing.Point(3, 8);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(60, 16);
+            this.label21.Size = new System.Drawing.Size(59, 16);
             this.label21.TabIndex = 93;
             this.label21.Text = "Total Emp";
             // 
@@ -1797,7 +1796,7 @@
             this.label20.ForeColor = System.Drawing.Color.White;
             this.label20.Location = new System.Drawing.Point(658, 8);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(75, 16);
+            this.label20.Size = new System.Drawing.Size(74, 16);
             this.label20.TabIndex = 92;
             this.label20.Text = "Total Record";
             // 
@@ -1808,7 +1807,7 @@
             this.label19.ForeColor = System.Drawing.Color.White;
             this.label19.Location = new System.Drawing.Point(448, 8);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(45, 16);
+            this.label19.Size = new System.Drawing.Size(44, 16);
             this.label19.TabIndex = 91;
             this.label19.Text = "ToDate";
             // 
@@ -1819,7 +1818,7 @@
             this.label18.ForeColor = System.Drawing.Color.White;
             this.label18.Location = new System.Drawing.Point(198, 8);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(59, 16);
+            this.label18.Size = new System.Drawing.Size(58, 16);
             this.label18.TabIndex = 90;
             this.label18.Text = "FromDate";
             // 
@@ -1830,7 +1829,7 @@
             this.label17.ForeColor = System.Drawing.Color.White;
             this.label17.Location = new System.Drawing.Point(752, 8);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(34, 16);
+            this.label17.Size = new System.Drawing.Size(33, 16);
             this.label17.TabIndex = 87;
             this.label17.Text = "Total";
             // 
@@ -1841,7 +1840,7 @@
             this.lblfrmdate.ForeColor = System.Drawing.Color.White;
             this.lblfrmdate.Location = new System.Drawing.Point(279, 8);
             this.lblfrmdate.Name = "lblfrmdate";
-            this.lblfrmdate.Size = new System.Drawing.Size(59, 16);
+            this.lblfrmdate.Size = new System.Drawing.Size(58, 16);
             this.lblfrmdate.TabIndex = 88;
             this.lblfrmdate.Text = "FromDate";
             // 
@@ -1852,7 +1851,7 @@
             this.lbltodate.ForeColor = System.Drawing.Color.White;
             this.lbltodate.Location = new System.Drawing.Point(499, 8);
             this.lbltodate.Name = "lbltodate";
-            this.lbltodate.Size = new System.Drawing.Size(45, 16);
+            this.lbltodate.Size = new System.Drawing.Size(44, 16);
             this.lbltodate.TabIndex = 89;
             this.lbltodate.Text = "ToDate";
             // 
@@ -1952,23 +1951,13 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(162, 28);
             this.button5.TabIndex = 82;
-            this.button5.Text = "Power ON Device";
+            this.button5.Text = "Power OFF Device";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // poweroffdevice
-            // 
-            this.poweroffdevice.Location = new System.Drawing.Point(195, 55);
-            this.poweroffdevice.Name = "poweroffdevice";
-            this.poweroffdevice.Size = new System.Drawing.Size(162, 28);
-            this.poweroffdevice.TabIndex = 81;
-            this.poweroffdevice.Text = "Power OFF Device";
-            this.poweroffdevice.UseVisualStyleBackColor = true;
-            this.poweroffdevice.Click += new System.EventHandler(this.poweroffdevice_Click);
+            this.button5.Click += new System.EventHandler(this.poweroffdevice_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(19, 55);
+            this.button3.Location = new System.Drawing.Point(195, 55);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(162, 28);
             this.button3.TabIndex = 80;
@@ -2711,11 +2700,11 @@
             this.listremovechecklistip.HideSelection = false;
             this.listremovechecklistip.HoverSelection = true;
             this.listremovechecklistip.LabelEdit = true;
-            this.listremovechecklistip.Location = new System.Drawing.Point(970, 35);
+            this.listremovechecklistip.Location = new System.Drawing.Point(892, 35);
             this.listremovechecklistip.Margin = new System.Windows.Forms.Padding(0);
             this.listremovechecklistip.Name = "listremovechecklistip";
             this.listremovechecklistip.ShowItemToolTips = true;
-            this.listremovechecklistip.Size = new System.Drawing.Size(246, 255);
+            this.listremovechecklistip.Size = new System.Drawing.Size(324, 255);
             this.listremovechecklistip.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listremovechecklistip.TabIndex = 50;
             this.listremovechecklistip.UseCompatibleStateImageBehavior = false;
@@ -2730,7 +2719,7 @@
             // listremoveip
             // 
             this.listremoveip.Text = "IP Address";
-            this.listremoveip.Width = 125;
+            this.listremoveip.Width = 200;
             // 
             // listremovecon
             // 
@@ -2874,7 +2863,7 @@
             this.Lvdownremove.Location = new System.Drawing.Point(463, 35);
             this.Lvdownremove.Margin = new System.Windows.Forms.Padding(1);
             this.Lvdownremove.Name = "Lvdownremove";
-            this.Lvdownremove.Size = new System.Drawing.Size(506, 255);
+            this.Lvdownremove.Size = new System.Drawing.Size(428, 255);
             this.Lvdownremove.TabIndex = 48;
             this.Lvdownremove.UseCompatibleStateImageBehavior = false;
             this.Lvdownremove.View = System.Windows.Forms.View.Details;
@@ -3371,7 +3360,6 @@
         private System.Windows.Forms.CheckBox checkfinger1;
         private System.Windows.Forms.Button GetDeviceTime;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button poweroffdevice;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label labeltime;
         private System.Windows.Forms.ColumnHeader columnHeader43;

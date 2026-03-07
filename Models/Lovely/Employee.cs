@@ -40,6 +40,7 @@ namespace Pinnacle.Models.Lovely
         public Int64 imageDeign { get; set; }
         public string ObjectId { get; set; }
         public string eformId { get; set; }
+        public string MIDCard { get; set; }
         public string fileContent { get; set; }
         public string fileName { get; set; }
         internal DataTable select(long cOMPCODE, Int64 EMPID, string lASTNAME,  string gENDER, string dATEOFBIRTH,string aDDRESS, long dEPARTMENT ,string dATEOFJOIN,long iDCARDNO, string aCTIVE,Int64 image)
@@ -51,10 +52,11 @@ namespace Pinnacle.Models.Lovely
             return dt;
         }
 
-        internal DataTable select(string aCTIVE)
+        internal DataTable select(string aCTIVE, Int64 IDCARDNO, string EMPNAME, Int64 COMPCODE)
         {
-
-            string sel = "select COUNT(ACTIVE) AS ACTIVE from ASPTBLEMP where ACTIVE ='" + aCTIVE + "'";
+         
+            string sel = "select COUNT(ACTIVE) AS ACTIVE from ASPTBLEMP " +
+                "where ACTIVE ='" + aCTIVE + "' AND IDCARDNO ='" + IDCARDNO + "' AND EMPNAME ='" + EMPNAME + "' AND COMPCODE ='" + COMPCODE + "'";
             DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLEMP");
             DataTable dt = ds.Tables["ASPTBLEMP"];
             return dt;

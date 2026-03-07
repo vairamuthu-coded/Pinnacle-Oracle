@@ -48,8 +48,7 @@
             this.lblIdcardno = new System.Windows.Forms.Label();
             this.lblempname = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lbltotal = new System.Windows.Forms.Label();
             this.butsubmit = new System.Windows.Forms.Button();
@@ -118,6 +117,8 @@
             this.EmpID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.EmpName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.IDCardNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timercanteen = new System.Windows.Forms.Timer(this.components);
@@ -125,7 +126,7 @@
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.txtcompcode = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -135,13 +136,13 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureemp)).BeginInit();
             this.tabPage3.SuspendLayout();
-            this.contextMenuStrip3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDays)).BeginInit();
             this.panelprint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -278,7 +279,7 @@
             this.lblmar3.Location = new System.Drawing.Point(313, 43);
             this.lblmar3.Margin = new System.Windows.Forms.Padding(0);
             this.lblmar3.Name = "lblmar3";
-            this.lblmar3.Size = new System.Drawing.Size(75, 19);
+            this.lblmar3.Size = new System.Drawing.Size(75, 21);
             this.lblmar3.TabIndex = 77;
             this.lblmar3.Text = "company";
             this.lblmar3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -295,7 +296,7 @@
             this.lblmar2.Location = new System.Drawing.Point(313, 22);
             this.lblmar2.Margin = new System.Windows.Forms.Padding(0);
             this.lblmar2.Name = "lblmar2";
-            this.lblmar2.Size = new System.Drawing.Size(75, 19);
+            this.lblmar2.Size = new System.Drawing.Size(75, 21);
             this.lblmar2.TabIndex = 76;
             this.lblmar2.Text = "company";
             this.lblmar2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -312,7 +313,7 @@
             this.lblmar1.Location = new System.Drawing.Point(313, 0);
             this.lblmar1.Margin = new System.Windows.Forms.Padding(0);
             this.lblmar1.Name = "lblmar1";
-            this.lblmar1.Size = new System.Drawing.Size(75, 19);
+            this.lblmar1.Size = new System.Drawing.Size(75, 21);
             this.lblmar1.TabIndex = 75;
             this.lblmar1.Text = "company";
             this.lblmar1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -351,7 +352,7 @@
             this.lblMarquee1.Location = new System.Drawing.Point(758, 17);
             this.lblMarquee1.Margin = new System.Windows.Forms.Padding(0);
             this.lblMarquee1.Name = "lblMarquee1";
-            this.lblMarquee1.Size = new System.Drawing.Size(89, 23);
+            this.lblMarquee1.Size = new System.Drawing.Size(91, 25);
             this.lblMarquee1.TabIndex = 74;
             this.lblMarquee1.Text = "company";
             this.lblMarquee1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -377,7 +378,7 @@
             this.lblIdcardno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.lblIdcardno.Location = new System.Drawing.Point(13, 3);
             this.lblIdcardno.Name = "lblIdcardno";
-            this.lblIdcardno.Size = new System.Drawing.Size(66, 19);
+            this.lblIdcardno.Size = new System.Drawing.Size(66, 21);
             this.lblIdcardno.TabIndex = 5;
             this.lblIdcardno.Text = "IDCARD";
             // 
@@ -391,7 +392,7 @@
             this.lblempname.Location = new System.Drawing.Point(13, 28);
             this.lblempname.Margin = new System.Windows.Forms.Padding(0);
             this.lblempname.Name = "lblempname";
-            this.lblempname.Size = new System.Drawing.Size(52, 19);
+            this.lblempname.Size = new System.Drawing.Size(51, 21);
             this.lblempname.TabIndex = 4;
             this.lblempname.Text = "Name";
             // 
@@ -407,24 +408,23 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Report";
             // 
-            // contextMenuStrip3
+            // crystalReportViewer1
             // 
-            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.printToolStripMenuItem});
-            this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(100, 26);
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
-            this.printToolStripMenuItem.Text = "Print";
-            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            this.crystalReportViewer1.ActiveViewIndex = -1;
+            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.crystalReportViewer1.Location = new System.Drawing.Point(3, 55);
+            this.crystalReportViewer1.Name = "crystalReportViewer1";
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1022, 365);
+            this.crystalReportViewer1.TabIndex = 1;
+            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel5.Controls.Add(this.txtcompcode);
             this.panel5.Controls.Add(this.lbltotal);
             this.panel5.Controls.Add(this.butsubmit);
             this.panel5.Controls.Add(this.dateTimePicker5);
@@ -441,15 +441,15 @@
             // lbltotal
             // 
             this.lbltotal.AutoSize = true;
-            this.lbltotal.Location = new System.Drawing.Point(557, 23);
+            this.lbltotal.Location = new System.Drawing.Point(740, 20);
             this.lbltotal.Name = "lbltotal";
-            this.lbltotal.Size = new System.Drawing.Size(36, 15);
+            this.lbltotal.Size = new System.Drawing.Size(37, 18);
             this.lbltotal.TabIndex = 10;
             this.lbltotal.Text = "Total";
             // 
             // butsubmit
             // 
-            this.butsubmit.Location = new System.Drawing.Point(441, 10);
+            this.butsubmit.Location = new System.Drawing.Point(624, 7);
             this.butsubmit.Name = "butsubmit";
             this.butsubmit.Size = new System.Drawing.Size(97, 38);
             this.butsubmit.TabIndex = 9;
@@ -462,17 +462,17 @@
             this.dateTimePicker5.CustomFormat = "dd-MM-yyyy";
             this.dateTimePicker5.Font = new System.Drawing.Font("Roboto Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker5.Location = new System.Drawing.Point(292, 15);
+            this.dateTimePicker5.Location = new System.Drawing.Point(475, 12);
             this.dateTimePicker5.Name = "dateTimePicker5";
-            this.dateTimePicker5.Size = new System.Drawing.Size(129, 23);
+            this.dateTimePicker5.Size = new System.Drawing.Size(129, 25);
             this.dateTimePicker5.TabIndex = 4;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(218, 23);
+            this.label11.Location = new System.Drawing.Point(401, 20);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(47, 15);
+            this.label11.Size = new System.Drawing.Size(49, 18);
             this.label11.TabIndex = 3;
             this.label11.Text = "ToDate";
             // 
@@ -481,17 +481,17 @@
             this.dateTimePicker4.CustomFormat = "dd-MM-yyyy";
             this.dateTimePicker4.Font = new System.Drawing.Font("Roboto Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker4.Location = new System.Drawing.Point(73, 15);
+            this.dateTimePicker4.Location = new System.Drawing.Point(256, 12);
             this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(129, 23);
+            this.dateTimePicker4.Size = new System.Drawing.Size(129, 25);
             this.dateTimePicker4.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 20);
+            this.label1.Location = new System.Drawing.Point(186, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 15);
+            this.label1.Size = new System.Drawing.Size(66, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "FromDate";
             // 
@@ -1232,6 +1232,20 @@
             this.IDCardNo.Text = "IDCardNo";
             this.IDCardNo.Width = 100;
             // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printToolStripMenuItem});
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(100, 26);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.printToolStripMenuItem.Text = "Print";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1268,17 +1282,12 @@
             this.contextMenuStrip4.Name = "contextMenuStrip4";
             this.contextMenuStrip4.Size = new System.Drawing.Size(61, 4);
             // 
-            // crystalReportViewer1
+            // txtcompcode
             // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(3, 55);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1022, 365);
-            this.crystalReportViewer1.TabIndex = 1;
-            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.txtcompcode.Location = new System.Drawing.Point(26, 14);
+            this.txtcompcode.Name = "txtcompcode";
+            this.txtcompcode.Size = new System.Drawing.Size(127, 25);
+            this.txtcompcode.TabIndex = 11;
             // 
             // CanteenItemMaster
             // 
@@ -1309,7 +1318,6 @@
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureemp)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            this.contextMenuStrip3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -1319,6 +1327,7 @@
             this.panelprint.ResumeLayout(false);
             this.panelprint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.contextMenuStrip3.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1423,5 +1432,6 @@
         private System.Windows.Forms.Label lblmar2;
         private System.Windows.Forms.Label lblmar1;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        private System.Windows.Forms.TextBox txtcompcode;
     }
 }

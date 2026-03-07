@@ -49,7 +49,7 @@ namespace Pinnacle.UserControls
             this.pnlIconBackground.Margin = new System.Windows.Forms.Padding(5);
             this.pnlIconBackground.Name = "pnlIconBackground";
             this.pnlIconBackground.Padding = new System.Windows.Forms.Padding(2);
-            this.pnlIconBackground.Size = new System.Drawing.Size(387, 5);
+            this.pnlIconBackground.Size = new System.Drawing.Size(413, 5);
             this.pnlIconBackground.TabIndex = 0;
             // 
             // panel1
@@ -69,7 +69,7 @@ namespace Pinnacle.UserControls
             this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(378, 104);
+            this.panel1.Size = new System.Drawing.Size(404, 104);
             this.panel1.TabIndex = 1;
             // 
             // lblactual
@@ -95,7 +95,7 @@ namespace Pinnacle.UserControls
             this.butdate.Font = new System.Drawing.Font("Roboto Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butdate.ForeColor = System.Drawing.Color.Fuchsia;
             this.butdate.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.butdate.Location = new System.Drawing.Point(264, -7);
+            this.butdate.Location = new System.Drawing.Point(290, -7);
             this.butdate.Name = "butdate";
             this.butdate.Size = new System.Drawing.Size(106, 28);
             this.butdate.TabIndex = 11;
@@ -132,7 +132,7 @@ namespace Pinnacle.UserControls
             this.butUserName.Location = new System.Drawing.Point(111, 22);
             this.butUserName.Name = "butUserName";
             this.butUserName.Padding = new System.Windows.Forms.Padding(3);
-            this.butUserName.Size = new System.Drawing.Size(259, 77);
+            this.butUserName.Size = new System.Drawing.Size(285, 77);
             this.butUserName.TabIndex = 9;
             this.butUserName.Text = "button1";
             this.butUserName.UseVisualStyleBackColor = false;
@@ -173,7 +173,7 @@ namespace Pinnacle.UserControls
             this.Controls.Add(this.pnlIconBackground);
             this.Name = "CanteenCustom";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.Size = new System.Drawing.Size(397, 131);
+            this.Size = new System.Drawing.Size(423, 131);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlUserImage)).EndInit();

@@ -28,13 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GatePass));
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.listViewRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reasonMasterRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LBLNAME = new System.Windows.Forms.Label();
             this.butheader = new System.Windows.Forms.Button();
@@ -137,8 +130,6 @@
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.contextMenuStrip2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -152,42 +143,6 @@
             this.panel3.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuRefreshToolStripMenuItem});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(149, 26);
-            // 
-            // menuRefreshToolStripMenuItem
-            // 
-            this.menuRefreshToolStripMenuItem.Name = "menuRefreshToolStripMenuItem";
-            this.menuRefreshToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.menuRefreshToolStripMenuItem.Text = "DisConnected";
-            this.menuRefreshToolStripMenuItem.Click += new System.EventHandler(this.MenuRefreshToolStripMenuItem_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listViewRefreshToolStripMenuItem,
-            this.reasonMasterRefreshToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(194, 48);
-            // 
-            // listViewRefreshToolStripMenuItem
-            // 
-            this.listViewRefreshToolStripMenuItem.Name = "listViewRefreshToolStripMenuItem";
-            this.listViewRefreshToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.listViewRefreshToolStripMenuItem.Text = "ListView Refresh";
-            this.listViewRefreshToolStripMenuItem.Click += new System.EventHandler(this.ListViewRefreshToolStripMenuItem_Click);
-            // 
-            // reasonMasterRefreshToolStripMenuItem
-            // 
-            this.reasonMasterRefreshToolStripMenuItem.Name = "reasonMasterRefreshToolStripMenuItem";
-            this.reasonMasterRefreshToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.reasonMasterRefreshToolStripMenuItem.Text = "Reason Master Refresh";
-            this.reasonMasterRefreshToolStripMenuItem.Click += new System.EventHandler(this.ReasonMasterRefreshToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -243,7 +198,6 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.ContextMenuStrip = this.contextMenuStrip2;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -260,7 +214,6 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabPage1.ContextMenuStrip = this.contextMenuStrip2;
             this.tabPage1.Controls.Add(this.lblempPhoto);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.comboBox1);
@@ -349,7 +302,6 @@
             // 
             this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.ContextMenuStrip = this.contextMenuStrip1;
             this.comboBox1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.ForeColor = System.Drawing.Color.Black;
             this.comboBox1.FormattingEnabled = true;
@@ -467,7 +419,6 @@
             // 
             this.panelprint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelprint.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelprint.BackgroundImage")));
             this.panelprint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelprint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelprint.Controls.Add(this.butprintcancel);
@@ -606,7 +557,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Location = new System.Drawing.Point(-207, 70);
+            this.pictureBox2.Location = new System.Drawing.Point(-203, 70);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(123, 109);
@@ -686,7 +637,7 @@
             this.btnhostelsave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnhostelsave.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnhostelsave.ForeColor = System.Drawing.Color.Teal;
-            this.btnhostelsave.Location = new System.Drawing.Point(375, 231);
+            this.btnhostelsave.Location = new System.Drawing.Point(379, 230);
             this.btnhostelsave.Name = "btnhostelsave";
             this.btnhostelsave.Size = new System.Drawing.Size(93, 41);
             this.btnhostelsave.TabIndex = 95;
@@ -698,7 +649,6 @@
             // 
             this.comboreason.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboreason.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboreason.ContextMenuStrip = this.contextMenuStrip1;
             this.comboreason.DropDownHeight = 100;
             this.comboreason.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboreason.ForeColor = System.Drawing.Color.Black;
@@ -1189,7 +1139,6 @@
             this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl2.ContextMenuStrip = this.contextMenuStrip1;
             this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Location = new System.Drawing.Point(475, 4);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(0);
@@ -1206,7 +1155,6 @@
             this.tabPage2.AutoScrollMinSize = new System.Drawing.Size(3, 0);
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabPage2.ContextMenuStrip = this.contextMenuStrip1;
             this.tabPage2.Controls.Add(this.panel4);
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Controls.Add(this.lvLogs);
@@ -1377,7 +1325,6 @@
             this.columnHeader13,
             this.columnHeader15,
             this.columnHeader14});
-            this.lvLogs.ContextMenuStrip = this.contextMenuStrip1;
             this.lvLogs.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lvLogs.FullRowSelect = true;
             this.lvLogs.GridLines = true;
@@ -1483,7 +1430,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(1159, 474);
-            this.ContextMenuStrip = this.contextMenuStrip2;
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GatePass";
@@ -1492,8 +1438,6 @@
             this.Load += new System.EventHandler(this.HostelGatePass_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.HostelGatePass_MouseClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HostelGatePass_MouseDown);
-            this.contextMenuStrip2.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1521,7 +1465,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DateTimePicker frmdate;
         private System.Windows.Forms.Label label10;
@@ -1594,17 +1537,13 @@
         private System.Windows.Forms.TextBox txthostelroom;
         private System.Windows.Forms.TextBox txthostelblock;
         private System.Windows.Forms.ColumnHeader columnHeader16;
-        private System.Windows.Forms.ToolStripMenuItem listViewRefreshToolStripMenuItem;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DateTimePicker txtpermissionhrs;
         private System.Windows.Forms.DateTimePicker txtmanualTime;
         private System.Windows.Forms.Button butview;
         private System.Windows.Forms.PictureBox pictureempimage;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ToolStripMenuItem reasonMasterRefreshToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuRefreshToolStripMenuItem;
         private System.Windows.Forms.Label lblsecuritysing;
         private System.Windows.Forms.Label lblwardensign;
         private System.Windows.Forms.Label lblempsign;

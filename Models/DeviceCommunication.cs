@@ -10,7 +10,7 @@ namespace Pinnacle.Models
 {
     class DeviceCommunication
     {
-        public Int32 ATTLOGID { get; set; }
+        public Int64 ATTLOGID { get; set; }
         public String MACHINENUMBER { get; set; }
         public String IPADDRESS { get; set; }
         public String ENROLLNO { get; set; }
@@ -19,7 +19,7 @@ namespace Pinnacle.Models
      
         public IEnumerable <DeviceCommunication> UserDetails { get; set; }
        
-        public DeviceCommunication(int ATTLOGID, string MACHINENUMBER, string IPADDRESS, string ENROLLNO, string DATETIMERECORD)
+        public DeviceCommunication(Int64 ATTLOGID, string MACHINENUMBER, string IPADDRESS, string ENROLLNO, string DATETIMERECORD)
         {
             this.ATTLOGID = ATTLOGID;
             this.MACHINENUMBER = MACHINENUMBER;

@@ -114,74 +114,85 @@ namespace Pinnacle.Transactions.Lovely
 
         }
 
-
+        Image img;
         private void flowcontrolbind(string finyear, string compcode)
         {
-
             if (finyear.Length > 1 && compcode.Length > 1)
             {
-                string sel0 = " select  distinct A.asptblpayslipperID, A.PAYMONTH,A.FINYEAR,b.compcode from asptblpayslipper a JOIN GTCOMPMAST B ON B.GTCOMPMASTID=A.COMPCODE  where     b.compcode='" + compcode + "' and a.username='"+Class.Users.HUserName+"' order by 1";//A.FINYEAR='" + finyear + "' AND
+                string sel0 = "SELECT DISTINCT A.asptblpayslipperID, A.PAYMONTH, A.FINYEAR, B.compcode " +
+                              "FROM asptblpayslipper A " +
+                              "JOIN GTCOMPMAST B ON B.GTCOMPMASTID = A.COMPCODE " +
+                              "WHERE B.compcode = '"+compcode+"' AND A.username = '" + Class.Users.HUserName + "' " +
+                              "ORDER BY 1";
+
                 DataSet ds0 = Utility.ExecuteSelectQuery(sel0, "LOPPLhpayroll");
                 DataTable dt = ds0.Tables["LOPPLhpayroll"];
+
+                if (dt.Rows.Count == 0) {
+                    sel0 = "";
+                     sel0 = "SELECT AA.PAYPERIOD as PAYMONTH,AA.FINYR as Finyear,AA.COMPCODE FROM MONTHLYPAYFRQ AA WHERE AA.STDT = ( SELECT MAX(B.STDT) FROM LOPPLHPAYROLL A JOIN MONTHLYPAYFRQ B ON A.PAYPERIOD = B.PAYPERIOD )";
+
+                }
+                 ds0 = Utility.ExecuteSelectQuery(sel0, "LOPPLhpayroll");
+                 dt = ds0.Tables["LOPPLhpayroll"];
                 Class.Users.Finyear = "";
+
+                DataTable dtCC = Utility.SQLQuery(
+                    "SELECT LOGO AS EMPIMAGE " +
+                    "FROM EDOCIMAGE " +
+                    "WHERE IMGNAME = 'COMPLOGO' " +
+                    "AND COMPANYID = '" + Class.Users.HCompcode + "'");
+
+                Image img = null;
+
+                if (dtCC.Rows.Count > 0)
+                {
+                    foreach (DataRow myRow in dtCC.Rows)
+                    {
+                        if (myRow["EMPIMAGE"] != DBNull.Value)
+                        {
+                            byte[] bytes = (byte[])myRow["EMPIMAGE"];
+                            img = Models.Device.ByteArrayToImage(bytes);
+                        }
+                    }
+                }
+
+                flowLayoutPanel1.Controls.Clear();
+
                 if (dt.Rows.Count > 0)
                 {
                     Class.Users.UserTime = 0;
                     Class.Users.Finyear = dt.Rows[0]["FINYEAR"].ToString();
                     UserControls.MonthControl[] items = new UserControls.MonthControl[dt.Rows.Count];
-                    Class.Users.PayPeriod = ""; flowLayoutPanel1.Controls.Clear();
-                    
+                    int i = 0;
                     foreach (DataRow myRow in dt.Rows)
                     {
-
-                        items[i] = new UserControls.MonthControl(); items[i].compcode.Visible = false; items[i].finyear.Visible = false;
+                        items[i] = new UserControls.MonthControl();
+                        items[i].compcode.Visible = false;
+                        items[i].finyear.Visible = false;
                         items[i].panelheader.BackColor = Class.Users.BackColors;
                         items[i].month.ForeColor = Class.Users.BackColors;
-                        items[i].compcode.Text = Convert.ToString(myRow["COMPCODE"].ToString());
-                        items[i].finyear.Text = Convert.ToString(myRow["Finyear"].ToString());
-                        Class.Users.Finyear = Convert.ToString(myRow["Finyear"].ToString());
-                        items[i].month.Text = Convert.ToString(myRow["PAYMONTH"].ToString());
-                        Class.Users.PayPeriod = Convert.ToString(myRow["PAYMONTH"].ToString());
+
+                        items[i].compcode.Text = myRow["COMPCODE"].ToString();
+                        items[i].finyear.Text = myRow["Finyear"].ToString();
+                        items[i].month.Text = myRow["PAYMONTH"].ToString();
+
+                        items[i].SalarypictureBox.Image =
+                            img != null ? img : Pinnacle.Properties.Resources.pinacle;
+
+                        Class.Users.Finyear = myRow["Finyear"].ToString();
+                        Class.Users.PayPeriod = myRow["PAYMONTH"].ToString();
+
                         items[i].month.Click += Month_Click;
+
                         flowLayoutPanel1.Controls.Add(items[i]);
+
+                        i++;
                     }
                 }
-                else
-                {
-                    string sel1 = "SELECT AA.PAYPERIOD as PAYMONTH,AA.FINYR as Finyear,AA.COMPCODE FROM MONTHLYPAYFRQ AA WHERE AA.STDT = ( SELECT MAX(B.STDT) FROM LOPPLHPAYROLL A JOIN MONTHLYPAYFRQ B ON A.PAYPERIOD = B.PAYPERIOD )";
-                    DataSet ds1 = Utility.ExecuteSelectQuery(sel1, "MONTHLYPAYFRQ");
-                    DataTable dt1 = ds1.Tables["MONTHLYPAYFRQ"];
-                    if (dt1.Rows.Count > 0)
-                    {
-                        Class.Users.UserTime = 0;
-                        Class.Users.Finyear = dt1.Rows[0]["FINYEAR"].ToString();
-
-                        UserControls.MonthControl[] items = new UserControls.MonthControl[dt1.Rows.Count];
-                        Class.Users.PayPeriod = ""; flowLayoutPanel1.Controls.Clear();
-                        foreach (DataRow myRow in dt1.Rows)
-                        {
-                            
-                            items[i] = new UserControls.MonthControl(); items[i].compcode.Visible = false; items[i].finyear.Visible = false;
-                            items[i].panelheader.BackColor = Class.Users.BackColors;
-                            items[i].month.ForeColor = Class.Users.BackColors;
-                            items[i].compcode.Text = Convert.ToString(myRow["COMPCODE"].ToString());
-                            items[i].finyear.Text = Convert.ToString(myRow["Finyear"].ToString());
-                            items[i].month.Text = Convert.ToString(myRow["PAYMONTH"].ToString());
-                            Class.Users.Finyear = Convert.ToString(myRow["Finyear"].ToString());
-                            Class.Users.PayPeriod = Convert.ToString(myRow["PAYMONTH"].ToString());
-                            items[i].month.Click += Month_Click;
-                            flowLayoutPanel1.Controls.Add(items[i]);
-                     
-                        }
-                    }
-
-                }
-
-
-
             }
+           
 
-     
         }
 
         private void Month_Click(object sender, EventArgs e)
@@ -210,7 +221,7 @@ namespace Pinnacle.Transactions.Lovely
                     int maxip = dt0.Rows.Count;
                     if (maxip == 0)
                     {
-                        MessageBox.Show("IP Address not assign this User.   : " + Class.Users.HUserName);
+                        mas.pop("IP Address not assign this User.   : " , Class.Users.HUserName,"");
                     }
                     if (maxip == 1)
                     {
@@ -247,7 +258,7 @@ namespace Pinnacle.Transactions.Lovely
                                 else
                                 {
                                     Cursor = Cursors.Default;
-                                    MessageBox.Show("No Data Found this Machine...." + ip.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    mas.pop("No Data Found this Machine...." ,ip.ToString(), "Error");
                                     return;
                                 }
                                 axCZKEM1.EnableDevice(iMachineNumber, true);//enable the device    
@@ -257,7 +268,7 @@ namespace Pinnacle.Transactions.Lovely
                             {
                                 axCZKEM1.GetLastError(ref idwErrorCode);
                                 Cursor = Cursors.Default;
-                                MessageBox.Show("Unable to connect the device , ErrorCode=" + idwErrorCode.ToString() + "---IP-----" + dt0.Rows[i]["MACIP"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                mas.pop("Unable to connect the device , ErrorCode=" ,"---IP-----" + dt0.Rows[i]["MACIP"].ToString(), "Error");
                                 tabControl1.SelectTab(tabPage1);
                                 return;
                             }
@@ -265,7 +276,7 @@ namespace Pinnacle.Transactions.Lovely
                     }
                     else
                     {
-                        MessageBox.Show("One More IP are Enabled. IP Count is  : " + maxip.ToString());
+                        mas.pop("One More IP are Enabled. IP Count is  : ",maxip.ToString(),"");
                     }
                 }
             }
@@ -299,13 +310,13 @@ namespace Pinnacle.Transactions.Lovely
                 else
                 {
                     Cursor = Cursors.Default;
-                    MessageBox.Show("This IDCard not found in PayRoll", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    mas.pop("This IDCard not found in PayRoll", "Invalid","");
                 }
             }
             else
             {
                 Cursor = Cursors.Default;
-                MessageBox.Show("No data found in Finger Print-Machine in Today" + System.DateTime.Now.ToShortDateString(), "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                mas.pop("No data found in Finger Print-Machine", " in Today" + System.DateTime.Now.ToShortDateString(), "Invalid");
             }
             Cursor = Cursors.Default;
 

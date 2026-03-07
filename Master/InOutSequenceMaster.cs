@@ -53,8 +53,12 @@ namespace Pinnacle.Master
         {
             try
             {
-                
-                string chkothersIN = "";
+                if (checktrue.Checked == false)
+                {
+                    Class.Users.Intimation = "";
+                }
+                else { Class.Users.Intimation = "PAYROLL"; }
+                    string chkothersIN = "";
                 if (checkOthersIN.Checked == true) { chkothersIN = "T"; } else { chkothersIN = "F"; checkOthersIN.Checked = false; }
                 string chkothersout = "";
                 if (checkOthersOut.Checked == true) { chkothersout = "T"; } else { chkothersout = "F"; checkOthersOut.Checked = false; }
@@ -136,6 +140,7 @@ namespace Pinnacle.Master
                     }
                     else if (dt.Rows.Count != 0 && Convert.ToInt64("0"+txtintoutsequenceid.Text) == 0 || Convert.ToInt64("0" + txtintoutsequenceid.Text) == 0)
                     {
+
                         string ins = "INSERT INTO ASPTBLINOUTMAS(ASPTBLINOUTMASID1 ,  COMPCODE   , FINYEAR,GATEDCNO,INWARDNO,OUTWARDNO,FUELTOKEN,AGFIN ,  AGFOUT  ,FLFIN     ,  FLFOUT ,  AGFMIN ,  AGFMOUT    ,  FLFDIN ,  FLFDOUT  , AGFCIN,AGFCOUT, AGFKIN,AGFKOUT,AGFPIN,AGFPOUT,AGFMGIIIN,AGFMGIIOUT,AGFSAMPLE,AGFMGIISAMPLE,AGFSAMPLEACTIVE,AGFMGIISAMPLEACTIVE, ACTIVE  , USERNAME , COMPCODE1, MODIFIED ,  CREATEDON,  IPADDRESS,VELIN,VELOUT,OTHERSIN,OTHERSOUT) " +
                             " VALUES('" + txtintoutsequenceid1.Text + "','" + combo_compcode.SelectedValue + "','" + combofinyear.SelectedValue + "','" + txtgatedcno.Text + "','" + txtinwardstart.Text + "','" + txtoutwardstart.Text + "','" + txtfuelno.Text + "','" + AGFIN + "', '" + AGFOUT + "','" + FLFIN + "','" + FLFOUT + "','" + AGFMIN + "','" + AGFMOUT + "','" + FLFDIN + "','" + FLFDOUT + "','" + AGFCIN + "', '" + AGFCOUT + "','" + AGFKIN + "','" + AGFKOUT + "','" + AGFPIN + "','" + AGFPOUT + "','" + AGFMGIIIN + "','" + AGFMGIIOUT + "','" + txtagfsample.Text + "','" + txtagfmgiisample.Text + "','" + AGFSAMPLEACTIVE + "','" + AGFMGIISAMPLEACTIVE + "','" + chk + "','" + Class.Users.USERID + "', '" + combo_compcode.SelectedValue + "',to_date('" + Convert.ToDateTime(Class.Users.CREATED).ToString() + "', 'dd/MM/yyyy hh24:MI:SS'),to_date('" + Convert.ToDateTime(Class.Users.CREATED) + "', 'dd/MM/yyyy hh24:MI:SS'),'" + Class.Users.IPADDRESS + "','"+VELIN+ "','" + VELOUT + "','"+chkothersIN+ "','" + chkothersout + "')";
                         Utility.ExecuteNonQuery(ins);
@@ -218,7 +223,7 @@ namespace Pinnacle.Master
             DataTable dt = new DataTable();
             if (checktrue.Checked == false)
             {
-                dt = null; Class.Users.Intimation = "PAYROLL";
+                dt = null; Class.Users.Intimation = "";
             string sel = "SELECT A.ASPTBLINOUTMASID,C.FINYR AS FINYEAR,B.COMPCODE,A.GATEDCNO,A.INWARDNO, A.OUTWARDNO,A.AGFSAMPLE,A.AGFMGIISAMPLE,  A.ACTIVE  FROM  ASPTBLINOUTMAS A JOIN GTCOMPMAST B ON A.COMPCODE=B.GTCOMPMASTID   JOIN GTFINANCIALYEAR C ON A.FINYEAR=C.GTFINANCIALYEARID where c.finyr='"+ fin + "'  ORDER BY A.ASPTBLINOUTMASID DESC";
             DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLINOUTMAS");
             dt = ds.Tables["ASPTBLINOUTMAS"];
@@ -354,17 +359,34 @@ namespace Pinnacle.Master
         }
         void finyear()
         {
+            if (checktrue.Checked == true)
+            {
+                Class.Users.Intimation = "PAYROLL";
+                DataTable dt = mas.finyear();
+                combofinyear.ValueMember = "gtfinancialyearid";
+                combofinyear.DisplayMember = "finyear";
+                combofinyear.DataSource = dt;
+                DataTable dt1 = mas.Loginfinyear(Class.Users.HCompcode);
+                combofinyearsearch.ValueMember = "gtfinancialyearid";
+                combofinyearsearch.DisplayMember = "finyear";
+                combofinyearsearch.DataSource = dt1;
 
-            DataTable dt = mas.finyear();
-            combofinyear.ValueMember = "gtfinancialyearid";
-            combofinyear.DisplayMember = "finyear";
-            combofinyear.DataSource = dt;
-            DataTable dt1 = mas.Loginfinyear(Class.Users.HCompcode);
-            combofinyearsearch.ValueMember = "gtfinancialyearid";
-            combofinyearsearch.DisplayMember = "finyear";
-            combofinyearsearch.DataSource = dt1;
+                Class.Users.Finyear = dt.Rows[0]["finyear"].ToString();
+            }
+            else
+            {
+                Class.Users.Intimation = "";
+                DataTable dt = mas.finyear();
+                combofinyear.ValueMember = "gtfinancialyearid";
+                combofinyear.DisplayMember = "finyear";
+                combofinyear.DataSource = dt;
+                DataTable dt1 = mas.Loginfinyear(Class.Users.HCompcode);
+                combofinyearsearch.ValueMember = "gtfinancialyearid";
+                combofinyearsearch.DisplayMember = "finyear";
+                combofinyearsearch.DataSource = dt1;
 
-            Class.Users.Finyear = dt.Rows[0]["finyear"].ToString();
+                Class.Users.Finyear = dt.Rows[0]["finyear"].ToString();
+            }
         }
         private void InOutSequenceMaster_Load(object sender, EventArgs e)
         {

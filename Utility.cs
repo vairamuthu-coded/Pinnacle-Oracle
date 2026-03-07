@@ -271,18 +271,54 @@ namespace Pinnacle
 
             return result;
         }
-        public  static bool ExecuteNonQuery(string query)
+        public static bool ExecuteNonQuery(string query)
         {
-            if (con.State == ConnectionState.Closed)
+            try
             {
-                Connect();
+                if (con.State == ConnectionState.Closed)
+                {
+                    Connect();
+                }
+
+                using (OracleCommand cmd = new OracleCommand(query, con))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
             }
-            cmd = new OracleCommand(query, con);
-            cmd.ExecuteNonQuery();
-            DisConnect();
-            return true;
+            catch (Exception ex)
+            {
+                // Optional: log error
+                Console.WriteLine(ex.Message);
+
+                return false;
+            }
+            finally
+            {
+                DisConnect();
+            }
         }
-      
+
+        //public static bool ExecuteNonQuery(string query)
+        //{
+        //    try {
+        //        if (con.State == ConnectionState.Closed)
+        //        {
+        //            Connect();
+        //        }
+        //        cmd = new OracleCommand(query, con);
+        //        cmd.ExecuteNonQuery();
+        //        DisConnect();
+        //        return true;
+        //    }
+        //    catch(Exception EX) { }
+        //    finally
+        //    {
+        //        return true;
+        //    }
+        //    }
+
 
         //public static bool ExecuteNonQuery1(string query)
         //{
@@ -331,17 +367,38 @@ namespace Pinnacle
             DisConnect();
             return dr;
         }
-        public static object ExecuteScalar(string sql)
+        //public static object ExecuteScalar(string sql)
+        //{
+        //    if (con.State == ConnectionState.Closed)
+        //    {
+        //        Connect();
+        //    }
+        //    cmd = new OracleCommand(sql, con);
+        //    object scalarValue = cmd.ExecuteScalar();
+        //    DisConnect();
+        //    return scalarValue;
+
+        //}
+
+        public static Int64 ExecuteScalar(string sql)
         {
             if (con.State == ConnectionState.Closed)
             {
                 Connect();
             }
-            cmd = new OracleCommand(sql, con);
-            object scalarValue = cmd.ExecuteScalar();
-            DisConnect();
-            return scalarValue;
 
+            cmd = new OracleCommand(sql, con);
+
+            object scalarValue = cmd.ExecuteScalar();
+
+            DisConnect();
+
+            if (scalarValue != null && scalarValue != DBNull.Value)
+            {
+                return Convert.ToInt64(scalarValue);
+            }
+
+            return 0;
         }
 
         public static DataTable SQLQuery(string Sql, Hashtable ParamTable = null)

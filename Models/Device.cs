@@ -186,189 +186,348 @@ namespace Pinnacle.Models
             return dt1;
             
         }
-
-        internal DataTable FindName(string id,string hUnit)
+        internal DataTable FindName(string id, string hUnit)
         {
-            string sql = ""; DataTable dt;
+            string columnName = "";
+            string middleName = "";
+            DataTable dt = null;
+
+            // Decide column + name field
             if (hUnit == "LOPPL")
             {
-                sql = "";
-                sql = $"SELECT C.FNAME  || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.OLDIDNO='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
-                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    return dt;
-                }
-                else
-                {
-                    sql = ""; 
-                    sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.OLDIDNO='{id}'  ORDER BY C.IDCARDNO DESC";
-                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        return dt;
-                    }
-                    else
-                    {
-                        sql = "";
-                        sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.OLDIDNO='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
-                        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            return dt;
-                        }
-                        else
-                        {
-                            sql = "";
-                            sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.OLDIDNO='{id}'   ORDER BY C.IDCARDNO DESC";
-                            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                            if (dt != null && dt.Rows.Count > 0)
-                            {
-                                return dt;
-                            }
-                        }
-
-                    }
-
-                }
+                columnName = "OLDIDNO";
+                middleName = "E.MNAME";
+            }
+            else if (hUnit == "BVK")
+            {
+                columnName = "IDCARD";
+                middleName = "E.MNNAME1";
             }
             else
             {
-                
-                    sql = "";
-                    sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
-                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        return dt;
-                    }
-                    else
-                    {
-                        sql = "";
-                        sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{id}'  ORDER BY C.IDCARDNO DESC";
-                        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            return dt;
-                        }
-                        else
-                        {
-                            sql = "";
-                            sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
-                            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                            if (dt != null && dt.Rows.Count > 0)
-                            {
-                                return dt;
-                            }
-                            else
-                            {
-                                sql = "";
-                                sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{id}'   ORDER BY C.IDCARDNO DESC";
-                                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                                if (dt != null && dt.Rows.Count > 0)
-                                {
-                                    return dt;
-                                }
-                            }
+                columnName = "MIDCARD";
+                middleName = "E.MNNAME1";
+            }
 
-                        }
+            // Common query base
+            string baseQuery = $@" SELECT C.FNAME || '-' || {middleName} AS EMPNAME        FROM GTCOMPMAST B        JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID        JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID        JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME        WHERE D.{columnName} = {id}  {{0}} {{1}}    ORDER BY C.IDCARDNO DESC";
 
-                    }
-                }
-           
+            // Try combinations in order
+            var conditions = new List<Tuple<string, string>>
+            {
+                Tuple.Create("AND D.IDACTIVE='YES'", "AND B.COMPCODE = '"+hUnit+"'"),
+                Tuple.Create("AND D.IDACTIVE='YES'", ""),
+                Tuple.Create("AND D.IDACTIVE='NO'",  "AND B.COMPCODE = '"+hUnit+"'"),
+                Tuple.Create("AND D.IDACTIVE='NO'",  "")
+            };
+            foreach (var cond in conditions)
+            {
+                string activeCond = cond.Item1;
+                string compCond = cond.Item2;
+                string sql = string.Format(baseQuery, activeCond, compCond);
+                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+                if (dt != null && dt.Rows.Count > 0)
+                    return dt;
+            }
+
             return dt;
         }
+        //internal DataTable FindName(string id, string hUnit)
+        //{
+        //    string sql = ""; DataTable dt;
+        //    if (hUnit == "LOPPL")
+        //    {
+        //        sql = "";
+        //        sql = $"SELECT C.FNAME  || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.OLDIDNO='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //        if (dt != null && dt.Rows.Count > 0)
+        //        {
+        //            return dt;
+        //        }
+        //        else
+        //        {
+        //            sql = "";
+        //            sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.OLDIDNO='{id}'  ORDER BY C.IDCARDNO DESC";
+        //            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //            if (dt != null && dt.Rows.Count > 0)
+        //            {
+        //                return dt;
+        //            }
+        //            else
+        //            {
+        //                sql = "";
+        //                sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.OLDIDNO='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                if (dt != null && dt.Rows.Count > 0)
+        //                {
+        //                    return dt;
+        //                }
+        //                else
+        //                {
+        //                    sql = "";
+        //                    sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.OLDIDNO='{id}'   ORDER BY C.IDCARDNO DESC";
+        //                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                    if (dt != null && dt.Rows.Count > 0)
+        //                    {
+        //                        return dt;
+        //                    }
+        //                }
+
+        //            }
+
+        //        }
+        //    }
+        //    if (hUnit == "BVK")
+        //    {
+
+
+        //        sql = "";
+        //        sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.IDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //        if (dt != null && dt.Rows.Count > 0)
+        //        {
+        //            return dt;
+        //        }
+        //        else
+        //        {
+        //            sql = "";
+        //            sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.IDCARD='{id}'  ORDER BY C.IDCARDNO DESC";
+        //            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //            if (dt != null && dt.Rows.Count > 0)
+        //            {
+        //                return dt;
+        //            }
+        //            else
+        //            {
+        //                sql = "";
+        //                sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.IDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                if (dt != null && dt.Rows.Count > 0)
+        //                {
+        //                    return dt;
+        //                }
+        //                else
+        //                {
+        //                    sql = "";
+        //                    sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.IDCARD='{id}'   ORDER BY C.IDCARDNO DESC";
+        //                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                    if (dt != null && dt.Rows.Count > 0)
+        //                    {
+        //                        return dt;
+        //                    }
+        //                }
+
+        //            }
+
+        //        }
+
+        //    }
+        //    else
+        //    {
+
+        //        sql = "";
+        //        sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //        if (dt != null && dt.Rows.Count > 0)
+        //        {
+        //            return dt;
+        //        }
+        //        else
+        //        {
+        //            sql = "";
+        //            sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{id}'  ORDER BY C.IDCARDNO DESC";
+        //            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //            if (dt != null && dt.Rows.Count > 0)
+        //            {
+        //                return dt;
+        //            }
+        //            else
+        //            {
+        //                sql = "";
+        //                sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                if (dt != null && dt.Rows.Count > 0)
+        //                {
+        //                    return dt;
+        //                }
+        //                else
+        //                {
+        //                    sql = "";
+        //                    sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{id}'   ORDER BY C.IDCARDNO DESC";
+        //                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                    if (dt != null && dt.Rows.Count > 0)
+        //                    {
+        //                        return dt;
+        //                    }
+        //                }
+
+        //            }
+
+        //        }
+        //    }
+
+        //    return dt;
+        //}
 
         internal DataTable FindName1(string id, string hUnit)
         {
-            string sql = ""; DataTable dt; 
+            string columnName = "";   string middleName = "";
+
             if (hUnit == "LOPPL")
             {
-                sql = "";
-                sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.OLDIDNO='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
-                 dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    return dt;
-                }
-                else
-                {
-                    sql = "";
-                    sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.OLDIDNO='{id}'  ORDER BY C.IDCARDNO DESC";
-                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        return dt;
-                    }
-                    else
-                    {
-                        sql = "";
-                        sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.OLDIDNO='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
-                        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            return dt;
-                        }
-                        else
-                        {
-                            sql = "";
-                            sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.OLDIDNO='{id}'   ORDER BY C.IDCARDNO DESC";
-                            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                            if (dt != null && dt.Rows.Count > 0)
-                            {
-                                return dt ;
-                            }
-                        }
-                       
-                    }
-
-                }
+                columnName = "D.OLDIDNO";
+                middleName = "E.MNAME";
+            }
+            else if (hUnit == "BVK")
+            {
+                columnName = "D.IDCARD";
+                middleName = "E.MNNAME1";
             }
             else
             {
+                columnName = "D.MIDCARD";
+                middleName = "E.MNNAME1";
+            }
 
-                sql = "";
-                sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
-                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    return dt;
-                }
-                else
-                {
-                    sql = "";
-                    sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{id}'  ORDER BY C.IDCARDNO DESC";
-                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        return dt;
-                    }
-                    else
-                    {
-                        sql = "";
-                        sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
-                        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            return dt;
-                        }
-                        else
-                        {
-                            sql = "";
-                            sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{id}'   ORDER BY C.IDCARDNO DESC";
-                            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                            if (dt != null && dt.Rows.Count > 0)
-                            {
-                                return dt;
-                            }
-                        }
-
-                    }
-                }
-
-                }
-                return dt;
+            string sql = $@"  SELECT C.FNAME || '-' || {middleName} AS EMPNAME    FROM GTCOMPMAST B    JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID    JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID    JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME    WHERE {columnName} = {id}    ORDER BY  CASE  WHEN D.IDACTIVE = 'YES' AND B.COMPCODE = '{hUnit}' THEN 1  WHEN D.IDACTIVE = 'YES' THEN 2    WHEN D.IDACTIVE = 'NO'  AND B.COMPCODE = '{hUnit}' THEN 3  ELSE 4  END,     C.IDCARDNO DESC";
+            DataTable dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+            return dt;
         }
+        //internal DataTable FindName1(string id, string hUnit)
+        //{
+        //    string sql = ""; DataTable dt; 
+        //    if (hUnit == "LOPPL")
+        //    {
+        //        sql = "";
+        //        sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.OLDIDNO='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //         dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //        if (dt != null && dt.Rows.Count > 0)
+        //        {
+        //            return dt;
+        //        }
+        //        else
+        //        {
+        //            sql = "";
+        //            sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.OLDIDNO='{id}'  ORDER BY C.IDCARDNO DESC";
+        //            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //            if (dt != null && dt.Rows.Count > 0)
+        //            {
+        //                return dt;
+        //            }
+        //            else
+        //            {
+        //                sql = "";
+        //                sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.OLDIDNO='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                if (dt != null && dt.Rows.Count > 0)
+        //                {
+        //                    return dt;
+        //                }
+        //                else
+        //                {
+        //                    sql = "";
+        //                    sql = $"SELECT C.FNAME || '-' || E.MNAME AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.OLDIDNO='{id}'   ORDER BY C.IDCARDNO DESC";
+        //                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                    if (dt != null && dt.Rows.Count > 0)
+        //                    {
+        //                        return dt ;
+        //                    }
+        //                }
+
+        //            }
+
+        //        }
+        //    }
+        //    if (hUnit == "BVK")
+        //    {
+
+
+        //            sql = "";
+        //            sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.IDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //            if (dt != null && dt.Rows.Count > 0)
+        //            {
+        //                return dt;
+        //            }
+        //            else
+        //            {
+        //                sql = "";
+        //                sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.IDCARD='{id}'  ORDER BY C.IDCARDNO DESC";
+        //                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                if (dt != null && dt.Rows.Count > 0)
+        //                {
+        //                    return dt;
+        //                }
+        //                else
+        //                {
+        //                    sql = "";
+        //                    sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.IDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                    if (dt != null && dt.Rows.Count > 0)
+        //                    {
+        //                        return dt;
+        //                    }
+        //                    else
+        //                    {
+        //                        sql = "";
+        //                        sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.IDCARD='{id}'   ORDER BY C.IDCARDNO DESC";
+        //                        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                        if (dt != null && dt.Rows.Count > 0)
+        //                        {
+        //                            return dt;
+        //                        }
+        //                    }
+
+        //                }
+        //            }
+
+
+        //    }
+        //    else
+        //    {
+
+        //        sql = "";
+        //        sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //        dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //        if (dt != null && dt.Rows.Count > 0)
+        //        {
+        //            return dt;
+        //        }
+        //        else
+        //        {
+        //            sql = "";
+        //            sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{id}'  ORDER BY C.IDCARDNO DESC";
+        //            dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //            if (dt != null && dt.Rows.Count > 0)
+        //            {
+        //                return dt;
+        //            }
+        //            else
+        //            {
+        //                sql = "";
+        //                sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{id}' AND B.COMPCODE='" + hUnit + "'   ORDER BY C.IDCARDNO DESC";
+        //                dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                if (dt != null && dt.Rows.Count > 0)
+        //                {
+        //                    return dt;
+        //                }
+        //                else
+        //                {
+        //                    sql = "";
+        //                    sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{id}'   ORDER BY C.IDCARDNO DESC";
+        //                    dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
+        //                    if (dt != null && dt.Rows.Count > 0)
+        //                    {
+        //                        return dt;
+        //                    }
+        //                }
+
+        //            }
+        //        }
+
+        //        }
+        //        return dt;
+        //}
 
         public  DataTable IPLOAD(string s, string ss)
         {

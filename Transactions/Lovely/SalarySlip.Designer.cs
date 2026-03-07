@@ -90,7 +90,6 @@ namespace Pinnacle.Transactions.Lovely
             // 
             // tabControl1
             // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -106,12 +105,12 @@ namespace Pinnacle.Transactions.Lovely
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.flowLayoutPanel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1193, 426);
+            this.tabPage1.Size = new System.Drawing.Size(1193, 429);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Month of Salary Slip";
             // 
             // flowLayoutPanel1
             // 
@@ -122,7 +121,7 @@ namespace Pinnacle.Transactions.Lovely
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1193, 426);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1193, 429);
             this.flowLayoutPanel1.TabIndex = 52;
             // 
             // contextMenuStrip1
@@ -142,10 +141,11 @@ namespace Pinnacle.Transactions.Lovely
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.crystalReportViewer1);
+            this.tabPage2.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1187, 423);
+            this.tabPage2.Size = new System.Drawing.Size(1193, 429);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -157,7 +157,7 @@ namespace Pinnacle.Transactions.Lovely
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(3, 3);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1181, 417);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1187, 423);
             this.crystalReportViewer1.TabIndex = 0;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -200,12 +200,11 @@ namespace Pinnacle.Transactions.Lovely
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.combofinyear);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.ForeColor = System.Drawing.Color.Black;
             this.panel5.Location = new System.Drawing.Point(1, 1);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(3);
-            this.panel5.Size = new System.Drawing.Size(1201, 43);
+            this.panel5.Size = new System.Drawing.Size(1201, 46);
             this.panel5.TabIndex = 27;
             this.panel5.Visible = false;
             // 

@@ -80,12 +80,12 @@ namespace Pinnacle
                 lblMarquee1.Text = "Welcome to " + Class.Users.HCompName.ToString();
                 timer2.Enabled = true;
                 paneltree.Visible = false; toolStripStatusLabel3.Text = Class.Users.UserTime.ToString();
-                PinnacleMdi.ActiveForm.Text = Class.Users.HCompName.ToString() + "  UserName: " + Class.Users.HUserName.ToString() + "  ProjectName  :" + Class.Users.ProjectID + " - " + Class.Users.HostelName;
+                PinnacleMdi.ActiveForm.Text = $"{Class.Users.HCompName.ToString()}  UserName: {Class.Users.HUserName.ToString()} ProjectName  {Class.Users.ProjectID } {Class.Users.HostelName}";
 
                 systemuser = Environment.UserName;
                 treeload();
                 combosearchload(); img = null;
-                DataTable dtCC = Utility.SQLQuery("SELECT LOGO AS EMPIMAGE FROM EDOCIMAGE WHERE IMGNAME = 'COMPLOGO' AND COMPANYID ='" + Class.Users.HCompcode + "' ");
+                DataTable dtCC = Utility.SQLQuery("SELECT LOGO AS EMPIMAGE FROM EDOCIMAGE WHERE IMGNAME = 'COMPLOGO' AND COMPANYID ='" + Class.Users.HUnit + "' ");
                 if (dtCC.Rows[0]["EMPIMAGE"].ToString() != "")
                 {
                     foreach (DataRow myRow in dtCC.Rows)
@@ -105,104 +105,7 @@ namespace Pinnacle
             {
 
             }
-            //timer1.Enabled = true;
-            //uniqueList.Clear();           
-            //GlobalVariables.MenuStrip1 = this.MainMenuStrip;
-            //GlobalVariables.Toolstrip1 = this.toolStrip1;
-            //GlobalVariables.News = this.News;
-            //GlobalVariables.Saves = this.Saves;
-            //GlobalVariables.Prints = this.Prints;
-            //GlobalVariables.Searchs = this.Searchs;
-            //GlobalVariables.Deletes = this.Deletes;
-            //GlobalVariables.ReadOnlys = this.ReadOnlys;
-            //GlobalVariables.MdiPanel = this.mdipanel;
-            //GlobalVariables.Imports = this.Imports;
-            //GlobalVariables.Pdfs = this.Pdfs;
-            //GlobalVariables.DownLoads = this.DownLoads;
-            //GlobalVariables.ChangeSkins = this.ChangeSkins;
-            //GlobalVariables.ChangePasswords = this.ChangePasswords;
-            //GlobalVariables.Logins = this.Logins;
-            //GlobalVariables.GlobalSearchs = this.GlobalSearchs;
-            //GlobalVariables.TreeButtons = this.TreeButtons;
-            //GlobalVariables.HeaderName = this.lblheader;
-            //GlobalVariables.Exit = this.Exit;       
-            //GlobalVariables.MasterForm = this;
-            // GlobalVariables.TabCtrl = this.TabCtrl;
-            //combosearch.Select();
-            //GlobalVariables.Toolstrip1.Visible = false;
-            //TabCtrl.Visible = false;
-            //tabControl1.Visible = true;
-            //  string sel = "select distinct A.menuid, A.MENUNAME from asptbluserrights  a  join asptblusermas b on A.USERNAME=B.USERID join gtcompmast c on C.GTCOMPMASTID=A.COMPCODE and C.GTCOMPMASTID=B.COMPCODE   where  A.PARENTMENUID=1 AND A.ACTIVE='T'AND B.USERNAME='" + Class.Users.HUserName+ "' AND C.COMPCODE='" + Class.Users.HCompcode + "'  order by 1";
-            //    DataSet ds = Utility.ExecuteSelectQuery(sel, "asptblmenuname");
-            //DataTable dt = ds.Tables["asptblmenuname"];
-            //if (dt.Rows.Count > 0)
-            //{
-            //    for (int i = 0; i < dt.Rows.Count; i++)
-            //    {
-
-            //        if ("Masters" == dt.Rows[i]["MENUNAME"].ToString())
-            //        {
-
-
-            //            tabControl1.TabPages.Add(Masters);
-
-
-            //        }
-
-            //        if ("Transactions" == dt.Rows[i]["MENUNAME"].ToString())
-            //        {
-
-            //            tabControl1.TabPages.Add(Transactions);
-
-
-            //        }
-
-            //        if ("Fuel" == dt.Rows[i]["MENUNAME"].ToString())
-            //        {
-
-            //            Class.Users.Intimation = "PAYROLL";
-            //            tabControl1.TabPages.Add(Fuel);
-
-            //        }
-
-            //        if ("Hostel" == dt.Rows[i]["MENUNAME"].ToString())
-            //        {
-
-            //            Class.Users.Intimation = "PAYROLL";
-            //            tabControl1.TabPages.Add(Hostel);
-
-
-            //        }
-
-            //        if ("Canteen" == dt.Rows[i]["MENUNAME"].ToString())
-            //        {
-
-
-            //            tabControl1.TabPages.Add(Canteen);
-
-
-            //        }
-
-
-            //        if ("TreeView" == dt.Rows[i]["MENUNAME"].ToString())
-            //        {
-
-            //            tabControl1.TabPages.Add(TreeView);
-
-
-            //        }
-            //        if ("Reports" == dt.Rows[i]["MENUNAME"].ToString())
-            //        {
-            //            tabControl1.TabPages.Add(Reports);
-            //        }
-            //        if ("Registration" == dt.Rows[i]["MENUNAME"].ToString())
-            //        {
-            //            tabControl1.TabPages.Add(Registration);
-            //        }
-            //    }
-            //}
-
-            //Backcolor3_Click(sender,e);
+            
             try
             {
                 lblMarquee1.Text = $"Welcome to {Class.Users.HCompName}";
@@ -211,31 +114,14 @@ namespace Pinnacle
                 paneltree.Visible = false;
                 toolStripStatusLabel3.Text = Class.Users.UserTime.ToString();
 
-                //PinnacleMdi.ActiveForm.Text =
-                //    $"{Class.Users.HCompName}  UserName: {Class.Users.HUserName}  - {Class.Users.HostelName}";
+            
 
                 systemuser = Environment.UserName;
 
                 treeload();
                 combosearchload();
 
-               // img = null;
-
-               
-                    //   DataTable dtCC = Utility.SQLQuery($"SELECT LOGO AS EMPIMAGE FROM EDOCIMAGE WHERE IMGNAME='COMPLOGO' AND COMPANYID='{Class.Users.HCompcode}'"); ;
-
-                    //if (dtCC.Rows.Count > 0)
-                    //{
-                    //    foreach (DataRow row in dtCC.Rows)
-                    //    {
-                    //        if (row["EMPIMAGE"] != DBNull.Value)
-                    //        {
-                    //            byte[] bytes = (byte[])row["EMPIMAGE"];
-                    //            img = Models.Device.ByteArrayToImage(bytes);
-                    //            pictureBox1.BackgroundImage = img;
-                    //        }
-                    //    }
-                    //}
+      
 
                
                 timer1.Enabled = true;
@@ -243,7 +129,7 @@ namespace Pinnacle
 
                 // Save global variables
                 GlobalVariables.MenuStrip1 = this.MainMenuStrip;
-                GlobalVariables.Toolstrip1 = this.toolStrip1;
+                GlobalVariables.Toolstrip1 = this.toolStrip1; 
                 GlobalVariables.News = this.News;
                 GlobalVariables.Saves = this.Saves;
                 GlobalVariables.Prints = this.Prints;
@@ -263,7 +149,7 @@ namespace Pinnacle
                 GlobalVariables.Exit = this.Exit;
                 GlobalVariables.MasterForm = this;
                 GlobalVariables.TabCtrl = this.TabCtrl;
-
+             
                 combosearch.Select();
 
                 GlobalVariables.Toolstrip1.Visible = false;
@@ -335,42 +221,7 @@ namespace Pinnacle
         }
         public void usercheck(string s, string ss, string sss)
         {
-            //try
-            //{
-            //    DataTable dt1 = sm.headerdropdowns(s, ss, sss);
-            //    int cnt = dt1.Rows.Count;
-            //    if (cnt >= 1)
-            //    {
-            //        if (dt1.Rows[0]["Menuname"].ToString() == Class.Users.ScreenName)
-            //        {
-            //            for (int r = 0; r < dt1.Rows.Count; r++)
-            //            {
-            //                if (dt1.Rows[r]["NEWS"].ToString() == "T") { GlobalVariables.News.Visible = true; } else { GlobalVariables.News.Visible = false; }
-            //                if (dt1.Rows[r]["SAVES"].ToString() == "T") { GlobalVariables.Saves.Visible = true; } else { GlobalVariables.Saves.Visible = false; }
-            //                if (dt1.Rows[r]["PRINTS"].ToString() == "T") { GlobalVariables.Prints.Visible = true; } else { GlobalVariables.Prints.Visible = false; }
-            //                if (dt1.Rows[r]["READONLY"].ToString() == "T") { GlobalVariables.ReadOnlys.Visible = false; this.Enabled = true; } else { this.Enabled = false; }
-            //                if (dt1.Rows[r]["SEARCH"].ToString() == "T") { GlobalVariables.Searchs.Visible = true; } else { GlobalVariables.Searchs.Visible = false; }
-            //                if (dt1.Rows[r]["DELETES"].ToString() == "T") { GlobalVariables.Deletes.Visible = true; } else { GlobalVariables.Deletes.Visible = false; }
-            //                if (dt1.Rows[r]["TREEBUTTON"].ToString() == "T") { GlobalVariables.TreeButtons.Visible = true; } else { GlobalVariables.TreeButtons.Visible = false; }
-            //                if (dt1.Rows[r]["GLOBALSEARCH"].ToString() == "T") { GlobalVariables.GlobalSearchs.Visible = true; } else { GlobalVariables.GlobalSearchs.Visible = false; }
-            //                if (dt1.Rows[r]["LOGIN"].ToString() == "T") { GlobalVariables.Logins.Visible = true; } else { GlobalVariables.Logins.Visible = false; }
-            //                if (dt1.Rows[r]["CHANGEPASSWORD"].ToString() == "T") { GlobalVariables.ChangePasswords.Visible = true; } else { GlobalVariables.ChangePasswords.Visible = false; }
-            //                if (dt1.Rows[r]["CHANGESKIN"].ToString() == "T") { GlobalVariables.ChangeSkins.Visible = true; } else { GlobalVariables.ChangeSkins.Visible = false; }
-            //                if (dt1.Rows[r]["DOWNLOAD"].ToString() == "T") { GlobalVariables.DownLoads.Visible = true; } else { GlobalVariables.DownLoads.Visible = false; }
-            //                if (dt1.Rows[r]["Pdf"].ToString() == "T") { GlobalVariables.Pdfs.Visible = true; } else { GlobalVariables.Pdfs.Visible = false; }
-            //                if (dt1.Rows[r]["Imports"].ToString() == "T") { GlobalVariables.Imports.Visible = true; } else { GlobalVariables.Imports.Visible = false; }
-
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("No Screen Rights Defined .Pls Contact Your Administrator...");
-            //    }
-            //}catch(Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            
             try
             {
                 DataTable dt1 = sm.headerdropdowns(s, ss, sss);
@@ -523,7 +374,7 @@ namespace Pinnacle
             DataSet ds = Utility.ExecuteSelectQuery(sel, "asptbluserrights");
             DataTable dtchildc = ds.Tables["asptbluserrights"];
             // DataTable dtchildc = sm.headerdropdowns(Class.Users.HCompcode, Class.Users.HUserName, parentId);
-
+            treeView1.ImageList = imageList1;
             TreeNode childNode;
             foreach (DataRow dr in dtchildc.Rows)
             {
@@ -531,7 +382,7 @@ namespace Pinnacle
                 if (parentNode == null)
                 {
                     childNode = treeView1.Nodes.Add(dr["menuname"].ToString());
-
+                    
                 }
                 else
                 {
@@ -541,7 +392,6 @@ namespace Pinnacle
                 PopulateTreeView(Convert.ToInt32("0" + dr["menuid"].ToString()), childNode);
                 sm1.MenuName = dr["menuname"].ToString();
                 usr.Add(sm1);
-
             }
         }
        
@@ -662,7 +512,9 @@ namespace Pinnacle
                         {
                             CommonFunctions.ShowPopUpForm(Master.Lovely.EmployeeMaster.Instance, this); button1.Show(); return;
                         }
-
+                        
+                              case "OTPaySlip":
+                        CommonFunctions.ShowPopUpForm(Pinnacle.Transactions.Lovely.OTPaySlip.Instance, this); button1.Show(); return;
                     case "SalarySlip":
                         CommonFunctions.ShowPopUpForm(Pinnacle.Transactions.Lovely.SalarySlip.Instance, this); button1.Show(); return;
                     case "MonthPermission":

@@ -288,7 +288,7 @@ namespace Pinnacle.Transactions
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Data Source Not Connected" + ex.Message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mas.pop("Data Source Not Connected" + ex.Message, "Information", "");
             }
            // txtidcardno.Focus();
             timer1.Start();
@@ -632,7 +632,7 @@ namespace Pinnacle.Transactions
             {
                 if (txtintime.Text == "")
                 {
-                    MessageBox.Show("Empty Not Allowed      " + txtintime.Text, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    mas.pop("Empty Not Allowed      " + txtintime.Text, "Token Number Field", "");
                     txtintime.Select();
                     return;
                 }
@@ -666,7 +666,7 @@ namespace Pinnacle.Transactions
                                 Int64 cc1 = Convert.ToInt64("0" + dt1.Rows[0]["CNT"].ToString());
                                 if (cc1 >= 1)
                                 {
-                                    MessageBox.Show("This Token-Number  Already  Process Completed       :" + txtintime.Text, "Information", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    mas.pop("This Token-Number  Already  Process Completed       :" + txtintime.Text, "Information","");
                                     lblalert.Visible = false;
                                     txtintime.Text = ""; txtremarks.Text = "";
                                     txtintime.Select(); checkpassmissed.Checked = false;
@@ -702,19 +702,19 @@ namespace Pinnacle.Transactions
                                     //    pictureinwardimage.Image = Pinnacle.Properties.Resources.close_image1;
                                     //}
                                     // pictureinwardimage.Image = Pinnacle.Properties.Resources.close_image1;
-                                    MessageBox.Show("Record Updated Successfully     : " + txtintime.Text, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    mas.pop("Record Updated Successfully     : " + txtintime.Text, "Information", "");
                                     txtintime.Text = ""; txtremarks.Text = ""; txtintime.Select(); checkpassmissed.Checked = false;
                                 }
                             }
                             else if (dt.Rows[0]["CNT"].ToString() == null)
                             {
-                                MessageBox.Show("Invalid Token Number", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                mas.pop("Invalid Token Number", "Information", "");
                                 txtintime.Text = ""; txtremarks.Text = ""; txtintime.Select(); checkpassmissed.Checked = false;
 
                             }
                             if (cc == 0)
                             {
-                                MessageBox.Show("Pls go to Outward entry", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                mas.pop("Pls go to Outward entry", "Information","");
                                 txtintime.Text = ""; txtremarks.Text = ""; lblalert.Visible = false; txtintime.Select(); checkpassmissed.Checked = false;
                             }
                         }
@@ -908,7 +908,7 @@ namespace Pinnacle.Transactions
             {
                 if (txtouttime.Text == "")
                 {
-                    MessageBox.Show("Empty Not Allowed      " + txtouttime.Text, "Information", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    mas.pop("Empty Not Allowed" + txtouttime.Text, "Token Number Field", "");
 
                     return;
                 }
@@ -989,14 +989,14 @@ namespace Pinnacle.Transactions
                             DataTable dt = ds.Tables["ASPTBLHOSTELGATEPASS"];
                             if (Convert.ToString(dt.Rows.Count) == null || dt.Rows.Count <= 0)
                             {
-                                MessageBox.Show("invlaid", "Invalid Date    '" + dt.Rows[0]["MODIFIED"].ToString() + "'", MessageBoxButtons.OK, MessageBoxIcon.Error); txtouttime.Text = ""; txtouttime.Select();
+                                mas.pop("InValid", "Invalid Date    '" + dt.Rows[0]["MODIFIED"].ToString() + "'", ""); txtouttime.Text = ""; txtouttime.Select();
                             }
                             else
                             {
                                 Int64 cc = Convert.ToInt64(dt.Rows[0]["CNT"].ToString());
                                 if (cc > 0)
                                 {
-                                    MessageBox.Show("This Token-Number  Already  Process Completed       :" + txtouttime.Text, "Information", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    mas.pop("This Token-Number  Already  Process Completed       :" + txtouttime.Text, "Information", "");
                                     txtouttime.Text = ""; label32.Visible = false; txtouttime.Select();
                                 }
                                 else
@@ -1015,7 +1015,7 @@ namespace Pinnacle.Transactions
 
                                     if (differ.Minutes < 0) { label32.Text = "OutTime :  " + dt.Rows[0]["MANUALTIME"].ToString() + "  Per-Time   : " + dt.Rows[0]["PERMISSIONHRS"].ToString() + "    Remaining Hrs   :" + differ.ToString(); }
                                     else { label32.Text = "OutTime: " + dt.Rows[0]["MANUALTIME"].ToString() + "  Per-Time    : " + dt.Rows[0]["PERMISSIONHRS"].ToString() + "\n" + "     Delay Hrs   : " + differ.ToString(); }
-                                    MessageBox.Show("Record Updated Successfully     : " + txtouttime.Text, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    mas.pop("Record Updated Successfully     : " + txtouttime.Text, "Information", "");
                                     label32.Visible = true;
                                   
                                     string sel2 = "SELECT A.EMPIMAGE FROM  ASPTBLEMP A JOIN   GTCOMPMAST B ON B.gtcompmastid = A.COMPCODE  join ASPTBLHOSTELGATEPASS D on D.IDCARDNO=A.IDCARDNO WHERE D.ASPTBLHOSTELGATEPASSID=" + txtouttime.Text;
@@ -1062,7 +1062,7 @@ namespace Pinnacle.Transactions
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Invalid Token Number", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mas.pop("Invalid Token Number", ex.Message, "");
                 txtouttime.Text = ""; Cursor = Cursors.Default; label32.Visible = false; txtouttime.Select();
                 Class.Users.UserTime = 0;
                 //string selchek1 = "select a.ASPTBLSESSIONMASID   from  ASPTBLSESSIONMAS a join gtcompmast  b on a.compcode=b.gtcompmastid join asptblusermas c on  c.compcode = a.compcode AND C.COMPCODE=B.GTCOMPMASTID  and A.USERNAME=C.USERID   and B.compcode='" + Class.Users.HCompcode + "'      and C.username='" + Class.Users.HUserName + "' and C.pasword = '" + Class.Users.PWORD + "' ";//and A.SYSTEMDATE = to_date('" + System.DateTime.Now.ToString("dd-MM-yyyy") + "', 'dd-MM-yyyy') and  C.active='T'
@@ -1321,7 +1321,7 @@ namespace Pinnacle.Transactions
             }
             else
             {
-                MessageBox.Show("pls Enter QR Code");
+                mas.pop("pls Enter QR Code","","");
                 txt_qrcodein.Select();
                 return;
             }
@@ -1510,7 +1510,7 @@ namespace Pinnacle.Transactions
                 }
                 catch (Exception EX)
                 {
-                    MessageBox.Show(EX.Message);
+                    mas.pop(EX.Message,"","");
                 }
                 //if (Class.Users.HCompcode == "AGF" || Class.Users.HCompcode == "AGFM" || Class.Users.HCompcode == "FLF")
                 //{
@@ -1521,7 +1521,7 @@ namespace Pinnacle.Transactions
             }
             else
             {
-                MessageBox.Show("Pls Enter Qr Code");
+                mas.pop("Pls Enter Qr Code","","");
                 txtqrcodeout.Select(); return;
             }
         }
@@ -1534,7 +1534,7 @@ namespace Pinnacle.Transactions
                 string[] words = txt_qrcodein.Text.Split(':');
                 if (words[0].ToString() == "TOKENNO")
                 {
-                    MessageBox.Show("Invalid ", "Goods Outward Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mas.pop("Invalid ", "Goods Outward Not Allowed", "");
                     txt_qrcodein.Text = ""; txt_qrcodein.Select();
                     return;
                 }
@@ -1585,14 +1585,14 @@ namespace Pinnacle.Transactions
                                 lblRecordno.Text = "Inward No : " + dt1.Rows[0]["GATEDCNO"].ToString();
                                 lblRecorddatetime.Text = "Out Time : " + dt1.Rows[0]["SYSTEMDATE"].ToString() + "-" + dt1.Rows[0]["SYSTEMTIME"].ToString();
 
-                                MessageBox.Show("Record Saved Successfully " + "        " + txt_qrcodein.Text, "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                mas.pop("Record Saved Successfully ", txt_qrcodein.Text, "");
                                 empty(); lblRecordno.Visible = false; lblRecorddatetime.Visible = false;
                                 txtgatedcno1.Text = ""; txtcategoryin.Focus(); si.GateDcNo = "";
                             }
                             else
                             {
-                               
-                                    MessageBox.Show("'Invalid  ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                mas.pop("'Invalid  ", "Error", "");
                                     txtcategoryin.Focus();
                                
                             }
@@ -1600,13 +1600,13 @@ namespace Pinnacle.Transactions
                     }
                     else
                     {
-                        MessageBox.Show("'Invalid  ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        mas.pop("'Invalid  ", "Error", "");
                         txtcategoryin.Focus();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("'Qr Code Field'  Empty not Allowed  ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mas.pop("Qr Code Field","Empty not Allowed ", "Error");
                     txt_qrcodein.Focus();
 
                 }
@@ -1614,7 +1614,7 @@ namespace Pinnacle.Transactions
             catch (Exception ex)
             {
 
-                MessageBox.Show("Security Inventry " + "        " + ex.ToString(), "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mas.pop("Error","Message", "");
                 txt_qrcodein.Focus();
             }
             btnsavesIN.BackColor = Color.WhiteSmoke; txtgatedcno1.Text = "";
@@ -1629,7 +1629,7 @@ namespace Pinnacle.Transactions
                 string[] words = txtqrcodeout.Text.Split(':');
                 if (words[0].ToString() == "TOKENNO")
                 {
-                    MessageBox.Show("Invalid", "Goods Outward Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mas.pop("Invalid", "Goods Outward Not Allowed","");
                     txtqrcodeout.Text = ""; txtqrcodeout.Select();
                     return;
                 }
@@ -1677,27 +1677,26 @@ namespace Pinnacle.Transactions
                                 DataTable dt1 = si.select(dt2.Rows[0]["INVENTRYID"].ToString(), Class.Users.COMPCODE, Convert.ToInt64(combofinyearout.SelectedValue));
                                 lblRecordnoOUT.Text = "OutWard No : " + dt1.Rows[0]["GATEDCNO"].ToString();
                                 lblRecorddatetimeOUT.Text = "Out Time : " + dt1.Rows[0]["SYSTEMDATE"].ToString() + "-" + dt1.Rows[0]["SYSTEMTIME"].ToString();
-
-                                MessageBox.Show("Record Saved Successfully " + "        " + txt_qrcodein.Text, "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                mas.pop("Record Saved Successfully " , txt_qrcodein.Text, "Success Message");
                                 empty(); lblRecordnoOUT.Visible = false; lblRecorddatetimeOUT.Visible = false;
                                 txtqrcodeout.Select();
                             }
                             else
                             {
-                                MessageBox.Show("'Invalid  ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                mas.pop("Invalid  ", "Error", "");
                                 txtqrcodeout.Select();
                             }
                         }
                     }
                     else
                     {
-                        MessageBox.Show("'Invalid  ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        mas.pop("Invalid  ", "Error","");
                         txtqrcodeout.Select();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("'Qr Code Field'  Empty not Allowed  ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mas.pop("'Qr Code Field'"," Empty not Allowed  ", "");
 
                     txtqrcodeout.Select();
                 }
@@ -1705,7 +1704,7 @@ namespace Pinnacle.Transactions
             catch (Exception ex)
             {
 
-                MessageBox.Show("Security Inventry " + "        " + ex.ToString(), "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mas.pop(ex.Message, "Message", "");
                 txtqrcodeout.Select();
             }
             btnsavesIN.BackColor = Color.WhiteSmoke; txtgatedcno1.Text = "";
@@ -1863,6 +1862,11 @@ namespace Pinnacle.Transactions
         private void rToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Class.Users.Intimation = "";
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

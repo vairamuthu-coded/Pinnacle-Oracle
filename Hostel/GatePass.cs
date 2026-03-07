@@ -81,7 +81,8 @@ namespace Pinnacle.Hostel
             {
                 tabControl1.TabPages.Remove(tabPage3);
             }
-           
+       
+
         }
 
         private void reason()
@@ -282,15 +283,26 @@ namespace Pinnacle.Hostel
 
         public void Prints()
         {
+            
+            
             string sel1 = " SELECT MAX(A.ASPTBLHOSTELGATEPASSID) ID  FROM ASPTBLHOSTELGATEPASS A  ";
             DataSet ds = Utility.ExecuteSelectQuery(sel1, "ASPTBLHOSTELGATEPASS");
             DataTable dt = ds.Tables["ASPTBLHOSTELGATEPASS"];
             if (dt.Rows.Count > 0)
             {
                 DataTable dt2 = new DataTable();
-                string sel2 = "SELECT '" + System.DateTime.Now.Year + "' AS FINYEAR,H.DESIGNATION AS DESIGN,B.PHONENO  || ',' || B.FAXNO AS CONTACTAGF,A.ASPTBLHOSTELGATEPASSID AS TOKENNO ,B.COMPCODE,D.MIDCARD AS IDCARDNO,C.FNAME AS EMPNAME,E.MNNAME1 AS DEPARTMENT,A.CONTACTNO,F.HOSTELNAME,F.BLOCKFLOOR AS HOSTELBLOCK, F.ROOMNO AS HOSTELROOM,G.REASON,A.PERMISSIONHRS AS PERHRS,A.SYSTEMDATE ,A.QRCODE,'' EMPIMAGE  FROM ASPTBLHOSTELGATEPASS A  JOIN   GTCOMPMAST B ON B.GTCOMPMASTID = A.COMPCODE  JOIN   HREMPLOYMAST    C ON C.COMPCODE=B.GTCOMPMASTID AND C.COMPCODE=A.COMPCODE   JOIN HREMPLOYDETAILS D ON D.HREMPLOYMASTID=C.HREMPLOYMASTID AND D.IDCARD=C.IDCARDNO AND  D.DEPTNAME=A.DEPARTMENT AND D.MIDCARD=A.IDCARDNO  AND D.IDACTIVE='YES'   JOIN GTDEPTDESGMAST  E ON E.GTDEPTDESGMASTID = A.DEPARTMENT JOIN HOSTELLIVEDATA F ON F.COMPCODE=B.COMPCODE AND F.IDCARDNO=C.IDCARDNO AND F.IDCARDNO=D.IDCARD  AND D.IDCARD=F.IDCARDNO JOIN ASPTBLREASONMAS G ON G.ASPTBLREASONMASID=A.REASON     JOIN GTDESIGNATIONMAST H ON H.GTDESIGNATIONMASTID=D.DESIGNATION LEFT OUTER JOIN ASPTBLEMP I ON I.COMPCODE=B.GTCOMPMASTID AND I.IDCARDNO=A.IDCARDNO   WHERE   A.ASPTBLHOSTELGATEPASSID=" + Convert.ToInt64("0" + dt.Rows[0]["ID"].ToString());
-                DataSet ds2 = Utility.ExecuteSelectQuery(sel2, "ASPTBLHOSTELGATEPASS");
-                dt2 = ds2.Tables["ASPTBLHOSTELGATEPASS"];
+                if (Class.Users.HostelName == "WORKING GENTS HOSTEL" || Class.Users.HostelName == "WOMENS HOSTEL" || Class.Users.HostelName == "GENTS STAFF HOSTEL")
+                {
+                    string sel2 = "SELECT '" + System.DateTime.Now.Year + "' AS FINYEAR,H.DESIGNATION AS DESIGN,B.PHONENO  || ',' || B.FAXNO AS CONTACTAGF,A.ASPTBLHOSTELGATEPASSID AS TOKENNO ,B.COMPCODE,D.MIDCARD AS IDCARDNO,C.FNAME AS EMPNAME,E.MNNAME1 AS DEPARTMENT,A.CONTACTNO,F.HOSTELNAME,F.BLOCKFLOOR AS HOSTELBLOCK, F.ROOMNO AS HOSTELROOM,A.REMARKS AS REASON,A.PERMISSIONHRS AS PERHRS,A.SYSTEMDATE ,A.QRCODE,'' EMPIMAGE  FROM ASPTBLHOSTELGATEPASS A  JOIN   GTCOMPMAST B ON B.GTCOMPMASTID = A.COMPCODE  JOIN   HREMPLOYMAST    C ON C.COMPCODE=B.GTCOMPMASTID AND C.COMPCODE=A.COMPCODE   JOIN HREMPLOYDETAILS D ON D.HREMPLOYMASTID=C.HREMPLOYMASTID AND D.IDCARD=C.IDCARDNO AND  D.DEPTNAME=A.DEPARTMENT AND D.MIDCARD=A.IDCARDNO  AND D.IDACTIVE='YES'   JOIN GTDEPTDESGMAST  E ON E.GTDEPTDESGMASTID = A.DEPARTMENT JOIN HOSTELLIVEDATA F ON F.COMPCODE=B.COMPCODE AND F.IDCARDNO=C.IDCARDNO AND F.IDCARDNO=D.IDCARD  AND D.IDCARD=F.IDCARDNO JOIN ASPTBLREASONMAS G ON G.ASPTBLREASONMASID=A.REASON     JOIN GTDESIGNATIONMAST H ON H.GTDESIGNATIONMASTID=D.DESIGNATION LEFT OUTER JOIN ASPTBLEMP I ON I.COMPCODE=B.GTCOMPMASTID AND I.IDCARDNO=A.IDCARDNO   WHERE   A.ASPTBLHOSTELGATEPASSID=" + Convert.ToInt64("0" + dt.Rows[0]["ID"].ToString());
+                    DataSet ds2 = Utility.ExecuteSelectQuery(sel2, "ASPTBLHOSTELGATEPASS");
+                    dt2 = ds2.Tables["ASPTBLHOSTELGATEPASS"];
+                }
+                else
+                {
+                    string sel2 = "SELECT '" + System.DateTime.Now.Year + "' AS FINYEAR,H.DESIGNATION AS DESIGN,B.PHONENO  || ',' || B.FAXNO AS CONTACTAGF,A.ASPTBLHOSTELGATEPASSID AS TOKENNO ,B.COMPCODE,D.MIDCARD AS IDCARDNO,C.FNAME AS EMPNAME,E.MNNAME1 AS DEPARTMENT,A.CONTACTNO,F.HOSTELNAME,F.BLOCKFLOOR AS HOSTELBLOCK, F.ROOMNO AS HOSTELROOM,G.REASON,A.PERMISSIONHRS AS PERHRS,A.SYSTEMDATE ,A.QRCODE,'' EMPIMAGE  FROM ASPTBLHOSTELGATEPASS A  JOIN   GTCOMPMAST B ON B.GTCOMPMASTID = A.COMPCODE  JOIN   HREMPLOYMAST    C ON C.COMPCODE=B.GTCOMPMASTID AND C.COMPCODE=A.COMPCODE   JOIN HREMPLOYDETAILS D ON D.HREMPLOYMASTID=C.HREMPLOYMASTID AND D.IDCARD=C.IDCARDNO AND  D.DEPTNAME=A.DEPARTMENT AND D.MIDCARD=A.IDCARDNO  AND D.IDACTIVE='YES'   JOIN GTDEPTDESGMAST  E ON E.GTDEPTDESGMASTID = A.DEPARTMENT JOIN HOSTELLIVEDATA F ON F.COMPCODE=B.COMPCODE AND F.IDCARDNO=C.IDCARDNO AND F.IDCARDNO=D.IDCARD  AND D.IDCARD=F.IDCARDNO JOIN ASPTBLREASONMAS G ON G.ASPTBLREASONMASID=A.REASON     JOIN GTDESIGNATIONMAST H ON H.GTDESIGNATIONMASTID=D.DESIGNATION LEFT OUTER JOIN ASPTBLEMP I ON I.COMPCODE=B.GTCOMPMASTID AND I.IDCARDNO=A.IDCARDNO   WHERE   A.ASPTBLHOSTELGATEPASSID=" + Convert.ToInt64("0" + dt.Rows[0]["ID"].ToString());
+                    DataSet ds2 = Utility.ExecuteSelectQuery(sel2, "ASPTBLHOSTELGATEPASS");
+                    dt2 = ds2.Tables["ASPTBLHOSTELGATEPASS"];
+                }
                 if (dt2.Rows.Count > 1)
                 {
                     dt2.Rows.RemoveAt(0);
@@ -748,7 +760,7 @@ namespace Pinnacle.Hostel
                 int maxip = dt.Rows.Count;
                 if (maxip == 0)
                 {
-                    MessageBox.Show("IP Address not assign this User.   : " + Class.Users.HUserName);
+                    mas.pop(@$"UserName : {Class.Users.HUserName}","IP Address not assign this User","");
                     Cursor.Current = Cursors.Default;
                 }
                 if (maxip == 1)
@@ -788,7 +800,7 @@ namespace Pinnacle.Hostel
                         else
                         {
                             Cursor.Current = Cursors.Default; butGetData.Visible = true; btnhostelsave.Visible = false; lblip.Text = "";
-                            MessageBox.Show("No Data Found this Machine...." + ip.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            mas.pop(@$"{ip.ToString()}","","No Data Found this Machine....");
                             return;
                         }
                         axCZKEM1.EnableDevice(iMachineNumber, true);//enable the device    
@@ -806,7 +818,7 @@ namespace Pinnacle.Hostel
                     {
                         axCZKEM1.GetLastError(ref idwErrorCode); Class.Users.Bisconnectclear = false;
                         Cursor.Current = Cursors.Default; butGetData.Visible = true; btnhostelsave.Visible = false;
-                        MessageBox.Show("Unable to connect the device , ErrorCode=" + idwErrorCode.ToString() + "---IP-----" + dt.Rows[i]["MACIP"].ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        mas.pop("IP : " + dt.Rows[i]["MACIP"].ToString(), "", "Unable to connect the device");
                         return;
                     }
 
@@ -814,7 +826,8 @@ namespace Pinnacle.Hostel
                 else
                 {
                     Class.Users.Bisconnectclear = false;
-                    MessageBox.Show("Only one IPAddress assign this User.pls check Machine Master   : " + Class.Users.HUserName);
+                    mas.pop(@$"UserName :{Class.Users.HUserName}", "Only one IPAddress assign this User.  : ", "pls check Machine Master ");
+                
                     return;
                 }
             }
@@ -982,7 +995,7 @@ namespace Pinnacle.Hostel
 
         private void ReasonMasterRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            reason();
+           
         }
 
         private void MenuRefreshToolStripMenuItem_Click_1(object sender, EventArgs e)

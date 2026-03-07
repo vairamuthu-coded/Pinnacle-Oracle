@@ -454,6 +454,7 @@ namespace Pinnacle.Canteen
                     string sel = "select Asptblmenperid    from  Asptblmenper   WHERE  Asptblmenper1id='" + c1.Asptblmenper1id + "'  and compcode='" + c1.Compcode + "' and USERNAME='" + c1.Username + "'  and  FROMDATE=TO_DATE('" + c1.Fromdate.ToString("dd-MM-yyyy").Substring(0, 10) + "','dd-MM-yyyy') and active='" + c1.Active + "'";
                     DataSet ds = Utility.ExecuteSelectQuery(sel, "Asptblmenper");
                     DataTable dt = ds.Tables["Asptblmenper"];
+                  
                     if (dt.Rows.Count != 0)
                     {
 
@@ -462,10 +463,12 @@ namespace Pinnacle.Canteen
                     {
                         string ins = "insert into Asptblmenper(Asptblmenper1id,finyear,Compcode,docid,FROMDATE,FROMTIME,active,username,createdby,createdon,modifiedby,ipaddress,Systemtime,DOCDATE) values('" + c1.Asptblmenper1id + "','" + c1.Finyear + "','" + c1.Compcode + "','" + c1.Docid + "',TO_DATE('" + c1.Fromdate.ToString("dd-MM-yyyy").Substring(0, 10) + "','dd-MM-yyyy'),'" + c1.Fromtime.ToString().Substring(11, 8) + "','" + c1.Active + "','" + combousername.SelectedValue + "','" + Class.Users.HUserName + "','" + dateTimePicker1.Value.ToString("dd-MM-yyy hh24:mi:ss") + "','" + Class.Users.CREATED + "','" + Class.Users.IPADDRESS + "',to_date('" + System.DateTime.Now.ToString() + "','dd-MM-yyyy hh24:mi:ss'),TO_DATE('" + dateTimePicker1.Value.ToString("dd-MM-yyy") + "','dd-MM-yyyy'))";
                         Utility.ExecuteNonQuery(ins);
+                        
                         string sel2 = "select max(Asptblmenperid) as Asptblmenperid   from  Asptblmenper";
                         DataSet ds2 = Utility.ExecuteSelectQuery(sel2, "Asptblmenper");
                         DataTable dt2 = ds2.Tables["Asptblmenper"]; maxid = 0;
                         maxid = Convert.ToInt64(dt2.Rows[0]["Asptblmenperid"].ToString());
+            
                     }
                     else
                     {
@@ -524,6 +527,7 @@ namespace Pinnacle.Canteen
                             string sel1 = "select Asptblmenperdetid    from  Asptblmenperdet   where Itemname1='" + c.Itemname1 + "'  and Fromdate=to_date('" + c.Fromdate.ToString("dd-MM-yyyy").Substring(0, 10) + "','dd-MM-yyyy') and FROMTIME='" + c.Fromtime.ToString().Substring(11, 8) + "'  and Todate=to_date('" + c.Todate.ToString("dd-MM-yyyy").Substring(0, 10) + "','dd-MM-yyyy') and Totime='" + c.Totime.ToString().Substring(11, 8) + "' and notes='" + c.Notes + "' and Asptblmenperid='" + c.Asptblmenperid + "'";
                             DataSet ds1 = Utility.ExecuteSelectQuery(sel1, "Asptblmenperdet");
                             DataTable dt1 = ds1.Tables["Asptblmenperdet"];
+                           
                             if (dt1.Rows.Count != 0)
                             {
                              
@@ -545,14 +549,16 @@ namespace Pinnacle.Canteen
                     if (txtmenperid.Text == "" )
                     {
                         OGSendMailToUser();
-                        MessageBox.Show("Record Saved Successfully " + txtdocid.Text, " Success Message ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mas.pop("Record Saved Successfully", txtdocid.Text, "Success Message");
+                       // MessageBox.Show("Record Saved Successfully " + txtdocid.Text, " Success Message ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         GridLoad(); empty();
                         tabControl1.SelectTab(tabPagedel2); Cursor = Cursors.Default;
                     }
                     if (txtmenperid.Text != "" )
                     {
                        OGSendMailToUser();
-                        MessageBox.Show("Record Updated Successfully " + txtdocid.Text, " Update Message ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mas.pop("Record Updated Successfully", txtdocid.Text, "Success Message");
+                       // MessageBox.Show("Record Updated Successfully " + txtdocid.Text, " Update Message ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         GridLoad(); empty();
                         tabControl1.SelectTab(tabPagedel2); Cursor = Cursors.Default;
                     }
@@ -640,6 +646,7 @@ namespace Pinnacle.Canteen
             txtdocid.Text = ""; Cursor = Cursors.Default;
             dataGridView1.AllowUserToAddRows = true;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Class.Users.BackColors;   
+            panel6.BackColor= Class.Users.BackColors; panel8.BackColor = Class.Users.BackColors;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGridView1.EnableHeadersVisualStyles = false;
             do
@@ -1171,10 +1178,10 @@ namespace Pinnacle.Canteen
        
         private void NHDayEntry_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control == true && e.KeyCode == Keys.S)
-            {
-                Saves();
-            }
+            //if (e.Control == true && e.KeyCode == Keys.S)
+            //{
+            //    Saves();
+            //}
         }
 
         private void combomonth_SelectedIndexChanged(object sender, EventArgs e)
@@ -1312,11 +1319,14 @@ namespace Pinnacle.Canteen
 
         public void Exit()
         {
-            GlobalVariables.MdiPanel.Show();
             this.Hide();
-            empty();
+            GlobalVariables.MdiPanel.Show();
+
             GlobalVariables.HeaderName.Text = "";
             GlobalVariables.TabCtrl.TabPages.RemoveAt(GlobalVariables.TabCtrl.SelectedIndex);
+
+
+          
 
         }
 

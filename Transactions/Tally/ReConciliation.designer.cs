@@ -61,17 +61,11 @@ namespace Pinnacle.Transactions.Tally
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.combobunk = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label7 = new System.Windows.Forms.Label();
-            this.todate = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.butmycompany = new System.Windows.Forms.Button();
             this.lbldowncount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.frmdate = new System.Windows.Forms.DateTimePicker();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttosupplier = new System.Windows.Forms.Button();
@@ -85,16 +79,23 @@ namespace Pinnacle.Transactions.Tally
             this.lblemptot = new System.Windows.Forms.Label();
             this.lblchild = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
             this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EXCELFIELD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FromTable1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.DBColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TableColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Show = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkNoMatch = new System.Windows.Forms.CheckBox();
+            this.combobunk = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.frmdate = new System.Windows.Forms.DateTimePicker();
+            this.todate = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip4.SuspendLayout();
@@ -283,13 +284,19 @@ namespace Pinnacle.Transactions.Tally
             this.butheader.Name = "butheader";
             this.butheader.Size = new System.Drawing.Size(1266, 32);
             this.butheader.TabIndex = 454;
-            this.butheader.Text = "Payment ReConciliation";
-            this.butheader.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.butheader.Text = "Fuel ReConciliation";
+            this.butheader.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.butheader.UseVisualStyleBackColor = false;
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Controls.Add(this.label6);
+            this.panel7.Controls.Add(this.label3);
+            this.panel7.Controls.Add(this.label8);
+            this.panel7.Controls.Add(this.combobunk);
+            this.panel7.Controls.Add(this.todate);
+            this.panel7.Controls.Add(this.frmdate);
             this.panel7.Controls.Add(this.checkFuel);
             this.panel7.Controls.Add(this.butheader);
             this.panel7.Controls.Add(this.progressBar1);
@@ -305,7 +312,7 @@ namespace Pinnacle.Transactions.Tally
             // checkFuel
             // 
             this.checkFuel.AutoSize = true;
-            this.checkFuel.Location = new System.Drawing.Point(1210, 12);
+            this.checkFuel.Location = new System.Drawing.Point(803, 11);
             this.checkFuel.Name = "checkFuel";
             this.checkFuel.Size = new System.Drawing.Size(46, 17);
             this.checkFuel.TabIndex = 460;
@@ -345,38 +352,14 @@ namespace Pinnacle.Transactions.Tally
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.combobunk);
-            this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Controls.Add(this.dataGridView1);
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.todate);
             this.tabPage3.Controls.Add(this.panel3);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.frmdate);
             this.tabPage3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1252, 396);
             this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "MyCompany";
-            // 
-            // combobunk
-            // 
-            this.combobunk.FormattingEnabled = true;
-            this.combobunk.Location = new System.Drawing.Point(505, 10);
-            this.combobunk.Name = "combobunk";
-            this.combobunk.Size = new System.Drawing.Size(208, 22);
-            this.combobunk.TabIndex = 100;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(426, 12);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 14);
-            this.label8.TabIndex = 101;
-            this.label8.Text = "PetrolBunk";
             // 
             // dataGridView1
             // 
@@ -386,31 +369,12 @@ namespace Pinnacle.Transactions.Tally
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 43);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Size = new System.Drawing.Size(1240, 322);
+            this.dataGridView1.Size = new System.Drawing.Size(1240, 359);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(211, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(21, 15);
-            this.label7.TabIndex = 463;
-            this.label7.Text = "To";
-            // 
-            // todate
-            // 
-            this.todate.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.todate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.todate.Location = new System.Drawing.Point(261, 6);
-            this.todate.Name = "todate";
-            this.todate.Size = new System.Drawing.Size(133, 23);
-            this.todate.TabIndex = 462;
             // 
             // panel3
             // 
@@ -456,27 +420,9 @@ namespace Pinnacle.Transactions.Tally
             this.label2.Size = new System.Drawing.Size(0, 14);
             this.label2.TabIndex = 4;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(25, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 15);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "From";
-            // 
-            // frmdate
-            // 
-            this.frmdate.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.frmdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.frmdate.Location = new System.Drawing.Point(67, 6);
-            this.frmdate.Name = "frmdate";
-            this.frmdate.Size = new System.Drawing.Size(114, 23);
-            this.frmdate.TabIndex = 461;
-            // 
             // tabPage4
             // 
+            this.tabPage4.BackColor = System.Drawing.Color.White;
             this.tabPage4.Controls.Add(this.panel1);
             this.tabPage4.Controls.Add(this.dataGridView3);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
@@ -485,7 +431,6 @@ namespace Pinnacle.Transactions.Tally
             this.tabPage4.Size = new System.Drawing.Size(1252, 396);
             this.tabPage4.TabIndex = 6;
             this.tabPage4.Text = "Suplier/Customer";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -539,15 +484,17 @@ namespace Pinnacle.Transactions.Tally
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView3.Location = new System.Drawing.Point(6, 3);
             this.dataGridView3.Name = "dataGridView3";
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView3.Size = new System.Drawing.Size(1240, 359);
+            this.dataGridView3.Size = new System.Drawing.Size(1240, 362);
             this.dataGridView3.TabIndex = 1;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.checkNoMatch);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Controls.Add(this.dataGridView2);
@@ -557,7 +504,6 @@ namespace Pinnacle.Transactions.Tally
             this.tabPage2.Size = new System.Drawing.Size(1252, 396);
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "Mapping";
-            this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // textBox1
@@ -659,73 +605,10 @@ namespace Pinnacle.Transactions.Tally
             this.dataGridView2.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView2.RowTemplate.Height = 28;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(1246, 321);
+            this.dataGridView2.Size = new System.Drawing.Size(765, 321);
             this.dataGridView2.TabIndex = 2;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.dataGridView2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.White;
-            this.tabPage1.Controls.Add(this.listView2);
-            this.tabPage1.Controls.Add(this.listView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1252, 396);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Data Import";
-            // 
-            // listView2
-            // 
-            this.listView2.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView2.ContextMenuStrip = this.contextMenuStrip4;
-            this.listView2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.HotTracking = true;
-            this.listView2.HoverSelection = true;
-            this.listView2.Location = new System.Drawing.Point(636, 6);
-            this.listView2.Name = "listView2";
-            this.listView2.ShowItemToolTips = true;
-            this.listView2.Size = new System.Drawing.Size(610, 390);
-            this.listView2.TabIndex = 12;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // listView1
-            // 
-            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.HotTracking = true;
-            this.listView1.HoverSelection = true;
-            this.listView1.Location = new System.Drawing.Point(3, 3);
-            this.listView1.Name = "listView1";
-            this.listView1.ShowItemToolTips = true;
-            this.listView1.Size = new System.Drawing.Size(627, 390);
-            this.listView1.TabIndex = 11;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Roboto Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 470);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 21);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Total";
             // 
             // SNo
             // 
@@ -803,6 +686,139 @@ namespace Pinnacle.Transactions.Tally
             this.Show.ToolTipText = "Click Here";
             this.Show.Width = 60;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.listView2);
+            this.tabPage1.Controls.Add(this.listView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1252, 396);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Data Import";
+            // 
+            // listView2
+            // 
+            this.listView2.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView2.ContextMenuStrip = this.contextMenuStrip4;
+            this.listView2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.HotTracking = true;
+            this.listView2.HoverSelection = true;
+            this.listView2.Location = new System.Drawing.Point(636, 6);
+            this.listView2.Name = "listView2";
+            this.listView2.ShowItemToolTips = true;
+            this.listView2.Size = new System.Drawing.Size(610, 390);
+            this.listView2.TabIndex = 12;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // listView1
+            // 
+            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.HotTracking = true;
+            this.listView1.HoverSelection = true;
+            this.listView1.Location = new System.Drawing.Point(3, 3);
+            this.listView1.Name = "listView1";
+            this.listView1.ShowItemToolTips = true;
+            this.listView1.Size = new System.Drawing.Size(627, 390);
+            this.listView1.TabIndex = 11;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Roboto Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(26, 470);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 21);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Total";
+            // 
+            // checkNoMatch
+            // 
+            this.checkNoMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkNoMatch.AutoSize = true;
+            this.checkNoMatch.CheckAlign = System.Drawing.ContentAlignment.TopRight;
+            this.checkNoMatch.Location = new System.Drawing.Point(1135, 6);
+            this.checkNoMatch.Name = "checkNoMatch";
+            this.checkNoMatch.Size = new System.Drawing.Size(98, 17);
+            this.checkNoMatch.TabIndex = 461;
+            this.checkNoMatch.Text = "No Match Field";
+            this.checkNoMatch.UseVisualStyleBackColor = true;
+            this.checkNoMatch.CheckedChanged += new System.EventHandler(this.checkNoMatch_CheckedChanged);
+            // 
+            // combobunk
+            // 
+            this.combobunk.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combobunk.FormattingEnabled = true;
+            this.combobunk.Location = new System.Drawing.Point(563, 7);
+            this.combobunk.Name = "combobunk";
+            this.combobunk.Size = new System.Drawing.Size(208, 24);
+            this.combobunk.TabIndex = 465;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(470, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 16);
+            this.label8.TabIndex = 466;
+            this.label8.Text = "PetrolBunk";
+            // 
+            // frmdate
+            // 
+            this.frmdate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.frmdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.frmdate.Location = new System.Drawing.Point(94, 8);
+            this.frmdate.Name = "frmdate";
+            this.frmdate.Size = new System.Drawing.Size(126, 22);
+            this.frmdate.TabIndex = 461;
+            // 
+            // todate
+            // 
+            this.todate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.todate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.todate.Location = new System.Drawing.Point(296, 8);
+            this.todate.Name = "todate";
+            this.todate.Size = new System.Drawing.Size(149, 22);
+            this.todate.TabIndex = 462;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(27, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 16);
+            this.label3.TabIndex = 467;
+            this.label3.Text = "From";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(256, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(21, 16);
+            this.label6.TabIndex = 468;
+            this.label6.Text = "To";
+            // 
             // ReConciliation
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -824,7 +840,6 @@ namespace Pinnacle.Transactions.Tally
             this.panel7.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -869,17 +884,11 @@ namespace Pinnacle.Transactions.Tally
         private System.Windows.Forms.CheckBox checkFuel;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ComboBox combobunk;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker todate;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button butmycompany;
         private System.Windows.Forms.Label lbldowncount;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker frmdate;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttosupplier;
@@ -902,5 +911,12 @@ namespace Pinnacle.Transactions.Tally
         private System.Windows.Forms.DataGridViewComboBoxColumn DBColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn TableColumn;
         private System.Windows.Forms.DataGridViewImageColumn Show;
+        private System.Windows.Forms.CheckBox checkNoMatch;
+        private System.Windows.Forms.ComboBox combobunk;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker todate;
+        private System.Windows.Forms.DateTimePicker frmdate;
     }
 }

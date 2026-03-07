@@ -57,7 +57,7 @@ namespace Pinnacle.Transactions
             DateTime dateForButton = DateTime.Now;
             frmdate.Value = dateForButton.AddDays(-1);
             GlobalVariables.HeaderName.Text = Class.Users.ScreenName;
-            SecondtabControl2.TabPages.Remove(tab2RemovefrmMachine);
+            //SecondtabControl2.TabPages.Remove(tab2RemovefrmMachine);
             usercheck(Class.Users.HCompcode, Class.Users.HUserName, Class.Users.ScreenName);
             SecondtabControl2.SelectedTab = tab6Attlots;
             butheader.BackColor = Class.Users.BackColors;
@@ -122,33 +122,43 @@ namespace Pinnacle.Transactions
             if (rows.Length == 0)
                 return;
 
+            SecondtabControl2.TabPages.Remove(tab5CardReader);
             foreach (DataRow row in rows)
             {
                 // NEWS Permission
                 bool hasNews = row["NEWS"].ToString() == "T";
                 GlobalVariables.News.Visible = false; // Always hidden
-                if (hasNews)
+                bool hasSaves = row["SAVES"].ToString() == "T";
+                GlobalVariables.Saves.Visible = false; // Always hidden
+                
+                 
+                if (hasSaves)
                 {
-                    SecondtabControl2.TabPages.Add(tab2RemovefrmMachine);
-                    SecondtabControl2.SelectTab(tab2RemovefrmMachine);
-                    SecondtabControl2.SelectTab(tab6Attlots);
 
+                  
+                }
+                else { 
+                    SecondtabControl2.TabPages.Remove(tab7removemultiple);
+                }
+                if (hasNews)
+                {    
+                    SecondtabControl2.SelectTab(tab6Attlots);
                 }
                 else
                 {
+        
                     SecondtabControl2.TabPages.Remove(tab2RemovefrmMachine);                    
                     SecondtabControl2.TabPages.Remove(tab5CardReader);
                     SecondtabControl2.TabPages.Remove(tab6Attlots);
                 }
 
                 // SAVE Permission
-                bool hasSave = row["SAVES"].ToString() == "T";
-                GlobalVariables.Saves.Visible = false; // Always hidden
-                Class.Users.ValidCheck = hasSave;
+
+                Class.Users.ValidCheck = hasSaves;
 
                 // PRINT Permission
                 bool hasPrint = row["prints"].ToString() == "T";
-                GlobalVariables.Prints.Visible = false; // Always hidden
+                GlobalVariables.Prints.Visible = hasPrint; // Always hidden
             }
 
            
@@ -264,7 +274,7 @@ namespace Pinnacle.Transactions
         private void BtnConnect_Click(object sender, EventArgs e)
         {
             Class.Users.UserTime = 0;
-            
+            Cursor = Cursors.WaitCursor;
             dtexcel.Rows.Clear();
             if (dtexcel.Columns.Count <= 0)
             {
@@ -278,11 +288,9 @@ namespace Pinnacle.Transactions
                 
                 if (comboMasterIp.Text.Trim() == "" || txtPort.Text.Trim() == "")
                 {
-                    MessageBox.Show("IP and Port cannot be null", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mas.pop("Pls Select IP in ComboBox", "", "");
                     return;
                 }
-
-
                 
                 listViewupload.Items.Clear();
                 SecondtabControl2.SelectTab(tab1finger);
@@ -338,7 +346,7 @@ namespace Pinnacle.Transactions
                 lvCard.BeginUpdate();
 
                 axCZKEM1.EnableDevice(iMachineNumber, false);
-                Cursor = Cursors.WaitCursor;
+                Cursor = Cursors.WaitCursor; btnConnect.Refresh();
                 btnConnect.Text = "Finger DisConnect";
                 lblState.Text = "Current State:Connected";
 
@@ -361,16 +369,13 @@ namespace Pinnacle.Transactions
                         lblattcount.Refresh();
                         lblattcount.Text = $"IDCardNo : {sdwEnrollNumber}  Count : {r} --- {idwFingerIndex}";
                        
-                        if (!axCZKEM1.GetUserTmpExStr(iMachineNumber, sdwEnrollNumber, idwFingerIndex,
-                                out iFlag, out sTmpData, out iTmpLength))
-                        {
-                            // no template at this finger index; continue
+                        if (!axCZKEM1.GetUserTmpExStr(iMachineNumber, sdwEnrollNumber, idwFingerIndex,out iFlag, out sTmpData, out iTmpLength))
+                        {                         
                             continue;
                         }
 
                         // we have template data
                         ssss = sTmpData;
-
                         // try to get card number (if any)
                         axCZKEM1.GetStrCardNumber(out sCardnumber);
                         if (!string.IsNullOrEmpty(sCardnumber) && sCardnumber.Length >= 1)
@@ -383,50 +388,17 @@ namespace Pinnacle.Transactions
                         if (displayName == "")
                         {
                             sql = "";
-                            //sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{sdwEnrollNumber.Trim()}' AND B.COMPCODE='" + Class.Users.HCompcode + "'   ORDER BY C.IDCARDNO DESC";
-                            //DataTable dt = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
                             DataTable dt = dev.FindName(sdwEnrollNumber.Trim(), Class.Users.HCompcode);
+                            if (dt == null || dt.Rows.Count == 0)
+                            {
+                                dt = dev.FindName1(sdwEnrollNumber.Trim(), Class.Users.HCompcode);
+                            }
                             if (dt != null && dt.Rows.Count > 0)
                             {
                                 displayName = dt.Rows[0]["EMPNAME"].ToString();
-                            }
-                            else
-                            {
-                                DataTable dt1 = new DataTable();
-                                //sql = "";
-                                //sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='YES' AND  D.MIDCARD='{sdwEnrollNumber.Trim()}'  ORDER BY C.IDCARDNO DESC";
-                                //DataTable dt1 = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                                 dt1 = dev.FindName(sdwEnrollNumber.Trim(), Class.Users.HCompcode);
-                                if (dt1 != null && dt1.Rows.Count > 0)
-                                {
-                                    displayName = dt1.Rows[0]["EMPNAME"].ToString();
-                                }
-                                else
-                                {
-                                    //    sql = "";
-                                    //    sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{sdwEnrollNumber.Trim()}' AND B.COMPCODE='" + Class.Users.HCompcode + "'   ORDER BY C.IDCARDNO DESC";
-                                    //    dt1 = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                                    dt1 = dev.FindName1(sdwEnrollNumber.Trim(), Class.Users.HCompcode);
-                                }
-                                if (dt1 != null && dt1.Rows.Count > 0)
-                                {
-                                    displayName = dt1.Rows[0]["EMPNAME"].ToString();
-                                }
-                                else
-                                {
-                                    //        sql = "";
-                                    //        sql = $"SELECT C.FNAME || '-' || E.MNNAME1 AS EMPNAME FROM GTCOMPMAST B JOIN HREMPLOYMAST C ON C.COMPCODE = B.GTCOMPMASTID JOIN HREMPLOYDETAILS D ON C.HREMPLOYMASTID = D.HREMPLOYMASTID JOIN GTDEPTDESGMAST E ON E.GTDEPTDESGMASTID = D.DEPTNAME WHERE D.IDACTIVE='NO' AND  D.MIDCARD='{sdwEnrollNumber.Trim()}'   ORDER BY C.IDCARDNO DESC";
-                                    //dt1 = Utility.ExecuteSelectQuery(sql, "HREMPLOYDETAILS").Tables[0];
-                                    dt1 = dev.FindName1(sdwEnrollNumber.Trim(), Class.Users.HCompcode);
-                                    if (dt1 != null && dt1.Rows.Count > 0)
-                                    {
-                                        displayName = dt1.Rows[0]["EMPNAME"].ToString();
-                                    }
-                                }
+
                                 dtexcel.Rows.Add(comboMasterIp.Text, sdwEnrollNumber.ToString(), displayName + " - Index: " + idwFingerIndex);
-                                displayName = "";
-                            }                               
-                           
+                            }
                         }
 
                         // Build single row array once
@@ -483,44 +455,48 @@ namespace Pinnacle.Transactions
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Framework invaid", "Install Zkemkeeper.dll " + ex.ToString());
+                MessageBox.Show("" + ex.ToString());
             }
             finally
             {
                 if (dtexcel.Rows.Count > 0)
                 {
+                    string filePath = Path.Combine(combinepath, "IDCard_Remove_Details.txt");
 
-                    StreamWriter swExtLogFile = new StreamWriter(combinepath + "/IDCard_Remove_Details.txt", true);
-                    int ii = 1;
-                    swExtLogFile.Write(Environment.NewLine);
-                    swExtLogFile.WriteLine(Class.Users.HCompcode + " ACTIVE - 'NO' Employee  - Details . Pls Remove From Machine  :   ");
-                    swExtLogFile.Write("============================");
-                    swExtLogFile.Write(Environment.NewLine);
-
-                    foreach (DataRow rows in dtexcel.Rows)
+                    using (StreamWriter swExtLogFile = new StreamWriter(filePath, true))
                     {
+                        int count = 0;
 
-                        swExtLogFile.Write(rows[0].ToString() + "      " + rows[1].ToString() + "     " + rows[2].ToString() + "  ");
-                        swExtLogFile.Write(Environment.NewLine);
-                        ii++;
+                        swExtLogFile.WriteLine();
+                        swExtLogFile.WriteLine($"{Class.Users.HCompcode} ACTIVE - 'NO' Employee - Details. Please Remove From Machine:");
+                        swExtLogFile.WriteLine("============================");
+
+                        foreach (DataRow row in dtexcel.Rows)
+                        {
+                            string col0 = row[0]?.ToString() ?? "";
+                            string col1 = row[1]?.ToString() ?? "";
+                            string col2 = row[2]?.ToString() ?? "";
+
+                            swExtLogFile.WriteLine($"{col0,-10} {col1,-10} {col2,-10}");
+                            count++;
+                        }
+
+                        swExtLogFile.WriteLine($"Total Record Count : {count}  ******** END OF DATA ********");
                     }
-
-                    swExtLogFile.Write("Total Record Count   :" + ii.ToString() + "  ********END OF DATA*********");
-                    swExtLogFile.Flush();
-                    swExtLogFile.Close();
-                }
-                lblprogress1.Text = "";
-
-                if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                {
-                    axCZKEM1.RefreshData(iMachineNumber);
-                 
+              
+                    btnConnect.Refresh(); Cursor = Cursors.Default;
+                    btnConnect.Text = "Finger Download ??";
                     bIsConnected = false;
                 }
+                lblprogress1.Text = "";
+                btnConnect.Refresh(); Cursor = Cursors.Default;
+                btnConnect.Text = "Finger Download ??";
+
                 
+
             }
-        
-            
+
+
         }
         private void AttIPLoad()
         {
@@ -722,7 +698,6 @@ namespace Pinnacle.Transactions
                 {
                     itt.SubItems.Add(e.Item.SubItems[i].Text);
                 }
-
                 // Alternating row color
                 itt.BackColor = (iIndex % 2 == 0) ? Color.White : Color.WhiteSmoke;
                 if (itt.SubItems[2].Text != "")
@@ -730,40 +705,11 @@ namespace Pinnacle.Transactions
                     listViewupload.Items.Add(itt);
                 }
                 iIndex++;
-            }
-
- 
+            } 
         }
         private void LvDownload_ItemActivate(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (LvDownload.Items.Count > 0)
-            //    {
-            //        ListViewItem item1 = new ListViewItem(); iIndex = listViewupload.Items.Count;
-            //        for (int c = 0; c < LvDownload.SelectedItems[0].SubItems.Count; c++)
-            //        {
-            //            item1.SubItems.Add(LvDownload.SelectedItems[0].SubItems[c].Text);
-            //        }
-
-            //        if (iIndex % 2 == 0)
-            //        {
-            //            item1.BackColor = Color.White;
-            //        }
-            //        else
-            //        {
-            //            item1.BackColor = Color.WhiteSmoke;
-            //        }
-            //        iIndex++;
-            //        listViewupload.Items.Add(item1);
-            //    }
-
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.ToString());
-            //}
+           
         }
         private void Contextallitemcheck_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -927,12 +873,8 @@ namespace Pinnacle.Transactions
                 btnConnect.Enabled = true; listViewupload.Items.Clear();allip.Items.Clear();
                 lblState.Text = "Current State: Disconnected";
                 axCZKEM1.BatchUpdate(iMachineNumber);
-                if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                {
-                    axCZKEM1.RefreshData(iMachineNumber);
-
-                    bIsConnected = false;
-                }
+          
+                bIsConnected = false;
                 axCZKEM1.EnableDevice(iMachineNumber, true);checkallrows.Checked = false;
             }
 
@@ -1302,15 +1244,10 @@ namespace Pinnacle.Transactions
 
                         }
                         axCZKEM1.BatchUpdate(iMachineNumber);//upload all the information in the memory
-                        if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                        {
-                            axCZKEM1.RefreshData(iMachineNumber);
-
-                            bIsConnected = false;
-                        }
-
+                
+                        bIsConnected = false;
                         axCZKEM1.EnableDevice(iMachineNumber, true);
-
+                       
                         Cursor = Cursors.Default;
                         txtName.Text = ""; txtPassword.Text = ""; txtCardnumber.Text = ""; chbEnabled.Checked = false;
                     }
@@ -1332,59 +1269,89 @@ namespace Pinnacle.Transactions
 
         private void BtnConnects_Click(object sender, EventArgs e)
         {
-            atttotal.Text = "";
-            string ccode = ""; Class.Users.Intimation = "PAYROLL"; lbRTShow.Visible = false; StreamWriter swExtLogFile;
-            DataTable dtexcel = new DataTable();string binddata = "";
+            atttotal.Text = string.Empty;
+            DateTime ST = DateTime.Now;
+
+            string ccode = string.Empty;
+            Class.Users.Intimation = "PAYROLL";
+            lbRTShow.Visible = false; Int64 countid = 0;
+            StreamWriter swExtLogFile=null;
+            DataTable dtexcel = new DataTable();string binddata = string.Empty;
             ccode = Class.Users.HCompcode; Class.Users.UserTime = 0;
-            dtexcel.Rows.Clear(); DTROW.Rows.Clear(); 
-            dtexcel.Columns.Clear();
+            try
+            {
+                string selcount = $@"SELECT NVL(MAX(A.ATTLOGID), 0) + 1 AS ID FROM {Class.Users.HCompcode}TRS_ATTLOG A ";
+                countid = Utility.ExecuteScalar(selcount);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             dtexcel.Columns.Add("IPADDRESS");
             dtexcel.Columns.Add("DETAILS");
             dtexcel.Columns.Add("DATETIME");
-            if (!Directory.Exists(combinepath))
+
+            if (DTROW.Columns.Count == 0)
             {
-                Directory.CreateDirectory(combinepath);
-            }
-            if (DTROW.Columns.Count <= 0)
-            {
+                
+                    DTROW.Columns.Add("ATTLOGID");
                 DTROW.Columns.Add("MACHINENUMBER");
                 DTROW.Columns.Add("IPADDRESS");
                 DTROW.Columns.Add("ENROLLNO");
                 DTROW.Columns.Add("DATETIMERECORD");
             }
-           
-            string macno, mactype, mactype2, idcard = "", dates = "", months = "", h = "", m = "", s = "", dat = "", time = "", inputDate = "",ip = "";
-            swExtLogFile = new StreamWriter(combinepath + "/Attendance.txt", true);
-         
-          totalrows = 0;
-            spl = null; string deviceIp = "";          
-            
+
+            DTROW.Rows.Clear();
+            Directory.CreateDirectory(combinepath);
+            string macNo = string.Empty;
+            string macType = string.Empty;
+            string macType2 = string.Empty;
+
+            string idCard = string.Empty;
+            string day = string.Empty;
+            string month = string.Empty;
+
+            string hour = string.Empty;
+            string minute = string.Empty;
+            string second = string.Empty;
+
+            string datePart = string.Empty;
+            string timePart = string.Empty;
+
+            string inputDate = string.Empty;
+            string ip = string.Empty;
+            string deviceIp = string.Empty;
+            //swExtLogFile = new StreamWriter(combinepath + "/Attendance.txt", true);
+            string filePathLogs = Path.Combine(combinepath, "Attendance-Logs.txt");
+            string filePath = Path.Combine(combinepath, "Attendance.txt");
+            totalrows = 0;
+            spl = null; 
+
             try
             {
                 progressBar1.Value = 0;
                 int k = 0, j = 0;
                 iIndex = 0; DTROW.Rows.Clear();
                 iGLCount = 0; listfilter.Items.Clear();
-                if (reply1.Status.ToString() == "Success")
+                if (allip1.Items.Count > 0)
                 {
-                    if (allip1.Items.Count > 0)
-                    {
-                        ip = ""; macno = ""; mactype = ""; mactype2 = "";
+                    
+
 
                         int connectip = 0; bIsConnected = false;
                         for (j = 0; j < allip1.Items.Count; j++)
                         {
                             lblattcount.Refresh(); lblattcount.Refresh(); totalrows = 0;
                             lblattcount.Text = "Connecting..." + allip1.Items[j].SubItems[2].Text + " Count:" + DTROW.Rows.Count.ToString();
-                            
+                          
                             if (allip1.Items[j].SubItems[6].Text == "True")
                             {
                                 connectip = j + 1; DataTable dt;
                                 spl = allip1.Items[j].SubItems[2].Text.Trim().Split('/');
-                                if (Class.Users.HCompcode == "LOPPL") {
-                                     dt = dev.IPLOAD(Class.Users.HCompcode, spl[0]);
-                                } else {
-                                     dt = dev.IPLOAD(Class.Users.HCompcode, allip1.Items[j].SubItems[2].Text);
+                                if (Class.Users.HCompcode == "LOPPL")
+                                {
+                                    dt = dev.IPLOAD(Class.Users.HCompcode, spl[0]);
+                                }
+                                else
+                                {
+                                    dt = dev.IPLOAD(Class.Users.HCompcode, allip1.Items[j].SubItems[2].Text);
                                 }
                                 if (dt.Rows.Count > 0)
                                 {
@@ -1392,41 +1359,46 @@ namespace Pinnacle.Transactions
                                     int i = 0; Class.Users.UserTime = 0;
                                     if (maxip == 1)
                                     {
-                                        ip = ""; macno = ""; mactype = ""; mactype2 = "";
+                                        ip = ""; macNo = ""; macType = ""; macType2 = "";
                                         Cursor = Cursors.WaitCursor;
                                         bIsConnected = axCZKEM1.Connect_Net(dt.Rows[i]["MACIP"].ToString(), Convert.ToInt32(txtPort.Text));
                                         ip = dt.Rows[i]["MACIP"].ToString();
-                                        macno = dt.Rows[i]["MACNO"].ToString();
-                                        mactype = dt.Rows[i]["MTYPE"].ToString();
-                                        mactype2 = dt.Rows[i]["MTYPE2"].ToString();
+                                        macNo = dt.Rows[i]["macNo"].ToString();
+                                        macType = dt.Rows[i]["MTYPE"].ToString();
+                                        macType2 = dt.Rows[i]["MTYPE2"].ToString();
                                         lblattcount.Refresh(); lblattcount.Refresh();
                                         lblattcount.Text = "CONNECTED.  IPAddres:" + ip.ToString();
                                         if (bIsConnected == true)
                                         {
-                                            axCZKEM1.EnableDevice(iMachineNumber, false);//disable the device                               
+                                            axCZKEM1.EnableDevice(iMachineNumber, false);//disable the device
+                                            string id = "";
+                                            string result = id.PadLeft(9, '0');
                                             while (axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, out sdwEnrollNumber, out idwVerifyMode, out idwInOutMode, out idwYear, out idwMonth, out idwDay, out idwHour, out idwMinute, out idwSecond, ref idwWorkcode))//get records from the memory
                                             {
-                                                inputDate = "";
-                                                inputDate = idwDay + "-" + idwMonth + "-" + idwYear;
-                                                if (Convert.ToDateTime(inputDate) >= frmdate.Value.Date && Convert.ToDateTime(inputDate) <= todate.Value.Date.AddDays(1).AddTicks(-1))
+
+                                                DateTime logDate = new DateTime(idwYear, idwMonth, idwDay);
+
+                                                if (logDate >= frmdate.Value.Date && logDate <= todate.Value.Date)
                                                 {
-                                                    idcard = ""; dates = ""; months = ""; h = ""; s = ""; m = ""; dat = ""; time = "";
-                                                    idcard = sdwEnrollNumber;
-                                                    dates = idwDay.ToString().Length < 2 ? "0" + idwDay.ToString() : idwDay.ToString();
-                                                    months = idwMonth.ToString().Length < 2 ? "0" + idwMonth.ToString() : idwMonth.ToString();
-                                                    h = idwHour.ToString().Length < 2 ? "0" + idwHour.ToString() : idwHour.ToString();
-                                                    m = idwMinute.ToString().Length < 2 ? "0" + idwMinute.ToString() : idwMinute.ToString();
-                                                    s = idwSecond.ToString().Length < 2 ? "0" + idwSecond.ToString() : idwSecond.ToString();
-                                                    dat = dates.ToString() + "-" + months.ToString() + "-" + idwYear.ToString();
-                                                    time = h.ToString() + ":" + m.ToString() + ":" + s.ToString();
-                                                    iGLCount++;
+                                                    idCard = string.Empty; datePart = string.Empty; month = string.Empty; hour = string.Empty;
+                                                    second = string.Empty; month = string.Empty; day = string.Empty; timePart = string.Empty;
+                                                    idCard = sdwEnrollNumber.PadLeft(9, '0');
+                                                    day = $"{idwDay:00}";
+                                                    month = $"{idwMonth:00}";
+                                                    hour = idwHour.ToString().PadLeft(2, '0');
+                                                    minute = idwMinute.ToString().PadLeft(2, '0');
+                                                    second = idwSecond.ToString().PadLeft(2, '0');
+                                                    datePart = $"{day}-{month}-{idwYear}";
+                                                    timePart = $"{hour:00}:{minute:00}:{second:00}";
+                                                    
                                                     DataRow dr = DTROW.NewRow();
-                                                    dr["MACHINENUMBER"] = macno;
+                                                dr["ATTLOGID"]= countid;
+                                                dr["MACHINENUMBER"] = macNo;
                                                     dr["IPADDRESS"] = ip;
-                                                    dr["ENROLLNO"] = idcard;
-                                                    dr["DATETIMERECORD"] = dat + " " + time;
-                                                    DTROW.Rows.Add(dr);                                                  
-                                                }
+                                                    dr["ENROLLNO"] = idCard;
+                                                    dr["DATETIMERECORD"] = datePart + " " + timePart;
+                                                    DTROW.Rows.Add(dr); iGLCount++; countid++;
+                                            }
                                                 totalrows += 1;
                                             }
                                             lblattcount.Refresh();
@@ -1434,44 +1406,41 @@ namespace Pinnacle.Transactions
                                             atttotal.Text = "Record Storage Capacity: Up to 1L Entries: This Machine '" + ip.ToString() + "'  Total Records :" + totalrows.ToString();
                                             if (DTROW.Rows.Count > 0)
                                             {
-                                                lblattcount.Text = "Logs Download Completed.:  " + ip.ToString() + "  Records : "+DTROW.Rows.Count.ToString();
+                                                lblattcount.Text = "Logs Download Completed.:  " + ip.ToString() + "  Records : " + DTROW.Rows.Count.ToString();
                                                 dtexcel.Rows.Add(lblattcount.Text, " ", "");
-                                               
-                                                if (Class.Users.ValidCheck == true)
+
+                                                if (totalrows >= 99999 || GlobalVariables.Prints.Visible == true)
                                                 {
-                                                   
-                                                    if (totalrows >= 99999)
+                                                    DialogResult result1 = MessageBox.Show($"Do You want to Clear '{ip.ToString()}' Machine Logs. Max Logs: {totalrows.ToString()})\nIP ADDRESS --- {ip}", "Attendance Logs", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+                                                    if (result1 == DialogResult.OK && !string.IsNullOrEmpty(ip))
                                                     {
-                                                        DialogResult result1 = MessageBox.Show($"You have reached Max Att Logs this Biometric Device. Pls clear Logs ? (Max Logs: {totalrows.ToString()})\nIP ADDRESS --- {ip}", "Attendance Logs", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                                                        Cursor = Cursors.WaitCursor;
+                                                        MyCount = 0;
+                                                        int idwErrorCode = 0;
 
-                                                        if (result1 == DialogResult.OK && !string.IsNullOrEmpty(ip))
+                                                        bIsConnected = axCZKEM1.Connect_Net(ip, Convert.ToInt32(txtPort.Text));
+                                                        if (bIsConnected)
                                                         {
-                                                            Cursor = Cursors.WaitCursor;
-                                                            MyCount = 0;
-                                                            int idwErrorCode = 0;
-                                                          
-                                                            bIsConnected = axCZKEM1.Connect_Net(ip, Convert.ToInt32(txtPort.Text));
-                                                            if (bIsConnected)
+                                                            axCZKEM1.EnableDevice(iMachineNumber, false);
+                                                            if (axCZKEM1.ClearGLog(iMachineNumber))
                                                             {
-                                                                axCZKEM1.EnableDevice(iMachineNumber, false);
-                                                                if (axCZKEM1.ClearGLog(iMachineNumber))
-                                                                {
-                                                                    axCZKEM1.RefreshData(iMachineNumber);
-                                                                    MessageBox.Show("All fingerprint logs cleared successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                                }
-                                                                else
-                                                                {
-                                                                    axCZKEM1.GetLastError(ref idwErrorCode);
-                                                                    MessageBox.Show($"Operation failed. ErrorCode = {idwErrorCode}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                                }
-
-                                                                axCZKEM1.EnableDevice(iMachineNumber, true);
-                                                                lblattcount.Text = $"Attendance Logs cleared from machine IP Address: {comboremoveip.Text}";
+                                                                axCZKEM1.RefreshData(iMachineNumber);
+                                                                MessageBox.Show("All fingerprint logs cleared successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                            }
+                                                            else
+                                                            {
+                                                                axCZKEM1.GetLastError(ref idwErrorCode);
+                                                                MessageBox.Show($"Operation failed. ErrorCode = {idwErrorCode}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                             }
 
-                                                            Cursor = Cursors.Default;
+                                                            axCZKEM1.EnableDevice(iMachineNumber, true);
+                                                            lblattcount.Text = $"Attendance Logs cleared from machine IP Address: {comboremoveip.Text}";
                                                         }
+
+                                                        Cursor = Cursors.Default;
                                                     }
+
                                                 }
                                             }
                                             else
@@ -1490,13 +1459,9 @@ namespace Pinnacle.Transactions
                                             lblattcount.Refresh(); Cursor = Cursors.Default;
                                             dtexcel.Rows.Add(lblattcount.Text, " ", "");
                                         }
-                                        axCZKEM1.EnableDevice(iMachineNumber, true);//enable the device    
-                                        if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                                        {
-                                            axCZKEM1.RefreshData(iMachineNumber);
-                                            bIsConnected = false;
-                                        }
-                                    }
+                                    axCZKEM1.EnableDevice(iMachineNumber, true); bIsConnected = false; //enable the device    
+                                    
+                                }
                                     else
                                     {
                                         lblattcount.Refresh();
@@ -1527,62 +1492,68 @@ namespace Pinnacle.Transactions
                             Cursor = Cursors.WaitCursor;
                             if (DTROW.Rows.Count >= 1)
                             {
-                                binddata = "SELECT distinct A.PRINTS    FROM ASPTBLUSERRIGHTS A JOIN GTCOMPMAST B ON A.COMPCODE=B.GTCOMPMASTID JOIN ASPTBLUSERMAS C ON C.USERID=A.USERNAME AND C.COMPCODE=A.COMPCODE  WHERE B.COMPCODE='" + Class.Users.HCompcode + "' AND A.MENUNAME='" + Class.Users.ScreenName + "'";
+                                binddata = "SELECT distinct A.PRINTS    FROM ASPTBLUSERRIGHTS A JOIN GTCOMPMAST B ON A.COMPCODE=B.GTCOMPMASTID JOIN ASPTBLUSERMAS C ON C.USERID=A.USERNAME AND C.COMPCODE=A.COMPCODE  WHERE B.COMPCODE='" + Class.Users.HCompcode + "'  and C.USERNAME='" + Class.Users.HUserName + "'  AND A.MENUNAME='" + Class.Users.ScreenName + "'";
 
                                 DataSet bindds = Utility.ExecuteSelectQuery(binddata, "ASPTBLUSERRIGHTS");
                                 DataTable binddt = bindds.Tables["ASPTBLUSERRIGHTS"];
                                 if (binddt.Rows[0]["PRINTS"].ToString() == "T")
                                 {
-                                    StreamWriter swExtLogFile1 = new StreamWriter(combinepath + "/Attendance-Logs.txt", true);
-                                    int ii = 0;
-                                    swExtLogFile1.Write(Environment.NewLine);
-                                    swExtLogFile1.WriteLine(Class.Users.HCompcode + " Attendance - Details  :   ");
-                                    swExtLogFile1.Write("============================");
-                                    swExtLogFile1.Write(Environment.NewLine);
-                                    foreach (DataRow rows in DTROW.Rows)
-                                    {
 
-                                        swExtLogFile1.Write(rows[1].ToString() + "      " + rows[2].ToString() + "     " + rows[3].ToString() + "  ");
-                                        swExtLogFile1.Write(Environment.NewLine);
+
+                                    using (StreamWriter sw = new StreamWriter(filePathLogs, true))
+                                    {
+                                        sw.WriteLine($"{Class.Users.HCompcode} Attendance - Details:");
+                                        sw.WriteLine("-------------------------------------------");
+
+                                        foreach (DataRow row in DTROW.Rows)
+                                        {
+                                            sw.WriteLine($"{row["IPADDRESS"]}  {row["ENROLLNO"]}  {row["DATETIMERECORD"]}");
+                                        }
+
+                                        sw.WriteLine($"Total Records: {DTROW.Rows.Count}");
+                                        sw.WriteLine("******** END ********");
+                                        sw.WriteLine(Environment.NewLine);
                                     }
-                                    swExtLogFile1.Write("Total Record Count   :" + DTROW.Rows.Count.ToString() + "  ********END OF DATA*********");
-                                    swExtLogFile1.Flush();
-                                    swExtLogFile1.Close();
+
                                 }
                                 Class.Users.Intimation = "PAYROLL";
                                 string tablePrefix = "";
                                 string exec = "";
 
-                                 lblattcount.Refresh(); lblattcount.Refresh();
+                                lblattcount.Refresh(); lblattcount.Refresh();
                                 lblattcount.Text = "Attendance Generation Undedr process (Procedure Script is Running... ); ";
-                                
-                                // CASE 1 : AGFMGII
+                                string unit = Class.Users.HUnit.Replace("'", "''");
+                                string user = Class.Users.HUserName.Replace("'", "''");
+
+                                string procName = "ATTINSERT";
                                 if (Class.Users.HUnit == "AGFMGII")
                                 {
                                     tablePrefix = Class.Users.HUnit;
-                                    SaveAttLogs(tablePrefix, DTROW);
-                                    exec = $"BEGIN ATTINSERT('{Class.Users.HUnit}', '{Class.Users.HUserName}'); END;";
-                                    Utility.ExecuteNonQuery(exec);
-
-
                                 }
-                                // CASE 2 : HOSTEL / CANTEEN (with Sub procedure)
                                 else if (Class.Users.HUnit.Equals("HOSTEL", StringComparison.OrdinalIgnoreCase) || Class.Users.HUnit.Equals("CANTEEN", StringComparison.OrdinalIgnoreCase))
                                 {
                                     tablePrefix = Class.Users.HUnit;
-                                    SaveAttLogs(tablePrefix, DTROW);
-                                    exec = $"BEGIN {Class.Users.HUnitSub}ATTINSERT('{Class.Users.HUnit}', '{Class.Users.HUserName}'); END;";
-                                    Utility.ExecuteNonQuery(exec);
 
+                                    if (!string.IsNullOrWhiteSpace(Class.Users.HUnitSub))
+                                        procName = $"{Class.Users.HUnitSub}ATTINSERT";
                                 }
-                                // CASE 3 : ALL OTHER UNITS
                                 else
                                 {
                                     tablePrefix = Class.Users.HCompcode;
-                                    SaveAttLogs(tablePrefix, DTROW);
-                                    exec = $"BEGIN ATTINSERT('{Class.Users.HCompcode}', '{Class.Users.HUserName}'); END;";
-                                    Utility.ExecuteNonQuery(exec);
                                 }
+
+
+                                SaveAttLogs(tablePrefix, DTROW);
+                                Utility.ExecuteNonQuery("commit");
+
+
+                                string compcodeParam = (Class.Users.HUnit == "AGFMGII" || Class.Users.HUnit.Equals("HOSTEL", StringComparison.OrdinalIgnoreCase) || Class.Users.HUnit.Equals("CANTEEN", StringComparison.OrdinalIgnoreCase))
+                                    ? unit : Class.Users.HCompcode.Replace("'", "''");
+
+
+                                exec = $"BEGIN {procName}('{compcodeParam}', '{user}'); END;";
+                                Utility.ExecuteNonQuery(exec);
+
                             }
                             else
                             {
@@ -1590,76 +1561,100 @@ namespace Pinnacle.Transactions
                                 lblattcount.Text = "No Data Found." + allip1.Items[j].SubItems[2].Text;
                             }
                             Cursor = Cursors.Default;
-                            
-                        }
-                        
 
-                    }
-                    else
-                    {
-                        lblattcount.Refresh(); Class.Users.Intimation = "";
-                        lblattcount.Text = "Pls select any IP in Listview ";               
-                        dtexcel.Rows.Add(lblattcount.Text + ",", ",");
-                    }
+                        }       
 
+                    lblattcount.Refresh(); Cursor = Cursors.Default;
+                    lblattcount.Text = "Attendance Imported to Payroll Successfully Completed. " + DTROW.Rows.Count.ToString();
                 }
-                lblattcount.Refresh(); Cursor = Cursors.Default;
-                lblattcount.Text = "Attendance Download Completed. " + DTROW.Rows.Count.ToString();
+                else
+                {
+                    lblattcount.Refresh(); Class.Users.Intimation = "";
+                    lblattcount.Text = "Pls select any IP in Listview ";
+                    dtexcel.Rows.Add(lblattcount.Text + ",", ",");
+                    MessageBox.Show(lblattcount.Text);
+                    return;
+                }
 
             }
             catch (Exception ex)
             {
-                dtexcel.Rows.Add(binddata , ex.Message, "");    
-            }
+                dtexcel.Rows.Add(binddata , ex.Message, "");         
+                MessageBox.Show(ex.ToString());
+            }        
             finally
             {
-                if (reply1.Status.ToString() == "TimedOut")
+                if (allip1.Items.Count > 0)
                 {
-
-                    dtexcel.Rows.Add("Connection String wrong .pls check Appliction config File. ('" + Class.Users.HCompcode + Environment.NewLine + "  This IP does't Connect in Network :" + data2[0].ToString() + " ", "", "");
-                    swExtLogFile.Write(Environment.NewLine);
-                    swExtLogFile.WriteLine(Class.Users.HCompcode + " CONNECTION-STRING - FAILD  :   ");
-                    swExtLogFile.Write("======================================");
-                    swExtLogFile.Write(Environment.NewLine);
-                    swExtLogFile.Write(dtexcel.Rows[0]["IPADDRESS"].ToString());
-                    swExtLogFile.Write(Environment.NewLine);
-                    swExtLogFile.Write("**************************END OF DATA ********* ********* *********" + DateTime.Now.ToString());
-                    swExtLogFile.Write(Environment.NewLine);
-                    swExtLogFile.Flush();
-                    swExtLogFile.Close();
-                }
-                else
-                {
-                    int ii = 0;
-                  
-                    swExtLogFile.Write(Environment.NewLine);
-                    swExtLogFile.WriteLine(Class.Users.HCompcode + " Attendance - Details  :   ");
-                    swExtLogFile.Write("============================");
-                    swExtLogFile.Write(Environment.NewLine);
-                    foreach (DataRow rows in dtexcel.Rows)
+                    if (reply1.Status.ToString() == "TimedOut")
                     {
-                        object[] array = rows.ItemArray;
-                        for (ii = 0; ii < array.Length - 1; ii++)
-                        {
-                            swExtLogFile.Write(array[ii].ToString());
-                            swExtLogFile.Write(Environment.NewLine);
-                        }
-                  
-                    }
-                    swExtLogFile.Write("**************************END OF DATA ********* ********* *********" + DateTime.Now.ToString());
-                    swExtLogFile.Flush();
-                    swExtLogFile.Close();
-                }
 
-                Class.Users.Intimation = "";
-                AttIPLoad(); allip1.Items.Clear();
-                btnConnects.Refresh(); DTROW.Rows.Clear();
-                btnConnects.Text = "Connect / Import";
-                lblState.Text = "Current State:DisConnected";
-                Cursor = Cursors.Default;checkall.Checked = false;
-                Utility.ExecuteNonQuery("commit");
-                Utility.DisConnect();
+                        string ipError = (data2 != null && data2.Length > 0) ? data2[0] : "Unknown IP";
+                        string errorMsg = $"Connection String wrong. Please check Application config File. ({Class.Users.HCompcode})\n" +
+                                          $"This IP doesn't connect in Network: {ipError}";
+                        // Add to DataTable
+                        dtexcel.Rows.Add(errorMsg, "", "");
+
+                        using (StreamWriter sw = new StreamWriter(filePath, true))
+                        {
+                            sw.WriteLine(); // blank line
+                            sw.WriteLine($"{Class.Users.HCompcode} CONNECTION-STRING FAILED:");
+                            sw.WriteLine("---------------------------------------------------");
+                            sw.Write(Environment.NewLine);
+                            if (dtexcel.Rows.Count > 0)
+                            {
+                                sw.WriteLine(dtexcel.Rows[0]["IPADDRESS"]?.ToString());
+                            }
+                            sw.Write(Environment.NewLine);
+                            sw.WriteLine($"{ST} ******************END OF DATA****************** {DateTime.Now}");
+                            sw.Write(Environment.NewLine);
+                        }
+
+                    }
+                    else
+                    {
+                        int ii = 0;
+                        using (StreamWriter sw = new StreamWriter(filePath, true))
+                        {
+                            sw.Write(Environment.NewLine);
+                            sw.WriteLine(Class.Users.HCompcode + " Attendance - Details  :   ");
+                            sw.Write("-------------------------------------------");
+                            sw.Write(Environment.NewLine);
+                            foreach (DataRow rows in dtexcel.Rows)
+                            {
+                                object[] array = rows.ItemArray;
+                                for (ii = 0; ii < array.Length - 1; ii++)
+                                {
+                                    sw.Write(array[ii].ToString());
+                                    sw.Write(Environment.NewLine);
+                                }
+
+                            }
+
+                            // example: after some time
+                            DateTime end = DateTime.Now;
+
+                            double totalMinutes = (end - ST).TotalMinutes;
+                            int result = (int)totalMinutes;
+                            sw.WriteLine($"Total Download minutes : {result}");
+
+
+
+                            sw.Write("******************END OF DATA ******************" + DateTime.Now.ToString());
+
+                        }
+                    }
+
+                    Class.Users.Intimation = "";
+                    AttIPLoad(); allip1.Items.Clear();
+                    btnConnects.Refresh(); DTROW.Rows.Clear();
+                    btnConnects.Text = "Connect / Import";
+                    lblState.Text = "Current State:DisConnected";
+                    Cursor = Cursors.Default; checkall.Checked = false;
+                }
+               
             }
+
 
         }
         private void SaveAttLogs(string tablePrefix, DataTable dt)
@@ -2339,7 +2334,7 @@ namespace Pinnacle.Transactions
 
                 if (ipList.Count == 0)
                 {
-                    MessageBox.Show("No IP Address found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mas.pop("No IP Address found.", "Error", "");
                     return;
                 }
 
@@ -2349,7 +2344,7 @@ namespace Pinnacle.Transactions
 
                     if (!bIsConnected)
                     {
-                        MessageBox.Show("Machine Disconnected: " + ip);
+                        MessageBox.Show(ip.ToString());
                         continue;
                     }
 
@@ -2377,19 +2372,14 @@ namespace Pinnacle.Transactions
                         progressBar1.Value = i + 1;
                     }
 
-                    if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                    {
-                        axCZKEM1.RefreshData(iMachineNumber);
-
-                        bIsConnected = false;
-                    }
-                    axCZKEM1.EnableDevice(iMachineNumber, true); lblattcount.Text = "";
+              
+                    axCZKEM1.EnableDevice(iMachineNumber, true); lblattcount.Text = ""; bIsConnected = false;
                 }
 
                 Cursor = Cursors.Default;
 
                 if (anySuccess)
-                    MessageBox.Show("Data Removed Successfully. Total Count: " + removedCount, "Information");
+                    mas.pop("Data Removed Successfully. Total : " + removedCount, "Information","");
 
                 // Reset UI
                 progressBar1.Value = 0;
@@ -2398,10 +2388,11 @@ namespace Pinnacle.Transactions
                 allip2.Items.Clear();
                 lblState.Text = "Current State: Disconnected";
             }
-            catch
+            catch(Exception ex)
             {
                 Cursor = Cursors.Default;
-                MessageBox.Show("Please connect device", "Error");
+                MessageBox.Show(ex.ToString());
+                
             }
             finally
             {
@@ -2637,46 +2628,88 @@ namespace Pinnacle.Transactions
 
         private void Checkallrows_CheckedChanged(object sender, EventArgs e)
         {
-
             try
             {
                 listViewupload.Items.Clear();
                 allip.Items.Clear();
+
                 if (checkallrows.Checked)
                 {
                     int i = 0;
-                    allip.Items.Clear();
+
                     foreach (ListViewItem src in LvDownload.Items)
                     {
-                        // Clone original item (copies all subitems automatically)
-                        if (src.SubItems[3].Text != "")
+                        if (!string.IsNullOrWhiteSpace(src.SubItems[3].Text))
                         {
                             ListViewItem newItem = (ListViewItem)src.Clone();
 
-                        // Apply row color
+                            newItem.BackColor = (i % 2 == 0)
+                                ? Class.Users.Color1
+                                : Class.Users.Color2;
 
-                       
-                            newItem.BackColor = (i % 2 == 0) ? Class.Users.Color1 : Class.Users.Color2;
                             listViewupload.Items.Add(newItem);
-                            lblattcount.Refresh();
-                            lblattcount.Text ="Transfer IDCard Total NO :" +listViewupload.Items.Count.ToString();
                             i++;
                         }
                     }
+
+                    // ✅ Update UI once
+                    lblattcount.Text = $"Transfer IDCard Total NO : {listViewupload.Items.Count}";
                 }
                 else
                 {
-                    // Simply uncheck → clear selection and clear upload list
+                    listViewupload.Items.Clear();
+
+                    // Optional: only if needed
                     foreach (ListViewItem item in LvDownload.Items)
                         item.Selected = false;
 
-                    listViewupload.Items.Clear();
+                    lblattcount.Text = "Transfer IDCard Total NO : 0";
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //try
+            //{
+            //    listViewupload.Items.Clear();
+            //    allip.Items.Clear();
+            //    if (checkallrows.Checked)
+            //    {
+            //        int i = 0;
+            //        allip.Items.Clear();
+            //        foreach (ListViewItem src in LvDownload.Items)
+            //        {
+            //            // Clone original item (copies all subitems automatically)
+            //            if (src.SubItems[3].Text != "")
+            //            {
+            //                ListViewItem newItem = (ListViewItem)src.Clone();
+
+            //            // Apply row color
+
+
+            //                newItem.BackColor = (i % 2 == 0) ? Class.Users.Color1 : Class.Users.Color2;
+            //                listViewupload.Items.Add(newItem);
+            //                lblattcount.Refresh();
+            //                lblattcount.Text ="Transfer IDCard Total NO :" +listViewupload.Items.Count.ToString();
+            //                i++;
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        // Simply uncheck → clear selection and clear upload list
+            //        foreach (ListViewItem item in LvDownload.Items)
+            //            item.Selected = false;
+
+            //        listViewupload.Items.Clear();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
 
         }
 
@@ -2778,84 +2811,148 @@ namespace Pinnacle.Transactions
             try
             {
                 Class.Users.UserTime = 0;
-                
+
+                string ip = e.Item.SubItems[2].Text.Trim();
+
+                if (Class.Users.HCompcode == "LOPPL")
+                {
+                    ip = ip.Split('/')[0];
+                }
+
                 if (e.Item.Checked)
                 {
-                   
-                       
-                        // PingReply reply = ping.Send(e.Item.SubItems[2].Text, 1000);
-                        if (Class.Users.HCompcode == "LOPPL")
-                        {
-                            spl = e.Item.SubItems[2].Text.Trim().Split('/');
-                            reply1 = ping.Send(spl[0], 1000);
-                        }
-                        else
-                        {
-                            reply1 = ping.Send(e.Item.SubItems[2].Text, 1000);
-                        }
-                        bool connected = reply1.Status == IPStatus.Success;
+                    reply1 = ping.Send(ip, 1000);
+                    bool connected = reply1.Status == IPStatus.Success;
 
-                        e.Item.SubItems[3].Text = connected ? "Connected" : "DisConnected";
-                        e.Item.SubItems[4].Text = connected ? "" : reply1.Status.ToString();
-                        e.Item.SubItems[5].Text = connected ? Class.Users.Error : "Network Unavailable";
+                    e.Item.SubItems[3].Text = connected ? "Connected" : "DisConnected";
+                    e.Item.SubItems[4].Text = connected ? "" : reply1.Status.ToString();
+                    e.Item.SubItems[5].Text = connected ? "OK" : "Network Unavailable";
 
-                        if (e.Item.SubItems[3].Text == "Connected")
-                        {
-                            // Create new ListViewItem for allip1
-                            ListViewItem it = new ListViewItem();
-                            it.SubItems.Add(e.Item.SubItems[1].Text);
-                            it.SubItems.Add(e.Item.SubItems[2].Text);
-                            it.SubItems.Add(e.Item.SubItems[3].Text);
-                            it.SubItems.Add(e.Item.SubItems[4].Text);
-                            it.SubItems.Add(e.Item.SubItems[5].Text);
-                            it.SubItems.Add(e.Item.Checked.ToString());
+                    if (connected)
+                    {
+                        ListViewItem it = new ListViewItem();
+                        it.SubItems.Add(e.Item.SubItems[1].Text);
+                        it.SubItems.Add(ip);
+                        it.SubItems.Add("Connected");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("OK");
+                        it.SubItems.Add(e.Item.Checked.ToString());
 
-                            allip1.Items.Add(it);
+                        allip1.Items.Add(it);
 
-                            lblattcount.Text = $"This IP: {e.Item.SubItems[2].Text} Connected.";
-                        }
-                        else
-                        {
-                            lblattcount.Text = $"This IP: {e.Item.SubItems[2].Text} DisConnected.";
-                        }
-                    
+                        lblattcount.Text = $"This IP: {ip} Connected.";
+                    }
+                    else
+                    {
+                        lblattcount.Text = $"This IP: {ip} DisConnected.";
+                    }
                 }
-                else if (!e.Item.Checked && e.Item.SubItems[3].Text == "Connected")
+                else if (e.Item.SubItems[3].Text == "Connected")
                 {
-                   
-                    bIsConnected = false;
                     e.Item.SubItems[3].Text = "DisConnected";
                     e.Item.SubItems[4].Text = "Cancelled";
                     e.Item.SubItems[5].Text = "Cancelled";
-                   
-                    // Remove from allip1
+
                     for (int c = allip1.Items.Count - 1; c >= 0; c--)
                     {
-                        if (Class.Users.HCompcode == "LOPPL")
+                        if (allip1.Items[c].SubItems[2].Text == ip)
                         {
-                            if (allip1.Items[c].SubItems[2].Text == spl[0])
-                            {
-                                allip1.Items[c].Remove();
-                            }
-                        }
-                        else
-                        {
-                            if (allip1.Items[c].SubItems[2].Text == e.Item.SubItems[2].Text)
-                            {
-                                allip1.Items[c].Remove();
-                            }
+                            allip1.Items[c].Remove();
                         }
                     }
 
-                    lblattcount.Text = $"This IP: {e.Item.SubItems[2].Text} DisConnected.";
+                    lblattcount.Text = $"This IP: {ip} DisConnected.";
                 }
 
                 listviewattdown.Refresh();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error checking IP: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error checking IP: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //try
+            //{
+            //    Class.Users.UserTime = 0;
+
+            //    if (e.Item.Checked)
+            //    {
+
+
+            //            // PingReply reply = ping.Send(e.Item.SubItems[2].Text, 1000);
+            //            if (Class.Users.HCompcode == "LOPPL")
+            //            {
+            //                spl = e.Item.SubItems[2].Text.Trim().Split('/');
+            //                reply1 = ping.Send(spl[0], 1000);
+            //            }
+            //            else
+            //            {
+            //                reply1 = ping.Send(e.Item.SubItems[2].Text, 1000);
+            //            }
+            //            bool connected = reply1.Status == IPStatus.Success;
+
+            //            e.Item.SubItems[3].Text = connected ? "Connected" : "DisConnected";
+            //            e.Item.SubItems[4].Text = connected ? "" : reply1.Status.ToString();
+            //            e.Item.SubItems[5].Text = connected ? Class.Users.Error : "Network Unavailable";
+
+            //            if (e.Item.SubItems[3].Text == "Connected")
+            //            {
+            //                // Create new ListViewItem for allip1
+            //                ListViewItem it = new ListViewItem();
+            //                it.SubItems.Add(e.Item.SubItems[1].Text);
+            //                it.SubItems.Add(e.Item.SubItems[2].Text);
+            //                it.SubItems.Add(e.Item.SubItems[3].Text);
+            //                it.SubItems.Add(e.Item.SubItems[4].Text);
+            //                it.SubItems.Add(e.Item.SubItems[5].Text);
+            //                it.SubItems.Add(e.Item.Checked.ToString());
+
+            //                allip1.Items.Add(it);
+
+            //                lblattcount.Text = $"This IP: {e.Item.SubItems[2].Text} Connected.";
+            //            }
+            //            else
+            //            {
+            //                lblattcount.Text = $"This IP: {e.Item.SubItems[2].Text} DisConnected.";
+            //            }
+
+            //    }
+
+            //     if (!e.Item.Checked && e.Item.SubItems[3].Text == "Connected")
+            //    {
+
+            //        bIsConnected = false;
+            //        e.Item.SubItems[3].Text = "DisConnected";
+            //        e.Item.SubItems[4].Text = "Cancelled";
+            //        e.Item.SubItems[5].Text = "Cancelled";
+
+            //        // Remove from allip1
+            //        for (int c = allip1.Items.Count; c >= 0; c--)
+            //        {
+            //            if (Class.Users.HCompcode == "LOPPL")
+            //            {
+            //                if (allip1.Items[c].SubItems[2].Text == spl[0])
+            //                {
+            //                    allip1.Items[c].Remove();
+            //                }
+            //            }
+            //            else
+            //            {
+            //                if (allip1.Items[c].SubItems[2].Text == e.Item.SubItems[2].Text)
+            //                {
+            //                    allip1.Items[c].Remove();
+            //                }
+            //            }
+            //        }
+
+            //        lblattcount.Text = $"This IP: {e.Item.SubItems[2].Text} DisConnected.";
+            //    }
+
+            //    listviewattdown.Refresh();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error checking IP: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
 
         }
@@ -2919,11 +3016,24 @@ namespace Pinnacle.Transactions
         {
             if (comboremoveip.Text != "")
             {
-                Ping ping = new Ping();
-                PingReply reply = ping.Send(comboremoveip.Text, 1000);
-                if (reply.Status.ToString() == "Success")
+                Ping ping = new Ping(); PingReply reply1;
+                if (Class.Users.HCompcode == "LOPPL")
+                {
+                    spl = comboremoveip.Text.Trim().Split('/');
+                    string ip = spl[0].ToString();
+                    reply1 = ping.Send(ip, 1000);
+                    bIsConnected = reply1.Status == IPStatus.Success;
+                }
+                else
+                {
+                    string ip = comboremoveip.Text.Trim();
+                    reply1 = ping.Send(ip, 1000);
+                    bIsConnected = reply1.Status == IPStatus.Success;
+                }
+                if (reply1.Status.ToString() == "Success")
                 { }
-                else {
+                else
+                {
                     lbRTShow.Refresh();
                     lbRTShow.Text = "Invalid NetWork" + comboremoveip.Text;
 
@@ -3229,12 +3339,8 @@ namespace Pinnacle.Transactions
             }
             finally
             {
-                if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                {
-                    axCZKEM1.RefreshData(iMachineNumber);
-                    bIsConnected = false;
-                }
-                combo_ToIPload();
+         
+                combo_ToIPload(); bIsConnected = false;
                 Cursor = Cursors.Default;
                
                 btncarddownload.Text = "Card Download ??";
@@ -3376,7 +3482,7 @@ namespace Pinnacle.Transactions
                     }
                     else
                     {
-                        dtexcel.Rows.Add(comboMasterIp.Text, sUserID.ToString() + "   :  Name :" + sName, " - Index: " + iFaceIndex);
+                       // dtexcel.Rows.Add(comboMasterIp.Text, sUserID.ToString() + "   :  Name :" + sName, " - Index: " + iFaceIndex);
 
                     }
                 }
@@ -3418,13 +3524,8 @@ namespace Pinnacle.Transactions
                     swExtLogFile.Close();
                 }
                 lblprogress1.Text = "";
-
-                if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                {
-                    axCZKEM1.RefreshData(iMachineNumber);
-
-                    bIsConnected = false;
-                }
+                btnfaceDownload.Text = "Face Download ??"; bIsConnected = false;
+             
             }
 
 
@@ -3794,13 +3895,8 @@ namespace Pinnacle.Transactions
 
                         // Finalize upload
                         axCZKEM1.BatchUpdate(iMachineNumber);
-                        if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                        {
-                            axCZKEM1.RefreshData(iMachineNumber);
+                       
 
-                            bIsConnected = false;
-                        }
-                   
                         axCZKEM1.EnableDevice(iMachineNumber, true);
 
                         MessageBox.Show("Card Index uploaded successfully. Total: "          + listViewupload1.Items.Count          + "   IP: " + deviceIp, "Success");
@@ -3925,7 +4021,7 @@ namespace Pinnacle.Transactions
                 // Validate there is at least one IP to process
                 if (allip == null || allip.Items.Count == 0)
                 {
-                    MessageBox.Show("Machine not connected. Please send IP Address", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mas.pop("Machine not connected. Please send IP Address", "Error", "");
                     return;
                 }
 
@@ -3961,7 +4057,7 @@ namespace Pinnacle.Transactions
                     bool connected = axCZKEM1.Connect_Net(deviceIp, Convert.ToInt32(txtPort.Text));
                     if (!connected)
                     {
-                        MessageBox.Show($"Machine DisConnected: {deviceIp}", "Warning");
+                        mas.pop($"Machine DisConnected: {deviceIp}", "Warning","");
                         continue;
                     }
 
@@ -4010,19 +4106,15 @@ namespace Pinnacle.Transactions
                         }
 
                         // commit to device
-                        axCZKEM1.BatchUpdate(iMachineNumber);
-                        if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                        {
-                            axCZKEM1.RefreshData(iMachineNumber);
-
-                            bIsConnected = false;
-                        }
-                     
-                        MessageBox.Show($"Successfully uploaded face templates. Total: {listViewupload2.Items.Count}  IP: {deviceIp}", "Success");
+                        axCZKEM1.BatchUpdate(iMachineNumber); 
+              
+                        bIsConnected = false;
+                        mas.pop($"Successfully uploaded face templates. Total: {listViewupload2.Items.Count}  IP: {deviceIp}", "Success","");
                     }
                     catch (Exception exInner)
                     {
-                        MessageBox.Show($"Error while uploading to {deviceIp}: {exInner.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(exInner.ToString());
+                        
                     }
                     finally
                     {
@@ -4038,6 +4130,7 @@ namespace Pinnacle.Transactions
             }
             catch (Exception ex)
             {
+ 
                 MessageBox.Show("Please connect device. " + ex.Message, "Error");
             }
             finally
@@ -4053,129 +4146,7 @@ namespace Pinnacle.Transactions
                 lblattcount.Text = "";
             }
 
-            //try
-            //{
-            //    txtfactransferesearch.Text = ""; Class.Users.UserTime = 0;
-            //    if (listviewchecklistip2.CheckedItems.Count >= 0)
-            //    {
 
-            //        DialogResult result = MessageBox.Show("Do You want to Export  Face Index??", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            //        if (result.Equals(DialogResult.OK))
-            //        {
-            //            for (int j = 0; j < allip.Items.Count; j++)
-            //            {
-
-            //                if (allip.Items.Count >= 0)
-            //                {
-
-            //                    Cursor = Cursors.WaitCursor;
-            //                    if (allip.Items[j].SubItems[1].Text.Length > 10)
-            //                    {
-            //                        lblattcount.Text = ""; bIsConnected = false;
-            //                        bIsConnected = axCZKEM1.Connect_Net(allip.Items[j].SubItems[1].Text, Convert.ToInt32(txtPort.Text));
-            //                        if (bIsConnected == true)
-            //                        {
-
-            //                            lblState.Text = "Current State:Connected";
-            //                            int idwErrorCode = 0;
-            //                            int iFlag = 1;
-
-            //                            axCZKEM1.EnableDevice(iMachineNumber, false);
-
-            //                            int i = 0;
-            //                            UICO uti = new UICO();
-            //                            progressBar1.Minimum = 0;
-            //                            progressBar1.Maximum = listViewupload2.Items.Count;
-            //                            for (i = 0; i < listViewupload2.Items.Count; i++)
-            //                            {
-
-            //                                //string ss = "";
-            //                                //string finger = "";
-            //                                //string face = "";
-
-            //                                string c = "";
-            //                                sdwEnrollNumber = listViewupload2.Items[i].SubItems[1].Text;
-            //                                sName = listViewupload2.Items[i].SubItems[2].Text;
-            //                                idwFingerIndex = Convert.ToInt32(iFaceIndex);
-            //                                sTmpData = listViewupload2.Items[i].SubItems[5].Text;
-            //                                sTmpData1 = listViewupload2.Items[i].SubItems[5].Text;
-            //                                sCardnumber = listViewupload2.Items[i].SubItems[6].Text;
-            //                                iPrivilege = Convert.ToInt32(listViewupload2.Items[i].SubItems[7].Text);
-            //                                sPassword = listViewupload2.Items[i].SubItems[8].Text;
-            //                                sEnabled = listViewupload2.Items[i].SubItems[9].Text;
-            //                                //iFlag = Convert.ToInt32("0" + listViewupload2.Items[i].SubItems[9].Text);
-            //                                MacIP = allip.Items[j].SubItems[1].Text;    
-
-            //                                axCZKEM1.SetStrCardNumber(sCardnumber);//Before you using function SetUserInfo,set the card number to make sure you can upload it to the device
-            //                                if (axCZKEM1.SSR_SetUserInfo(iMachineNumber, sUserID, sName, sPassword, iPrivilege, bEnabled))//face templates are part of users' information
-            //                                {
-            //                                    axCZKEM1.SetUserFaceStr(iMachineNumber, sUserID, iFaceIndex, sTmpData1, iLength);//upload face templates information to the device
-            //                                    lblattcount.Text = "Total Employee Finger Rows Count  : " + listViewupload2.Items.Count.ToString() + " and IP Addres   :" + allip.Items[j].SubItems[1].Text;
-            //                                    decimal per = Convert.ToDecimal(100 / GenFun.ToDecimal(listViewupload2.Items.Count)) * (i + 1);
-            //                                    lblprogress1.Text = per.ToString("N0") + " %";
-            //                                    lblprogress1.Refresh();
-            //                                    progressBar1.Value = i + 1;
-            //                                }                                     
-            //                                else
-            //                                {
-            //                                    decimal per = Convert.ToDecimal(100 / GenFun.ToDecimal(listViewupload2.Items.Count)) * (i + 1);
-            //                                    lblprogress1.Text = per.ToString("N0") + " %";
-            //                                    lblprogress1.Refresh();
-            //                                    progressBar1.Value = i + 1;                                           
-            //                                    Cursor = Cursors.Default;
-            //                                    axCZKEM1.EnableDevice(iMachineNumber, true);                                         
-
-            //                                }
-            //                            }
-
-            //                            axCZKEM1.BatchUpdate(iMachineNumber);//upload all the information in the memory
-            //                            axCZKEM1.RefreshData(iMachineNumber);//the data in the device should be refreshed
-            //                            axCZKEM1.EnableDevice(iMachineNumber, true);
-
-
-            //                            MessageBox.Show("Successfully upload fingerprint, " + "total:" + listViewupload2.Items.Count.ToString() + "IP      :" + allip.Items[j].SubItems[1].Text, "Success");
-            //                            Cursor = Cursors.Default;
-            //                            progressBar1.Value = 0;
-            //                        }
-            //                        else
-            //                        {
-            //                            MessageBox.Show("Machine DisConnected" + allip.Items[j].SubItems[1].Text);
-            //                        }
-
-            //                    }
-            //                    //j--;
-            //                }
-            //                else
-            //                {
-            //                    Cursor = Cursors.Default;
-            //                    MessageBox.Show("Invalid");
-            //                }
-
-
-            //                Cursor = Cursors.Default;
-            //            }
-            //        }
-
-            //    }
-            //    else
-            //    {
-            //        Cursor = Cursors.Default;
-            //        MessageBox.Show("Machine not connected.pls send IP Address", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    }
-            //    //Cursor = Cursors.Default;
-            //    comboMasterIp.Enabled = true;
-
-            //    btnfaceDownload.Enabled = true;
-            //    lblState.Text = "Current State:DisConnected";
-            //    listviewchecklistip2.Items.Clear(); 
-            //}
-            //catch (Exception ex)
-            //{
-            //    Cursor = Cursors.Default;
-            //    MessageBox.Show("pls Connect Device", "error");
-            //}
-            //listViewupload2.Items.Clear(); Lvdownremove.Items.Clear();
         }
 
         private void Listviewchecklistip2_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -4624,41 +4595,64 @@ namespace Pinnacle.Transactions
             Cursor = Cursors.Default;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        
+        private void button3_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
-            axCZKEM1.PowerOnAllDevice();
-            axCZKEM1.Disconnect();
-            Cursor = Cursors.Default;
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor; Class.Users.UserTime = 0;
-            if (comboremoveip.Text == "")
+            try
             {
-                MessageBox.Show("pls Select IPAddress", "Error"); Cursor = Cursors.Default;
-                return;
-            }
-            bIsConnected = axCZKEM1.Connect_Net(comboremoveip.Text, Convert.ToInt32(txtPort.Text));
-            if (bIsConnected == false)
-            {
-                MessageBox.Show("Please connect the device first!", "Error"); Cursor = Cursors.Default;
-                return;
-            }
-            if (bIsConnected == true)
-            {
-                axCZKEM1.SetDeviceTime(iMachineNumber);
+                if (string.IsNullOrWhiteSpace(comboremoveip.Text))
+                {
+                    mas.pop("Please Select IP Address", "Error","");
+                    return;
+                }
 
+                bool isConnected = axCZKEM1.Connect_Net(
+                    comboremoveip.Text,
+                    Convert.ToInt32(txtPort.Text)
+                );
 
-                labeltime.Text = "Now Machine Date Time  " + comboremoveip.Text + "   --    " + System.DateTime.Now.ToString();
+                if (!isConnected)
+                {
+                    mas.pop("Unable to connect device", "Error","");
+                    return;
+                }
+
+                // Set device time from PC system time
+                bool result = axCZKEM1.SetDeviceTime(iMachineNumber);
+
+                if (result)
+                {
+                    labeltime.Text =
+                        "Machine Time Updated : " +
+                        comboremoveip.Text +
+                        " --> " +
+                        DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
+                    mas.pop("Device time updated successfully","","");
+                }
+                else
+                {
+                    int errorCode = 0;
+                    axCZKEM1.GetLastError(ref errorCode);
+
+                    MessageBox.Show(
+                        "Failed to set device time. Error Code : " + errorCode,
+                        "Error"
+                    );
+                }
+
                 axCZKEM1.Disconnect();
-
-
             }
-            Cursor = Cursors.Default;
+            catch (Exception ex)
+            {
+                mas.pop(ex.Message, "Error","");
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
 
         private void BtnDatabase_Click1_Click(object sender, EventArgs e)
@@ -5170,13 +5164,8 @@ namespace Pinnacle.Transactions
                     }
 
                     axCZKEM1.EnableDevice(iMachineNumber, true);
-                    if (axCZKEM1.ClearAdministrators(iMachineNumber))
-                    {
-                        axCZKEM1.RefreshData(iMachineNumber);
-
-                        bIsConnected = false;
-                    }
-                
+           
+                    bIsConnected = false;
 
                     lblattcount.Text = $"Attendance Download Completed. {totalrows}";
                 }
@@ -5333,6 +5322,11 @@ namespace Pinnacle.Transactions
                 Class.Users.SessionID = 9;
                 checkBox1.Text = Class.Users.SessionID.ToString() + "  Index";
             }
+        }
+
+        private void listViewupload_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void txtfactransferesearch_KeyPress(object sender, KeyPressEventArgs e)

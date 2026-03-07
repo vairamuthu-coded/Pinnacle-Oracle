@@ -18,7 +18,7 @@ namespace Pinnacle.Canteen
         Models.Master mas = new Models.Master();
         Models.UserRights sm = new Models.UserRights();
         Models.MenuName c = new Models.MenuName();
-        CanteenItemMasterModel CC = new CanteenItemMasterModel();
+        CanteenItemMasterModel CC = new CanteenItemMasterModel(); Int64 TOKENEMPID = 0;
         public static CanteenItemMaster Instance
         {
             get { if (_instance == null) _instance = new CanteenItemMaster(); GlobalVariables.CurrentForm = _instance; return _instance; }
@@ -38,7 +38,8 @@ namespace Pinnacle.Canteen
           
             lblMarquee1.BackColor = Color.White;
             lblMarquee1.ForeColor = Class.Users.BackColors;
-            tabControl1.TabPages[2].Enabled = false; 
+            tabControl1.TabPages[2].Enabled = false;
+            txtcompcode.Text = Class.Users.HCompcode;
         }
        
             public void usercheck(string s, string ss, string sss)
@@ -152,62 +153,70 @@ namespace Pinnacle.Canteen
             try
             {
 
-               
-                Class.Users.LoginTime = CallTime();
-                Class.Users.UserTime = 0;
-                flowLayoutPanel1.Controls.Clear(); 
-                string sel = "SELECT A.ASPTBLMENPERDETID,   B.DOCDATE,E.CATEGORY,C.ITEMNAME1 ,C.EMPLOYEECOST,C.ITEMCOST, C.SPECIALCOST,c.ITEMIMAGE,A.FROMTIME FROM ASPTBLMENPERDET  A JOIN ASPTBLMENPER B ON A.ASPTBLMENPERID=B.ASPTBLMENPERID  JOIN ASPTBLCANITEMMAS C ON C.ASPTBLCANITEMMASID=A.ITEMNAME1 JOIN ASPTBLUSERMAS D ON D.COMPCODE=B.COMPCODE AND D.USERID=B.USERNAME  JOIN ASPTBLCANCATEGORYMAS E ON E.ASPTBLCANCATEGORYMASID = A.CATEGORY WHERE A.ACTIVE='T'  AND C.ACTIVE='T'  AND D.COMPCODE='" + Class.Users.COMPCODE + "'  AND D.USERID='" + Class.Users.USERID + "'  AND B.DOCDATE BETWEEN TO_DATE(SYSDATE) AND TO_DATE(SYSDATE+(SELECT DAYS FROM CANITEMDISPLAYDAYS))    AND TO_TIMESTAMP(TO_CHAR(SYSDATE,'DD/MM/YY HH24:MI:SS'),'DD/MM/YY HH24:MI:SS')  BETWEEN TO_TIMESTAMP(A.FROMDATE||' '||A.FROMTIME,'DD/MM/YY HH24:MI:SS') AND TO_TIMESTAMP(A.TODATE||' '||A.TOTIME,'DD/MM/YY HH24:MI:SS')   ORDER BY 2,1";
-                DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLCANITEMMAS");
-                DataTable dt = ds.Tables["ASPTBLCANITEMMAS"];
-                if (dt != null)
+                if (txtcompcode.Text == Class.Users.HCompcode)
                 {
-
-           
-                    UserControls.CanteenCustom[] items = new UserControls.CanteenCustom[dt.Rows.Count];
-                    foreach (DataRow myRow in dt.Rows)
+                    Class.Users.LoginTime = CallTime();
+                    Class.Users.UserTime = 0;
+                    flowLayoutPanel1.Controls.Clear();
+                    string sel = "SELECT A.ASPTBLMENPERDETID,   B.DOCDATE,E.CATEGORY,C.ITEMNAME1 ,C.EMPLOYEECOST,C.ITEMCOST, C.SPECIALCOST,c.ITEMIMAGE,A.FROMTIME FROM ASPTBLMENPERDET  A JOIN ASPTBLMENPER B ON A.ASPTBLMENPERID=B.ASPTBLMENPERID  JOIN ASPTBLCANITEMMAS C ON C.ASPTBLCANITEMMASID=A.ITEMNAME1 JOIN ASPTBLUSERMAS D ON D.COMPCODE=B.COMPCODE AND D.USERID=B.USERNAME  JOIN ASPTBLCANCATEGORYMAS E ON E.ASPTBLCANCATEGORYMASID = A.CATEGORY WHERE A.ACTIVE='T'  AND C.ACTIVE='T'  AND D.COMPCODE='" + Class.Users.COMPCODE + "'  AND D.USERID='" + Class.Users.USERID + "'  AND B.DOCDATE BETWEEN TO_DATE(SYSDATE) AND TO_DATE(SYSDATE+(SELECT DAYS FROM CANITEMDISPLAYDAYS))    AND TO_TIMESTAMP(TO_CHAR(SYSDATE,'DD/MM/YY HH24:MI:SS'),'DD/MM/YY HH24:MI:SS')  BETWEEN TO_TIMESTAMP(A.FROMDATE||' '||A.FROMTIME,'DD/MM/YY HH24:MI:SS') AND TO_TIMESTAMP(A.TODATE||' '||A.TOTIME,'DD/MM/YY HH24:MI:SS')   ORDER BY 2,1";
+                    DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLCANITEMMAS");
+                    DataTable dt = ds.Tables["ASPTBLCANITEMMAS"];
+                    if (dt.Rows.Count > 0)
                     {
-                        decimal costcalc = 0;
-                        costcalc = add(Convert.ToDecimal("0" + myRow["EMPLOYEECOST"].ToString()), 0);
-                        items[i] = new UserControls.CanteenCustom();
 
-                        if (myRow["ITEMIMAGE"].ToString() != "")
+
+                        UserControls.CanteenCustom[] items = new UserControls.CanteenCustom[dt.Rows.Count];
+                        foreach (DataRow myRow in dt.Rows)
                         {
-                            byte[] bytes = (byte[])myRow["ITEMIMAGE"];
-                            Image img = Models.Device.ByteArrayToImage(bytes);
-                            items[i].userimage = img;
-                        }
+                            decimal costcalc = 0;
+                            costcalc = add(Convert.ToDecimal("0" + myRow["EMPLOYEECOST"].ToString()), 0);
+                            items[i] = new UserControls.CanteenCustom();
 
-                        items[i].menuname.Text = Convert.ToString(myRow["ITEMNAME1"].ToString() + "\r\n" + myRow["DOCDATE"].ToString().Substring(0, 10) + "\r\n" + myRow["FROMTIME"].ToString());
-                        items[i].menuname.BackColor = Class.Users.BackColors;
-                        items[i].menuname.ForeColor = Class.Users.Color2;
-                        items[i].iconbackground.BackColor = Class.Users.BackColors;
-                        items[i].Panelcolor.BackColor = Class.Users.Color1;
-                        items[i].LabelItems.ForeColor = Class.Users.BackColors;
-                        items[i].Butdate.ForeColor = Class.Users.BackColors;
-                        items[i].LabelItems.Text = Convert.ToString(myRow["CATEGORY"].ToString());
-                        items[i].Butdate.Text = Convert.ToString(myRow["DOCDATE"].ToString().Substring(0, 10));
-                        items[i].ActualCost.BackColor = Class.Users.BackColors;
-                        
-                       
-                        if (System.DateTime.Now.ToString("dd-MM-yyyy") == Convert.ToString(myRow["DOCDATE"].ToString().Substring(0, 10))) { 
-                            items[i].ActualCost.Text ="AMOUNT : "+ Convert.ToString(myRow["SPECIALCOST"].ToString());
-                        }
-                        else
-                        {
-                            items[i].ActualCost.Text = "AMOUNT : "+Convert.ToString(myRow["ITEMCOST"].ToString());
-                        }
-                        flowLayoutPanel1.Controls.Add(items[i]);
-                        items[i].menuname.Click += Menuname_Click;
+                            if (myRow["ITEMIMAGE"].ToString() != "")
+                            {
+                                byte[] bytes = (byte[])myRow["ITEMIMAGE"];
+                                Image img = Models.Device.ByteArrayToImage(bytes);
+                                items[i].userimage = img;
+                            }
 
+                            items[i].menuname.Text = Convert.ToString(myRow["ITEMNAME1"].ToString() + "\r\n" + myRow["DOCDATE"].ToString().Substring(0, 10) + "\r\n" + myRow["FROMTIME"].ToString());
+                            items[i].menuname.BackColor = Class.Users.BackColors;
+                            items[i].menuname.ForeColor = Class.Users.Color2;
+                            items[i].iconbackground.BackColor = Class.Users.BackColors;
+                            items[i].Panelcolor.BackColor = Class.Users.Color1;
+                            items[i].LabelItems.ForeColor = Class.Users.BackColors;
+                            items[i].Butdate.ForeColor = Class.Users.BackColors;
+                            items[i].LabelItems.Text = Convert.ToString(myRow["CATEGORY"].ToString());
+                            items[i].Butdate.Text = Convert.ToString(myRow["DOCDATE"].ToString().Substring(0, 10));
+                            items[i].ActualCost.BackColor = Class.Users.BackColors;
+
+
+                            if (System.DateTime.Now.ToString("dd-MM-yyyy") == Convert.ToString(myRow["DOCDATE"].ToString().Substring(0, 10)))
+                            {
+                                items[i].ActualCost.Text = "AMOUNT : " + Convert.ToString(myRow["SPECIALCOST"].ToString());
+                            }
+                            else
+                            {
+                                items[i].ActualCost.Text = "AMOUNT : " + Convert.ToString(myRow["ITEMCOST"].ToString());
+                            }
+                            flowLayoutPanel1.Controls.Add(items[i]);
+                            items[i].menuname.Click += Menuname_Click;
+
+
+                        }
 
                     }
-
+                    else
+                    {
+                        flowLayoutPanel1.Controls.Clear(); Class.Users.LoginTime = 0;
+                    }
                 }
                 else
                 {
-                    flowLayoutPanel1.Controls.Clear(); Class.Users.LoginTime = 0;
+                   
+                    MessageBox.Show($"CompCode Mismatch {txtcompcode.Text} ======== {Class.Users.HCompcode}");
+                    return;
                 }
-
 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -247,23 +256,24 @@ namespace Pinnacle.Canteen
         string[] data2;
         private void Menuname_Click(object sender, EventArgs e)
         {
+           
             try
             {
                 lblMarquee1.Visible = false;
                 Timercanteen_Tick(sender, e);
-                if (lvLogs.Items.Count > 0)
+                if (lvLogs.Items.Count > 0 && txtcompcode.Text==Class.Users.HCompcode)
                 {
                     Class.Users.TOKENEMPID = 0; pictureemp.Image = null;
-                    Class.Users.TOKENEMPID = Convert.ToInt64(lvLogs.Items[lvLogs.Items.Count - 1].SubItems[1].Text);
-
-                    string sel = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID  JOIN GTCOMPMAST C ON C.GTCOMPMASTID=A.COMPCODE  WHERE B.MIDCARD='" + Class.Users.TOKENEMPID + "'  AND B.IDACTIVE='YES'";//AND C.GTCOMPMASTID='" + Class.Users.COMPCODE + "'
+                    TOKENEMPID = Convert.ToInt64(lvLogs.Items[lvLogs.Items.Count - 1].SubItems[1].Text);
+                    Class.Users.TOKENEMPID = TOKENEMPID;
+                    string sel = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID  JOIN GTCOMPMAST C ON C.GTCOMPMASTID=A.COMPCODE  WHERE B.MIDCARD='" + TOKENEMPID + "'  AND B.IDACTIVE='YES'";//AND C.GTCOMPMASTID='" + Class.Users.COMPCODE + "'
                     DataSet ds = Utility.ExecuteSelectQuery(sel, "HREMPLOYMAST");
                     DataTable dt = ds.Tables["HREMPLOYMAST"];
                     if (dt.Rows.Count > 0)
                     {
                         lblempname.Text = "EMP NAME   :  " + dt.Rows[0]["FNAME"].ToString().ToUpper();
                         lblIdcardno.Text = "IDCARDNO    :  " + dt.Rows[0]["MIDCARD"].ToString();
-                        Class.Users.IDCARDNO = Convert.ToInt64(Class.Users.TOKENEMPID);
+                        Class.Users.IDCARDNO = Convert.ToInt64(TOKENEMPID);
                         timercanteen.Enabled = false;
                         Class.Users.CANTEENMENUNAME = "";
                         string s = sender.ToString();
@@ -279,9 +289,9 @@ namespace Pinnacle.Canteen
                         dateTimePicker1.Value = Convert.ToDateTime(data1[1].ToString() + " " + data2[1].ToString());
                     
 
-                        if (Convert.ToInt64(Class.Users.TOKENEMPID) > 0 && Class.Users.CANTEENMENUNAME != "")
+                        if (Convert.ToInt64(TOKENEMPID) > 0 && Class.Users.CANTEENMENUNAME != "")
                         {
-                            string sel1 = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD,c.compcode FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID join gtcompmast c on c.gtcompmastid=a.compcode  WHERE B.MIDCARD='" + Class.Users.TOKENEMPID + "'  AND B.IDACTIVE='YES'";//AND c.gtcompmastid='" + Class.Users.COMPCODE + "'
+                            string sel1 = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD,c.compcode FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID join gtcompmast c on c.gtcompmastid=a.compcode  WHERE B.MIDCARD='" + TOKENEMPID + "'  AND B.IDACTIVE='YES'";//AND c.gtcompmastid='" + Class.Users.COMPCODE + "'
                             DataSet ds1 = Utility.ExecuteSelectQuery(sel1, "HREMPLOYMAST");
                             DataTable dt1 = ds1.Tables["HREMPLOYMAST"];
                             txtempid.Text = dt1.Rows[0]["HREMPLOYMASTID"].ToString();
@@ -319,9 +329,9 @@ namespace Pinnacle.Canteen
                             {
 
                                 txtDays.Enabled = true;
-                                if (Convert.ToInt64(Class.Users.TOKENEMPID) > 0)
+                                if (Convert.ToInt64(TOKENEMPID) > 0)
                                 {
-                                    string sel3 = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID   WHERE B.MIDCARD='" + Class.Users.TOKENEMPID + "' AND B.IDACTIVE='YES'";
+                                    string sel3 = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID   WHERE B.MIDCARD='" + TOKENEMPID + "' AND B.IDACTIVE='YES'";
                                     DataSet ds3 = Utility.ExecuteSelectQuery(sel3, "HREMPLOYMAST");
                                     DataTable dt3 = ds3.Tables["HREMPLOYMAST"];
 
@@ -420,7 +430,7 @@ namespace Pinnacle.Canteen
 
                                 }
                             }
-                            Class.Users.CANTEENMENUNAME = ""; Class.Users.TOKENEMPID = 0;
+                            Class.Users.CANTEENMENUNAME = ""; Class.Users.TOKENEMPID = 0; TOKENEMPID = 0;
                             lblempid2.Text = "";
 
 
@@ -429,14 +439,15 @@ namespace Pinnacle.Canteen
                     }
                     else
                     {
-                        MessageBox.Show("This IDCard  '"+ Class.Users.TOKENEMPID + "' not  found in DataBase.", " Canteen", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Class.Users.TOKENEMPID = 0;
+                        mas.pop("This IDCard  '" + Class.Users.TOKENEMPID + "' not  found in DataBase.", "Canteen", "");
+                       // MessageBox.Show("This IDCard  '"+ Class.Users.TOKENEMPID + "' not  found in DataBase.", " Canteen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Class.Users.TOKENEMPID = 0; TOKENEMPID = 0;
                         return;
                     }
                 }
                 else
                 {
-                    Class.Users.TOKENEMPID = 0; pictureemp.Image = null;
+                    Class.Users.TOKENEMPID = 0; pictureemp.Image = null; TOKENEMPID = 0;
                     Cursor = Cursors.Default;  lblempname.Text = ""; lblIdcardno.Text = "";
                    
 
@@ -445,12 +456,14 @@ namespace Pinnacle.Canteen
             }
             catch (Exception EX)
             {
-                MessageBox.Show( EX.Message, " Canteen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                mas.pop(EX.Message, " Canteen", "");
+                 
             }
             finally
             {
                 timercanteen.Enabled = false;
-                lblMarquee1.Visible = true;
+                lblMarquee1.Visible = true; Class.Users.TOKENEMPID = 0; TOKENEMPID = 0;
+                
             }
         }
 
@@ -482,7 +495,7 @@ namespace Pinnacle.Canteen
             string ccode = "";
             try
             {
-                ccode = Class.Users.HCompcode;
+                ccode = txtcompcode.Text;
                 lvLogs.Items.Clear();
                Cursor = Cursors.WaitCursor;
                 int k = 0;
@@ -492,101 +505,134 @@ namespace Pinnacle.Canteen
                 iGLCount = 0;
 
                 string ip = "";
-               
 
-               DataTable dt = Utility.SQLQuery("SELECT DISTINCT A.ASPTBLMACIPID , A.MACIP     FROM  ASPTBLMACIP   A  JOIN ASPTBLMACHINEMAS B ON B.IPADDRESS=A.ASPTBLMACIPID        AND B.ACTIVE='T'      JOIN ASPTBLUSERMAS C ON  B.WARDENNAME=C.USERID      JOIN  GTCOMPMAST D ON D.GTCOMPMASTID=C.COMPCODE  AND B.COMPCODE=D.GTCOMPMASTID WHERE D.COMPCODE = '" + Class.Users.HCompcode + "' AND C.USERNAME = '" + Class.Users.HUserName + "'  AND A.ACTIVE='T'");
-
-                int maxip = dt.Rows.Count;
-                if (maxip >= 2) { MessageBox.Show("Multiple Ip Address Show in Canteen   : " + maxip.ToString() + "SELECT DISTINCT A.ASPTBLMACIPID , A.MACIP     FROM  ASPTBLMACIP   A  JOIN ASPTBLMACHINEMAS B ON B.IPADDRESS=A.ASPTBLMACIPID        AND B.ACTIVE='T'      JOIN ASPTBLUSERMAS C ON  B.WARDENNAME=C.USERID      JOIN  GTCOMPMAST D ON D.GTCOMPMASTID=C.COMPCODE  AND B.COMPCODE=D.GTCOMPMASTID WHERE D.COMPCODE = '" + Class.Users.HCompcode + "' AND C.USERNAME = '" + Class.Users.HUserName + "'  AND A.ACTIVE='T'") ; return; }
-                else
+                if (txtcompcode.Text == Class.Users.HCompcode)
                 {
-                    if (maxip == 0)
+                    DataTable dt = Utility.SQLQuery("SELECT DISTINCT A.ASPTBLMACIPID , A.MACIP     FROM  ASPTBLMACIP   A  JOIN ASPTBLMACHINEMAS B ON B.IPADDRESS=A.ASPTBLMACIPID        AND B.ACTIVE='T'      JOIN ASPTBLUSERMAS C ON  B.WARDENNAME=C.USERID      JOIN  GTCOMPMAST D ON D.GTCOMPMASTID=C.COMPCODE  AND B.COMPCODE=D.GTCOMPMASTID WHERE D.COMPCODE = '" + txtcompcode.Text + "' AND C.USERNAME = '" + Class.Users.HUserName + "'  AND A.ACTIVE='T'");
+
+                    int maxip = dt.Rows.Count;
+                    if (maxip >= 2) {
+                        MessageBox.Show("Multiple Ip Address Show in Canteen   : " + maxip.ToString() + "SELECT DISTINCT A.ASPTBLMACIPID , A.MACIP     FROM  ASPTBLMACIP   A  JOIN ASPTBLMACHINEMAS B ON B.IPADDRESS=A.ASPTBLMACIPID        AND B.ACTIVE='T'      JOIN ASPTBLUSERMAS C ON  B.WARDENNAME=C.USERID      JOIN  GTCOMPMAST D ON D.GTCOMPMASTID=C.COMPCODE  AND B.COMPCODE=D.GTCOMPMASTID WHERE D.COMPCODE = '" + txtcompcode.Text + "' AND C.USERNAME = '" + Class.Users.HUserName + "'  AND A.ACTIVE='T'"); return; }
+                    else
                     {
-                        MessageBox.Show("IP Address does not assign this User.   : " + Class.Users.HUserName);
-                        Cursor = Cursors.Default;
-                    }
-                    if (maxip >= 1)
-                    {
-                        Class.Users.UserTime = 0;
-                        Ping ping = new Ping();
-                        PingReply reply = ping.Send(dt.Rows[0]["MACIP"].ToString(), 1000);
-                        if (reply.Status.ToString() == "Success")
+                        if (maxip == 0)
                         {
-
-                            int i = 0; iIndex = 0;
-                            for (i = 0; i < maxip; i++)
+                            //MessageBox.Show("IP Address does not assign this User.   : " + Class.Users.HUserName);
+                            mas.pop("IP Address does not assign this User.   : ", Class.Users.HUserName, "");
+                            Cursor = Cursors.Default;
+                        }
+                        if (maxip >= 1)
+                        {
+                            Class.Users.UserTime = 0;
+                            Ping ping = new Ping();
+                            PingReply reply = ping.Send(dt.Rows[0]["MACIP"].ToString(), 1000);
+                            if (reply.Status.ToString() == "Success")
                             {
-                                if (bIsConnected == false)
-                                {
-                                    bIsConnected = axCZKEM1.Connect_Net(dt.Rows[i]["MACIP"].ToString(), Convert.ToInt32(4370));
-                                }
-                                ip = dt.Rows[i]["MACIP"].ToString();
 
-                                if (bIsConnected == true)
+                                int i = 0; iIndex = 0;
+                                for (i = 0; i < maxip; i++)
                                 {
+                                    if (bIsConnected == false)
+                                    {
+                                        bIsConnected = axCZKEM1.Connect_Net(dt.Rows[i]["MACIP"].ToString(), Convert.ToInt32(4370));
+                                    }
+                                    ip = dt.Rows[i]["MACIP"].ToString();
 
-                                    if (axCZKEM1.ReadGeneralLogData(iMachineNumber))//read all the attendance records to the memory
+                                    if (bIsConnected == true)
                                     {
 
-                                        while (axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, out sdwEnrollNumber, out idwVerifyMode, out idwInOutMode, out idwYear, out idwMonth, out idwDay, out idwHour, out idwMinute, out idwSecond, ref idwWorkcode))//get records from the memory
+                                        if (axCZKEM1.ReadGeneralLogData(iMachineNumber))//read all the attendance records to the memory
                                         {
-                                            DateTime inputDate = new DateTime(idwYear, idwMonth, idwDay, idwHour, idwMinute, idwMinute);
-                                            if (Convert.ToDateTime(inputDate) >= System.DateTime.Now.Date && Convert.ToDateTime(inputDate) <= System.DateTime.Now.Date.AddDays(1).AddTicks(-1))
+
+                                            while (axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, out sdwEnrollNumber, out idwVerifyMode, out idwInOutMode, out idwYear, out idwMonth, out idwDay, out idwHour, out idwMinute, out idwSecond, ref idwWorkcode))//get records from the memory
                                             {
-
-                                                string idcard = sdwEnrollNumber;
-                                                // DataTable DT2=await CC.SelectCommond();
-                                                string sel1 = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID   WHERE B.MIDCARD='" + idcard + "' AND B.IDACTIVE='YES'";
-                                                DataSet ds1 = Utility.ExecuteSelectQuery(sel1, "HREMPLOYMAST");
-                                                DataTable dt2 = ds1.Tables["HREMPLOYMAST"];
-                                                if (dt2.Rows.Count > 0)
+                                                DateTime inputDate = new DateTime(idwYear, idwMonth, idwDay, idwHour, idwMinute, idwMinute);
+                                                if (Convert.ToDateTime(inputDate) >= System.DateTime.Now.Date && Convert.ToDateTime(inputDate) <= System.DateTime.Now.Date.AddDays(1).AddTicks(-1))
                                                 {
-                                                    iGLCount++;
 
-                                                    lvLogs.Items.Add(iGLCount.ToString());
-                                                    lvLogs.Items[iIndex].SubItems.Add(idcard.ToString());//modify by Darcy on Nov.26 2009
-                                                    lvLogs.Items[iIndex].SubItems.Add(dt2.Rows[0]["FNAME"].ToString());//modify by Darcy on Nov.26 2009
-                                                    lvLogs.Items[iIndex].SubItems.Add(dt2.Rows[0]["MIDCARD"].ToString());//modify by Darcy on Nov.26 2009
+                                                    string idcard = sdwEnrollNumber;
+                                                    // DataTable DT2=await CC.SelectCommond();
+                                                    string sel1 = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID   WHERE B.MIDCARD='" + idcard + "' AND B.IDACTIVE='YES'";
+                                                    DataSet ds1 = Utility.ExecuteSelectQuery(sel1, "HREMPLOYMAST");
+                                                    DataTable dt2 = ds1.Tables["HREMPLOYMAST"];
+                                                    if (dt2.Rows.Count > 0)
+                                                    {
+                                                        iGLCount++;
 
-                                                    iIndex++;
+                                                        lvLogs.Items.Add(iGLCount.ToString());
+                                                        lvLogs.Items[iIndex].SubItems.Add(idcard.ToString());//modify by Darcy on Nov.26 2009
+                                                        lvLogs.Items[iIndex].SubItems.Add(dt2.Rows[0]["FNAME"].ToString());//modify by Darcy on Nov.26 2009
+                                                        lvLogs.Items[iIndex].SubItems.Add(dt2.Rows[0]["MIDCARD"].ToString());//modify by Darcy on Nov.26 2009
+
+                                                        iIndex++;
+
+                                                    }
 
                                                 }
 
                                             }
 
                                         }
-
+                                        else
+                                        {
+                                            Cursor = Cursors.Default;
+                                            MessageBox.Show("No Data Found this Machine...." + ip.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                        axCZKEM1.EnableDevice(iMachineNumber, true);//enable the device    
                                     }
                                     else
                                     {
                                         Cursor = Cursors.Default;
-                                        MessageBox.Show("No Data Found this Machine...." + ip.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        axCZKEM1.GetLastError(ref idwErrorCode);
+                                        mas.pop("Unable to connect the device",ip,"error");
+                                       // MessageBox.Show("Unable to connect the device", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                     }
-                                    axCZKEM1.EnableDevice(iMachineNumber, true);//enable the device    
-                                }
-                                else
-                                {
                                     Cursor = Cursors.Default;
-                                    axCZKEM1.GetLastError(ref idwErrorCode);
-
-                                    MessageBox.Show("Unable to connect the device", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                 }
+                            }
+                            else
+                            {
+                                mas.pop("Unable to connect the device", "Error. Pls check NetWork", "error");
+                               // MessageBox.Show("Unable to connect the device", "Error. Pls check NetWork", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                 Cursor = Cursors.Default;
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Unable to connect the device", "Error. Pls check NetWork", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                            Cursor = Cursors.Default;
-                        }
+                        Cursor = Cursors.Default;
                     }
-                    Cursor = Cursors.Default;
+                }
+                else
+                {
+                    mas.pop("Compcode Mismatch", txtcompcode.Text + "  ==   " + Class.Users.HCompcode, "error");
+                    //MessageBox.Show("Compcode Mismatch"+ txtcompcode.Text + "  ==   "+ Class.Users.HCompcode);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                //MessageBox.Show(ex.Message.ToString());
+                mas.pop(ex.Message.ToString(), "", "");
                 Cursor = Cursors.Default;
+            }
+            finally
+            {
+                if (txtcompcode.Text == Class.Users.HCompcode && bIsConnected==true)
+                {
+                    DataTable dt = Utility.SQLQuery("SELECT  C.MACIP  FROM  ASPTBLMACHINEMAS A   JOIN   GTCOMPMAST B ON B.GTCOMPMASTID = A.COMPCODE    JOIN ASPTBLMACIP C ON C.ASPTBLMACIPID = A.IPADDRESS  AND C.ACTIVE = 'T'   JOIN  ASPTBLUSERMAS D ON D.USERID = A.WARDENNAME  AND D.COMPCODE = B.GTCOMPMASTID  WHERE B.COMPCODE = '" + txtcompcode.Text + "' AND D.USERNAME = '" + Class.Users.HUserName + "' AND A.ACTIVE='T'  ORDER BY 1 ");
+                    bIsConnected = axCZKEM1.Connect_Net(dt.Rows[0]["MACIP"].ToString(), Convert.ToInt32(4370));
+                    if (bIsConnected == true)
+                    {
+                        axCZKEM1.EnableDevice(iMachineNumber, false);//disable the device
+
+
+                        axCZKEM1.EnableDevice(iMachineNumber, false);//disable the device
+                        if (axCZKEM1.ClearGLog(iMachineNumber))
+                        {
+                            axCZKEM1.RefreshData(iMachineNumber);//the data in the device should be refreshed
+                        }
+
+                        axCZKEM1.EnableDevice(iMachineNumber, true);//enable the device
+
+                    }
+                }
             }
         }
 
@@ -613,6 +659,7 @@ namespace Pinnacle.Canteen
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                mas.pop(ex.Message, "", "");
             }
             return DAYS;
         }
@@ -629,7 +676,8 @@ namespace Pinnacle.Canteen
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                // MessageBox.Show(ex.Message);
+                mas.pop(ex.Message, "", "");
             }
             return times;
         }
@@ -649,19 +697,27 @@ namespace Pinnacle.Canteen
                 bIsConnected = false; lblMarquee1.Visible = true; lblMarquee1.ForeColor = Class.Users.BackColors;
                 pop();
                 string items = ""; lblMarquee1.Refresh(); lblMarquee1.Text = "";
-                string sel = "SELECT distinct C.ITEMNAME1  FROM ASPTBLMENPERDET  A JOIN ASPTBLMENPER B ON A.ASPTBLMENPERID=B.ASPTBLMENPERID  JOIN ASPTBLCANITEMMAS C ON C.ASPTBLCANITEMMASID=A.ITEMNAME1 JOIN ASPTBLUSERMAS D ON D.COMPCODE=B.COMPCODE AND D.USERID=B.USERNAME  JOIN ASPTBLCANCATEGORYMAS E ON E.ASPTBLCANCATEGORYMASID = A.CATEGORY WHERE A.ACTIVE='T'  AND C.ACTIVE='T'  AND D.COMPCODE='" + Class.Users.COMPCODE + "'  AND D.USERID='" + Class.Users.USERID + "'  AND B.DOCDATE BETWEEN TO_DATE(SYSDATE) AND TO_DATE(SYSDATE)    AND TO_TIMESTAMP(TO_CHAR(SYSDATE,'DD/MM/YY HH24:MI:SS'),'DD/MM/YY HH24:MI:SS')  BETWEEN TO_TIMESTAMP(A.FROMDATE||' '||A.FROMTIME,'DD/MM/YY HH24:MI:SS') AND TO_TIMESTAMP(A.TODATE||' '||A.TOTIME,'DD/MM/YY HH24:MI:SS')   ORDER BY 1";
-                DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLCANITEMMAS");
-                DataTable dt = ds.Tables["ASPTBLCANITEMMAS"];
-                foreach (DataRow row in dt.Rows)
+                if (Class.Users.HCompcode == txtcompcode.Text)
                 {
-                    items += row["ITEMNAME1"].ToString() + " - ";
-                }
+                    string sel = "SELECT distinct C.ITEMNAME1  FROM ASPTBLMENPERDET  A JOIN ASPTBLMENPER B ON A.ASPTBLMENPERID=B.ASPTBLMENPERID  JOIN ASPTBLCANITEMMAS C ON C.ASPTBLCANITEMMASID=A.ITEMNAME1 JOIN ASPTBLUSERMAS D ON D.COMPCODE=B.COMPCODE AND D.USERID=B.USERNAME  JOIN ASPTBLCANCATEGORYMAS E ON E.ASPTBLCANCATEGORYMASID = A.CATEGORY WHERE A.ACTIVE='T'  AND C.ACTIVE='T'  AND D.COMPCODE='" + Class.Users.COMPCODE + "'  AND D.USERID='" + Class.Users.USERID + "'  AND B.DOCDATE BETWEEN TO_DATE(SYSDATE) AND TO_DATE(SYSDATE)    AND TO_TIMESTAMP(TO_CHAR(SYSDATE,'DD/MM/YY HH24:MI:SS'),'DD/MM/YY HH24:MI:SS')  BETWEEN TO_TIMESTAMP(A.FROMDATE||' '||A.FROMTIME,'DD/MM/YY HH24:MI:SS') AND TO_TIMESTAMP(A.TODATE||' '||A.TOTIME,'DD/MM/YY HH24:MI:SS')   ORDER BY 1";
+                    DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLCANITEMMAS");
+                    DataTable dt = ds.Tables["ASPTBLCANITEMMAS"];
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        items += row["ITEMNAME1"].ToString() + " - ";
+                    }
 
-                lblMarquee1.Text = "WELCOME TO " + Class.Users.HCompName + "-TODAY MENU ITEM  :" + items;
+                    lblMarquee1.Text = "WELCOME TO " + Class.Users.HCompName + "-TODAY MENU ITEM  :" + items;
+                }
+                else
+                {
+                   // MessageBox.Show($"Compcode Mismatch  {txtcompcode.Text} ==== {Class.Users.HCompcode}");
+                    mas.pop($"Compcode Mismatch  {txtcompcode.Text} ==== {Class.Users.HCompcode}", "", "");
+                }
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                mas.pop(ex.Message,"","");
             }
         }
 
@@ -678,113 +734,122 @@ namespace Pinnacle.Canteen
                 var currentDateTime = DateTime.Now;
                 var currentTimeAlone = new TimeSpan(currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second);
                 int count = Convert.ToInt32(txtQuantity.Value) * Convert.ToInt32(txtDays.Value);
-                string token = System.DateTime.Now.Year + "/" + Class.Users.HCompcode + "CAN";
+                string token = System.DateTime.Now.Year + "/" + txtcompcode.Text + "CAN";
 
                 decimal totamt = 0;
                 string chk = ""; if (checkactive.Checked == true) { chk = "T"; } else { chk = "F"; }
 
                 try
                 {
-                    //if (combooptions.Text == "SINGLE")
-                    // {
-
-                    for (int i = 0; i < count; i++)
+                    string sel10 = $"SELECT  A.FNAME,C.COMPCODE,B.MIDCARD  FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID JOIN GTCOMPMAST  C ON C.GTCOMPMASTID=A.COMPCODE WHERE B.IDACTIVE='YES' AND C.COMPCODE='{txtcompcode.Text}' AND B.MIDCARD='{comboidcardno.Text}'";
+                    DataSet ds10 = Utility.ExecuteSelectQuery(sel10, "ASPTBLCANTOKEN");
+                    DataTable dt10 = ds10.Tables["ASPTBLCANTOKEN"];
+                    if (dt10.Rows.Count > 0)
                     {
+                        for (int i = 0; i < count; i++)
+                        {
 
-                        totamt = 0;
-                        string sel2 = "SELECT  NVL(MAX(A.ASPTBLCANTOKENID)+1,1) ID FROM ASPTBLCANTOKEN A ";
-                        DataSet ds2 = Utility.ExecuteSelectQuery(sel2, "ASPTBLCANTOKEN");
-                        DataTable dt2 = ds2.Tables["ASPTBLCANTOKEN"];
-                        if (System.DateTime.Now.ToString("dd-MM-yyyy") == dateTimePicker1.Value.ToString("dd-MM-yyyy").Substring(0, 10))
-                        {
-                            string ins = "INSERT INTO ASPTBLCANTOKEN(TOKENNO,EMPID,EMPNAME,IDCARDNO,ITEMCODE,ITEMNAME1,ITEMCOST,ITEMQTY,NOOFDAYS ,TOTALAMOUNT,ACTIVE  ,USERNAME,MODIFIED,CREATEDON,IPADDRESS,TOKENNOCANCEL,EMPLOYEETYPE,TOKENOPTION,COMPCODE,FINYEAR,EMPLOYEECOST,SPECIALCOST,tokendate,TOKENTIME,SYSTEMDATE,TOKEN_FROMTIME,category)VALUES('" + token + "/" + dt2.Rows[0]["id"].ToString() + "','" + txtempid.Text + "','" + comboempname.SelectedValue + "','" + comboidcardno.Text + "','" + comboitemcode.SelectedValue + "','" + comboitemname.SelectedValue + "','" + txtitemcost.Text + "','" + txtQuantity.Text + "','" + txtDays.Text + "','" + txtTotalAmount.Text + "','" + chk + "','" + Class.Users.USERID + "','" + Convert.ToString(Class.Users.CREATED) + "','" + Convert.ToString(Class.Users.CREATED) + "','" + Class.Users.IPADDRESS + "','T','" + Class.Users.UniqueID + "','" + combooptions.Text + "','" + Class.Users.COMPCODE + "','" + Class.Users.Finyear + "','" + txtempcost.Text + "','" + txtspecialcost.Text + "',TO_DATE('" + dateTimePicker1.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy'),'" + dateTimePicker1.Value.ToString("hh:mm:ss") + "',TO_DATE('" + System.DateTime.Now.ToString() + "','dd-MM-yyyy hh24:mi:ss'),'" + dateTimePicker1.Value.ToString("hh:mm:ss") + "','" + lblempid2.Text + "')";
-                            Utility.ExecuteNonQuery(ins);
-                        }
-                        else
-                        {
-                            string ins = "INSERT INTO ASPTBLCANTOKEN(TOKENNO,EMPID,EMPNAME,IDCARDNO,ITEMCODE,ITEMNAME1,ITEMCOST,ITEMQTY,NOOFDAYS ,TOTALAMOUNT,ACTIVE  ,USERNAME,MODIFIED,CREATEDON,IPADDRESS,TOKENNOCANCEL,EMPLOYEETYPE,TOKENOPTION,COMPCODE,FINYEAR,EMPLOYEECOST,SPECIALCOST,tokendate,TOKENTIME,SYSTEMDATE,TOKEN_FROMTIME,category)VALUES('" + token + "/" + dt2.Rows[0]["id"].ToString() + "','" + txtempid.Text + "','" + comboempname.SelectedValue + "','" + comboidcardno.Text + "','" + comboitemcode.SelectedValue + "','" + comboitemname.SelectedValue + "','" + txtitemcost.Text + "','" + txtQuantity.Text + "','" + txtDays.Text + "','" + txtTotalAmount.Text + "','" + chk + "','" + Class.Users.USERID + "','" + Convert.ToString(Class.Users.CREATED) + "','" + Convert.ToString(Class.Users.CREATED) + "','" + Class.Users.IPADDRESS + "','T','" + Class.Users.UniqueID + "','" + combooptions.Text + "','" + Class.Users.COMPCODE + "','" + Class.Users.Finyear + "','" + txtempcost.Text + "','0',TO_DATE('" + dateTimePicker1.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy'),'" + dateTimePicker1.Value.ToString("hh:mm:ss") + "',TO_DATE('" + System.DateTime.Now.ToString() + "','dd-MM-yyyy hh24:mi:ss'),'" + dateTimePicker1.Value.ToString("hh:mm:ss") + "','" + lblempid2.Text + "')";
-                            Utility.ExecuteNonQuery(ins);
-                        }
-                        string sel3 = "select max(A.ASPTBLCANTOKENID) id3 FROM ASPTBLCANTOKEN A ";
-                        DataSet ds3 = Utility.ExecuteSelectQuery(sel3, "ASPTBLCANTOKEN");
-                        DataTable dt3 = ds3.Tables["ASPTBLCANTOKEN"];
-
-                        if (dt3.Rows[0]["id3"].ToString() != "")
-                        {
-                            string sel4 = "SELECT  A.TOKENNO, B.HREMPLOYMASTID,B.FNAME,D.MIDCARD,C.ITEMCODE,C.ITEMNAME1, C.EMPLOYEECOST,A.ITEMQTY ,A.NOOFDAYS,A.TOTALAMOUNT,C.ITEMCOST,C.SPECIALCOST,E.COMPCODE FROM ASPTBLCANTOKEN A   JOIN HREMPLOYMAST B ON  A.EMPID = B.HREMPLOYMASTID  JOIN ASPTBLCANITEMMAS C ON C.ASPTBLCANITEMMASID = A.ITEMNAME1 JOIN HREMPLOYDETAILS D ON B.HREMPLOYMASTID=D.HREMPLOYMASTID JOIN GTCOMPMAST E ON E.GTCOMPMASTID=B.COMPCODE   WHERE A.ASPTBLCANTOKENID=" + dt3.Rows[0]["id3"].ToString();
-                            DataSet ds4 = Utility.ExecuteSelectQuery(sel4, "ASPTBLCANTOKEN");
-                            DataTable dt4 = ds4.Tables["ASPTBLCANTOKEN"];
-                            lbltoken2.Text = dt4.Rows[0]["TOKENNO"].ToString();
-                            // lblempid2.Text = dt4.Rows[0]["MIDCARD"].ToString();
-                            lblcompcode2.Text = dt4.Rows[0]["COMPCODE"].ToString();
-                            lblidcard2.Text = dt4.Rows[0]["MIDCARD"].ToString();
-                            lblempname2.Text = dt4.Rows[0]["FNAME"].ToString().ToUpper();
-                            lblitemname2.Text = dt4.Rows[0]["ITEMNAME1"].ToString();
-                            lbldate2.Text = Convert.ToString(dateTimePicker1.Value.ToString().Substring(0, 10));
-                            obj.ID = dt4.Rows[0]["TOKENNO"].ToString();
-                            obj.VisitorName = dt4.Rows[0]["FNAME"].ToString();
-                            obj.Company = Class.Users.HCompName;
-                            obj.MobileNo = dt4.Rows[0]["MIDCARD"].ToString();
-                            obj.Purpose = "Lunch Purpose";
-                            if (dt4.Rows.Count > 0)
+                            totamt = 0;
+                            string sel2 = "SELECT  NVL(MAX(A.ASPTBLCANTOKENID)+1,1) ID FROM ASPTBLCANTOKEN A ";
+                            DataSet ds2 = Utility.ExecuteSelectQuery(sel2, "ASPTBLCANTOKEN");
+                            DataTable dt2 = ds2.Tables["ASPTBLCANTOKEN"];
+                            if (System.DateTime.Now.ToString("dd-MM-yyyy") == dateTimePicker1.Value.ToString("dd-MM-yyyy").Substring(0, 10))
                             {
-
-
-                                if (System.DateTime.Now.ToString("dd-MM-yyyy") == dateTimePicker1.Value.ToString("dd-MM-yyyy").Substring(0, 10))
-                                {
-                                    decimal t1 = add(Convert.ToDecimal("0" + dt4.Rows[0]["EMPLOYEECOST"].ToString()), Convert.ToDecimal("0" + dt4.Rows[0]["SPECIALCOST"].ToString()));
-                                    totamt = Sum(Convert.ToDecimal("0" + txtQuantity.Value), t1, Convert.ToDecimal("0" + txtDays.Value));
-
-                                    //lblitemcost.Text = "Rate : " + totamt;
-                                    lblqty2.Text = txtQuantity.Value + " / Rate: " + t1;
-                                    obj.Amount = lblqty2.Text;
-                                    txtTotalAmount.Text = totamt.ToString();
-                                    lblamount2.Text ="Rs ."+ Convert.ToDecimal("0" + dt4.Rows[0]["SPECIALCOST"].ToString());
-                                   
-                                }
-                                else
-                                {
-                                    totamt = Sum(Convert.ToDecimal("0" + dt4.Rows[0]["EMPLOYEECOST"].ToString()), Convert.ToDecimal("0" + txtQuantity.Value), Convert.ToDecimal("0" + txtDays.Value));
-
-                                    lblqty2.Text = txtQuantity.Value + " / Rate: " + dt4.Rows[0]["EMPLOYEECOST"].ToString();
-                                    obj.Amount = lblqty2.Text;
-                                    txtTotalAmount.Text = totamt.ToString();
-                                    lblamount2.Text = "Rs ." + dt4.Rows[0]["ITEMCOST"].ToString();
-
-                                    
-                                }
-
+                                string ins = "INSERT INTO ASPTBLCANTOKEN(TOKENNO,EMPID,EMPNAME,IDCARDNO,ITEMCODE,ITEMNAME1,ITEMCOST,ITEMQTY,NOOFDAYS ,TOTALAMOUNT,ACTIVE  ,USERNAME,MODIFIED,CREATEDON,IPADDRESS,TOKENNOCANCEL,EMPLOYEETYPE,TOKENOPTION,COMPCODE,FINYEAR,EMPLOYEECOST,SPECIALCOST,tokendate,TOKENTIME,SYSTEMDATE,TOKEN_FROMTIME,category)VALUES('" + token + "/" + dt2.Rows[0]["id"].ToString() + "','" + txtempid.Text + "','" + comboempname.SelectedValue + "','" + comboidcardno.Text + "','" + comboitemcode.SelectedValue + "','" + comboitemname.SelectedValue + "','" + txtitemcost.Text + "','" + txtQuantity.Text + "','" + txtDays.Text + "','" + txtTotalAmount.Text + "','" + chk + "','" + Class.Users.USERID + "','" + Convert.ToString(Class.Users.CREATED) + "','" + Convert.ToString(Class.Users.CREATED) + "','" + Class.Users.IPADDRESS + "','T','" + Class.Users.UniqueID + "','" + combooptions.Text + "','" + Class.Users.COMPCODE + "','" + Class.Users.Finyear + "','" + txtempcost.Text + "','" + txtspecialcost.Text + "',TO_DATE('" + dateTimePicker1.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy'),'" + dateTimePicker1.Value.ToString("hh:mm:ss") + "',TO_DATE('" + System.DateTime.Now.ToString() + "','dd-MM-yyyy hh24:mi:ss'),'" + dateTimePicker1.Value.ToString("hh:mm:ss") + "','" + lblempid2.Text + "')";
+                                Utility.ExecuteNonQuery(ins);
                             }
+                            else
+                            {
+                                string ins = "INSERT INTO ASPTBLCANTOKEN(TOKENNO,EMPID,EMPNAME,IDCARDNO,ITEMCODE,ITEMNAME1,ITEMCOST,ITEMQTY,NOOFDAYS ,TOTALAMOUNT,ACTIVE  ,USERNAME,MODIFIED,CREATEDON,IPADDRESS,TOKENNOCANCEL,EMPLOYEETYPE,TOKENOPTION,COMPCODE,FINYEAR,EMPLOYEECOST,SPECIALCOST,tokendate,TOKENTIME,SYSTEMDATE,TOKEN_FROMTIME,category)VALUES('" + token + "/" + dt2.Rows[0]["id"].ToString() + "','" + txtempid.Text + "','" + comboempname.SelectedValue + "','" + comboidcardno.Text + "','" + comboitemcode.SelectedValue + "','" + comboitemname.SelectedValue + "','" + txtitemcost.Text + "','" + txtQuantity.Text + "','" + txtDays.Text + "','" + txtTotalAmount.Text + "','" + chk + "','" + Class.Users.USERID + "','" + Convert.ToString(Class.Users.CREATED) + "','" + Convert.ToString(Class.Users.CREATED) + "','" + Class.Users.IPADDRESS + "','T','" + Class.Users.UniqueID + "','" + combooptions.Text + "','" + Class.Users.COMPCODE + "','" + Class.Users.Finyear + "','" + txtempcost.Text + "','0',TO_DATE('" + dateTimePicker1.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy'),'" + dateTimePicker1.Value.ToString("hh:mm:ss") + "',TO_DATE('" + System.DateTime.Now.ToString() + "','dd-MM-yyyy hh24:mi:ss'),'" + dateTimePicker1.Value.ToString("hh:mm:ss") + "','" + lblempid2.Text + "')";
+                                Utility.ExecuteNonQuery(ins);
+                            }
+                            string sel3 = "select max(A.ASPTBLCANTOKENID) id3 FROM ASPTBLCANTOKEN A ";
+                            DataSet ds3 = Utility.ExecuteSelectQuery(sel3, "ASPTBLCANTOKEN");
+                            DataTable dt3 = ds3.Tables["ASPTBLCANTOKEN"];
 
-                            lblnoofdays2.Text = txtDays.Value + "/" + count + "  " + "No's";
-                            lblcompcode.Text = Class.Users.HCompName;
-                            lbldatetime.Text = Convert.ToString(Class.Users.CREATED);
-                            var mydata = qc.CreateQrCode(lbltoken2.Text, QRCoder.QRCodeGenerator.ECCLevel.L);
-                            var code = new QRCoder.QRCode(mydata);
-                            pictureBox1.Image = code.GetGraphic(50, Color.Black, Color.White, true);
+                            if (dt3.Rows[0]["id3"].ToString() != "")
+                            {
+                                string sel4 = "SELECT  A.TOKENNO, B.HREMPLOYMASTID,B.FNAME,D.MIDCARD,C.ITEMCODE,C.ITEMNAME1, C.EMPLOYEECOST,A.ITEMQTY ,A.NOOFDAYS,A.TOTALAMOUNT,C.ITEMCOST,C.SPECIALCOST,E.COMPCODE FROM ASPTBLCANTOKEN A   JOIN HREMPLOYMAST B ON  A.EMPID = B.HREMPLOYMASTID  JOIN ASPTBLCANITEMMAS C ON C.ASPTBLCANITEMMASID = A.ITEMNAME1 JOIN HREMPLOYDETAILS D ON B.HREMPLOYMASTID=D.HREMPLOYMASTID JOIN GTCOMPMAST E ON E.GTCOMPMASTID=B.COMPCODE   WHERE A.ASPTBLCANTOKENID=" + dt3.Rows[0]["id3"].ToString();
+                                DataSet ds4 = Utility.ExecuteSelectQuery(sel4, "ASPTBLCANTOKEN");
+                                DataTable dt4 = ds4.Tables["ASPTBLCANTOKEN"];
+                                lbltoken2.Text = dt4.Rows[0]["TOKENNO"].ToString();
+                                // lblempid2.Text = dt4.Rows[0]["MIDCARD"].ToString();
+                                lblcompcode2.Text = dt4.Rows[0]["COMPCODE"].ToString();
+                                lblidcard2.Text = dt4.Rows[0]["MIDCARD"].ToString();
+                                lblempname2.Text = dt4.Rows[0]["FNAME"].ToString().ToUpper();
+                                lblitemname2.Text = dt4.Rows[0]["ITEMNAME1"].ToString();
+                                lbldate2.Text = Convert.ToString(dateTimePicker1.Value.ToString().Substring(0, 10));
+                                obj.ID = dt4.Rows[0]["TOKENNO"].ToString();
+                                obj.VisitorName = dt4.Rows[0]["FNAME"].ToString();
+                                obj.Company = Class.Users.HCompName;
+                                obj.MobileNo = dt4.Rows[0]["MIDCARD"].ToString();
+                                obj.Purpose = "Lunch Purpose";
+                                if (dt4.Rows.Count > 0)
+                                {
+
+
+                                    if (System.DateTime.Now.ToString("dd-MM-yyyy") == dateTimePicker1.Value.ToString("dd-MM-yyyy").Substring(0, 10))
+                                    {
+                                        decimal t1 = add(Convert.ToDecimal("0" + dt4.Rows[0]["EMPLOYEECOST"].ToString()), Convert.ToDecimal("0" + dt4.Rows[0]["SPECIALCOST"].ToString()));
+                                        totamt = Sum(Convert.ToDecimal("0" + txtQuantity.Value), t1, Convert.ToDecimal("0" + txtDays.Value));
+
+                                        //lblitemcost.Text = "Rate : " + totamt;
+                                        lblqty2.Text = txtQuantity.Value + " / Rate: " + t1;
+                                        obj.Amount = lblqty2.Text;
+                                        txtTotalAmount.Text = totamt.ToString();
+                                        lblamount2.Text = "Rs ." + Convert.ToDecimal("0" + dt4.Rows[0]["SPECIALCOST"].ToString());
+
+                                    }
+                                    else
+                                    {
+                                        totamt = Sum(Convert.ToDecimal("0" + dt4.Rows[0]["EMPLOYEECOST"].ToString()), Convert.ToDecimal("0" + txtQuantity.Value), Convert.ToDecimal("0" + txtDays.Value));
+
+                                        lblqty2.Text = txtQuantity.Value + " / Rate: " + dt4.Rows[0]["EMPLOYEECOST"].ToString();
+                                        obj.Amount = lblqty2.Text;
+                                        txtTotalAmount.Text = totamt.ToString();
+                                        lblamount2.Text = "Rs ." + dt4.Rows[0]["ITEMCOST"].ToString();
+
+
+                                    }
+
+                                }
+
+                                lblnoofdays2.Text = txtDays.Value + "/" + count + "  " + "No's";
+                                lblcompcode.Text = Class.Users.HCompName;
+                                lbldatetime.Text = Convert.ToString(Class.Users.CREATED);
+                                var mydata = qc.CreateQrCode(lbltoken2.Text, QRCoder.QRCodeGenerator.ECCLevel.L);
+                                var code = new QRCoder.QRCode(mydata);
+                                pictureBox1.Image = code.GetGraphic(50, Color.Black, Color.White, true);
 
 
 
-                            printDocument1.PrinterSettings = printDialog1.PrinterSettings;
-                            printDocument1.Print();
+                                printDocument1.PrinterSettings = printDialog1.PrinterSettings;
+                                printDocument1.Print();
+                            }
+                        }
+
+                        string sel0 = "SELECT  MIN(A.FROMDATE)  AS FROMDATE1, MIN(A.FROMTIME) AS FROMTIME1,MIN(A.TODATE) AS TODATE1, MIN(A.TOTIME) AS TOTIME1,MIN(A.SYSTEMTIME) AS SYSTEMTIME FROM ASPTBLMENPERDET  A JOIN ASPTBLMENPER B ON A.ASPTBLMENPERID=B.ASPTBLMENPERID  JOIN ASPTBLCANITEMMAS C ON C.ASPTBLCANITEMMASID=A.ITEMNAME1 JOIN ASPTBLUSERMAS D ON D.COMPCODE=B.COMPCODE AND D.USERID=B.USERNAME  WHERE A.ACTIVE='T'  AND C.ACTIVE='T'  AND D.COMPCODE='" + Class.Users.COMPCODE + "'  AND D.USERID='" + Class.Users.USERID + "' AND A.TODATE=TO_DATE('" + System.DateTime.Now.ToString("dd-MM-yyyy").Substring(0, 10) + "','dd-MM-yyyy')   ORDER BY 1";//AND A.TODATE=TO_DATE('"+dateTimePicker1.Value.ToString("dd-MM-yyyy")+"','dd-MM-yyyy')
+                        DataSet ds0 = Utility.ExecuteSelectQuery(sel0, "ASPTBLCANITEMMAS");
+                        DataTable dt0 = ds0.Tables["ASPTBLCANITEMMAS"];
+
+
+                        if (dt0.Rows.Count > 0 && dt0.Rows[0]["totime1"].ToString() != "")
+                        {
+                            TimeSpan fromtime1 = TimeSpan.Parse(System.DateTime.Now.ToString("HH:mm:ss"));
+                            TimeSpan totime1 = TimeSpan.Parse(dt0.Rows[0]["totime1"].ToString());
+                            TimeSpan differ = totime1.Subtract(currentTimeAlone);
+                            int h1 = differ.Hours * 60; int m1 = differ.Minutes * 60; int se1 = differ.Seconds;
+                            int h2 = h1 + m1 + se1;
+                            Class.Users.LoginTime = Convert.ToInt64(h2); Class.Users.UserTime = 1;
                         }
                     }
-
-                    string sel0 = "SELECT  MIN(A.FROMDATE)  AS FROMDATE1, MIN(A.FROMTIME) AS FROMTIME1,MIN(A.TODATE) AS TODATE1, MIN(A.TOTIME) AS TOTIME1,MIN(A.SYSTEMTIME) AS SYSTEMTIME FROM ASPTBLMENPERDET  A JOIN ASPTBLMENPER B ON A.ASPTBLMENPERID=B.ASPTBLMENPERID  JOIN ASPTBLCANITEMMAS C ON C.ASPTBLCANITEMMASID=A.ITEMNAME1 JOIN ASPTBLUSERMAS D ON D.COMPCODE=B.COMPCODE AND D.USERID=B.USERNAME  WHERE A.ACTIVE='T'  AND C.ACTIVE='T'  AND D.COMPCODE='" + Class.Users.COMPCODE + "'  AND D.USERID='" + Class.Users.USERID + "' AND A.TODATE=TO_DATE('" + System.DateTime.Now.ToString("dd-MM-yyyy").Substring(0, 10) + "','dd-MM-yyyy')   ORDER BY 1";//AND A.TODATE=TO_DATE('"+dateTimePicker1.Value.ToString("dd-MM-yyyy")+"','dd-MM-yyyy')
-                    DataSet ds0 = Utility.ExecuteSelectQuery(sel0, "ASPTBLCANITEMMAS");
-                    DataTable dt0 = ds0.Tables["ASPTBLCANITEMMAS"];
-
-
-                    if (dt0.Rows.Count > 0 && dt0.Rows[0]["totime1"].ToString() != "")
+                    else
                     {
-                        TimeSpan fromtime1 = TimeSpan.Parse(System.DateTime.Now.ToString("HH:mm:ss"));
-                        TimeSpan totime1 = TimeSpan.Parse(dt0.Rows[0]["totime1"].ToString());
-                        TimeSpan differ = totime1.Subtract(currentTimeAlone);
-                        int h1 = differ.Hours * 60; int m1 = differ.Minutes * 60; int se1 = differ.Seconds;
-                        int h2 = h1 + m1 + se1;
-                        Class.Users.LoginTime = Convert.ToInt64(h2); Class.Users.UserTime = 1;
-                    }
+                        mas.pop($"Invalid IdCard  '{txtcompcode.Text.ToUpper().Trim()}' === {comboidcardno.Text}","","");
 
+                        lblempname.Text = "EMP NAME   :  "  ;
+                        lblIdcardno.Text = "IDCARDNO    :  "; lblempname.Refresh(); lblIdcardno.Refresh();
+                    }
 
                 }
 
@@ -795,22 +860,22 @@ namespace Pinnacle.Canteen
                 finally
                 {
 
-                    //DataTable dt = Utility.SQLQuery("SELECT  C.MACIP  FROM  ASPTBLMACHINEMAS A   JOIN   GTCOMPMAST B ON B.GTCOMPMASTID = A.COMPCODE    JOIN ASPTBLMACIP C ON C.ASPTBLMACIPID = A.IPADDRESS  AND C.ACTIVE = 'T'   JOIN  ASPTBLUSERMAS D ON D.USERID = A.WARDENNAME  AND D.COMPCODE = B.GTCOMPMASTID  WHERE B.COMPCODE = '" + Class.Users.HCompcode + "' AND D.USERNAME = '" + Class.Users.HUserName + "' AND A.ACTIVE='T'  ORDER BY 1 ");
-                    //bIsConnected = axCZKEM1.Connect_Net(dt.Rows[0]["MACIP"].ToString(), Convert.ToInt32(4370));
-                    //if (bIsConnected == true)
-                    //{
-                    //    axCZKEM1.EnableDevice(iMachineNumber, false);//disable the device
+                    DataTable dt = Utility.SQLQuery("SELECT  C.MACIP  FROM  ASPTBLMACHINEMAS A   JOIN   GTCOMPMAST B ON B.GTCOMPMASTID = A.COMPCODE    JOIN ASPTBLMACIP C ON C.ASPTBLMACIPID = A.IPADDRESS  AND C.ACTIVE = 'T'   JOIN  ASPTBLUSERMAS D ON D.USERID = A.WARDENNAME  AND D.COMPCODE = B.GTCOMPMASTID  WHERE B.COMPCODE = '" + txtcompcode.Text + "' AND D.USERNAME = '" + Class.Users.HUserName + "' AND A.ACTIVE='T'  ORDER BY 1 ");
+                    bIsConnected = axCZKEM1.Connect_Net(dt.Rows[0]["MACIP"].ToString(), Convert.ToInt32(4370));
+                    if (bIsConnected == true)
+                    {
+                        axCZKEM1.EnableDevice(iMachineNumber, false);//disable the device
 
 
-                    //    axCZKEM1.EnableDevice(iMachineNumber, false);//disable the device
-                    //    if (axCZKEM1.ClearGLog(iMachineNumber))
-                    //    {
-                    //        axCZKEM1.RefreshData(iMachineNumber);//the data in the device should be refreshed
-                    //    }
+                        axCZKEM1.EnableDevice(iMachineNumber, false);//disable the device
+                        if (axCZKEM1.ClearGLog(iMachineNumber))
+                        {
+                            axCZKEM1.RefreshData(iMachineNumber);//the data in the device should be refreshed
+                        }
 
-                    //    axCZKEM1.EnableDevice(iMachineNumber, true);//enable the device
+                        axCZKEM1.EnableDevice(iMachineNumber, true);//enable the device
 
-                    //}
+                    }
 
                     Class.Users.UniqueID = ""; txtempcost.Text = "";
                     txtcontractconst.Text = "";
@@ -1004,20 +1069,21 @@ namespace Pinnacle.Canteen
                 e.Graphics.DrawString(lbldate2.Text.ToUpper(), new Font("roboto", 9, FontStyle.Bold), Brushes.DarkBlue, 106, 270);
 
 
-               
+
 
                 e.Graphics.DrawString(lblcompcode.Text.ToUpper(), new Font("roboto", 8, FontStyle.Regular), Brushes.DarkBlue, 16, 310);
                 e.Graphics.DrawString(lbldatetime.Text, new Font("roboto", 8, FontStyle.Bold), Brushes.DarkBlue, 16, 330);
 
-              
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                mas.pop(ex.Message.ToString(),"","");
             }
             finally
             {
-               
+                Class.Users.TOKENEMPID = 0;
+                
             }
         }
 
@@ -1027,7 +1093,7 @@ namespace Pinnacle.Canteen
             {
 
                 txtDays.Enabled = true;
-                if (Convert.ToInt64(Class.Users.TOKENEMPID) > 0)
+                if (Convert.ToInt64(TOKENEMPID) > 0)
                 {
                     string sel1 = "SELECT  A.HREMPLOYMASTID,A.FNAME,B.MIDCARD FROM HREMPLOYMAST A JOIN HREMPLOYDETAILS B ON A.HREMPLOYMASTID=B.HREMPLOYMASTID   WHERE B.MIDCARD='" + Class.Users.TOKENEMPID + "' AND B.IDACTIVE='YES'";
                     DataSet ds1 = Utility.ExecuteSelectQuery(sel1, "HREMPLOYMAST");
@@ -1113,36 +1179,51 @@ namespace Pinnacle.Canteen
 
         private void butsubmit_Click(object sender, EventArgs e)
         {
-            string sel = "select substr(AA.TOKENDATE,0,10) AS DOCDATE,AB.CATEGORY,  count(AA.ASPTBLCANTOKENID) as total ,AC.COMPNAME,AC.ADDRESS,(SELECT LOGO AS IMAGE FROM EDOCIMAGE WHERE IMGNAME = 'COMPLOGOID' AND COMPANYID ='" + Class.Users.HCompcode + "') AS IMAGE,AB.ASPTBLCANCATEGORYMASID,'"+dateTimePicker4.Value.ToString().Substring(0,10)+ "' AS  DataColumn2,'" + dateTimePicker5.Value.ToString().Substring(0, 10) + "' AS  DataColumn3 from asptblcantoken AA join ASPTBLCANCATEGORYMAS AB on AA.category = AB.category join gtcompmast ac on AC.GTCOMPMASTID=AA.COMPCODE  where AA.TOKENDATE BETWEEN TO_DATE('" + dateTimePicker4.Value.ToString().Substring(0, 10) + "','DD-MM-YY') AND TO_DATE('" + dateTimePicker5.Value.ToString().Substring(0, 10) + "','DD-MM-YY')   AND AA.COMPCODE='" + Class.Users.COMPCODE + "'  AND AA.USERNAME='" + Class.Users.USERID + "'  GROUP BY AA.TOKENDATE,AB.CATEGORY,AC.COMPNAME,AC.ADDRESS,AB.ASPTBLCANCATEGORYMASID ORDER BY 7";
-            DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLCANITEMMAS");
-            DataTable dt = ds.Tables["ASPTBLCANITEMMAS"];
-
-            crystalReportViewer1.ReportSource = null;
-            rd.SetDataSource(dt);
-            crystalReportViewer1.ReportSource = rd;
-            crystalReportViewer1.Refresh();
-            Int64 total = 0;int i = 0;
-            foreach(DataRow dr in dt.Rows)
+            if (Class.Users.HCompcode == txtcompcode.Text)
             {
-                total += Convert.ToInt64(dr["TOTAL"].ToString());
-              
-                i++;
+                string sel = "select substr(AA.TOKENDATE,0,10) AS DOCDATE,AB.CATEGORY,  count(AA.ASPTBLCANTOKENID) as total ,AC.COMPNAME,AC.ADDRESS,(SELECT LOGO AS IMAGE FROM EDOCIMAGE WHERE IMGNAME = 'COMPLOGOID' AND COMPANYID ='" + Class.Users.COMPCODE + "') AS IMAGE,AB.ASPTBLCANCATEGORYMASID,'" + dateTimePicker4.Value.ToString().Substring(0, 10) + "' AS  DataColumn2,'" + dateTimePicker5.Value.ToString().Substring(0, 10) + "' AS  DataColumn3 from asptblcantoken AA join ASPTBLCANCATEGORYMAS AB on AA.category = AB.category join gtcompmast ac on AC.GTCOMPMASTID=AA.COMPCODE  where AA.TOKENDATE BETWEEN TO_DATE('" + dateTimePicker4.Value.ToString().Substring(0, 10) + "','DD-MM-YY') AND TO_DATE('" + dateTimePicker5.Value.ToString().Substring(0, 10) + "','DD-MM-YY')   AND AA.COMPCODE='" + Class.Users.COMPCODE + "'  AND AA.USERNAME='" + Class.Users.USERID + "'  GROUP BY AA.TOKENDATE,AB.CATEGORY,AC.COMPNAME,AC.ADDRESS,AB.ASPTBLCANCATEGORYMASID ORDER BY 7";
+                DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLCANITEMMAS");
+                DataTable dt = ds.Tables["ASPTBLCANITEMMAS"];
+
+                crystalReportViewer1.ReportSource = null;
+                rd.SetDataSource(dt);
+                crystalReportViewer1.ReportSource = rd;
+                crystalReportViewer1.Refresh();
+                Int64 total = 0; int i = 0;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    total += Convert.ToInt64(dr["TOTAL"].ToString());
+
+                    i++;
+                }
+                lbltotal.Text = "Total : " + total.ToString();
+                crystalReportViewer1.Zoom(150);
             }
-            lbltotal.Text = "Total : " + total.ToString();
-            crystalReportViewer1.Zoom(150);
+            else
+            {
+                //MessageBox.Show($"Compcode Mismatch: {txtcompcode.Text} === {Class.Users.HCompcode}");
+                mas.pop($"Compcode Mismatch: {txtcompcode.Text} === {Class.Users.HCompcode}", "", "");
+            }
         }
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string sel = "select substr(AA.TOKENDATE,0,10) AS DOCDATE,AB.CATEGORY,  count(AA.ASPTBLCANTOKENID) as total  from asptblcantoken AA join ASPTBLCANCATEGORYMAS AB on AA.category = AB.category  where AA.TOKENDATE BETWEEN TO_DATE('" + dateTimePicker4.Value.ToString().Substring(0, 10) + "','DD-MM-YY') AND TO_DATE('" + dateTimePicker5.Value.ToString().Substring(0, 10) + "','DD-MM-YY')   AND AA.COMPCODE='" + Class.Users.COMPCODE + "'  AND AA.USERNAME='" + Class.Users.USERID + "'  GROUP BY AA.TOKENDATE,AB.CATEGORY ORDER BY 1";
-            DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLCANITEMMAS");
-            DataTable dt = ds.Tables["ASPTBLCANITEMMAS"];
-            CrystalDecisions.CrystalReports.Engine.ReportDocument reportdocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-            reportdocument.Load(Application.StartupPath + "\\Report\\Canteen\\CanteenReport.rpt");
-            reportdocument.SetDataSource(dt);
-            reportdocument.PrintOptions.PrinterName = printDialog1.PrinterSettings.PrinterName;
-            reportdocument.PrintToPrinter(printDialog1.PrinterSettings.Copies, printDialog1.PrinterSettings.Collate, printDialog1.PrinterSettings.FromPage, printDialog1.PrinterSettings.ToPage);
-
+            if (Class.Users.HCompcode == txtcompcode.Text)
+            {
+                string sel = "select substr(AA.TOKENDATE,0,10) AS DOCDATE,AB.CATEGORY,  count(AA.ASPTBLCANTOKENID) as total  from asptblcantoken AA join ASPTBLCANCATEGORYMAS AB on AA.category = AB.category  where AA.TOKENDATE BETWEEN TO_DATE('" + dateTimePicker4.Value.ToString().Substring(0, 10) + "','DD-MM-YY') AND TO_DATE('" + dateTimePicker5.Value.ToString().Substring(0, 10) + "','DD-MM-YY')   AND AA.COMPCODE='" + Class.Users.COMPCODE + "'  AND AA.USERNAME='" + Class.Users.USERID + "'  GROUP BY AA.TOKENDATE,AB.CATEGORY ORDER BY 1";
+                DataSet ds = Utility.ExecuteSelectQuery(sel, "ASPTBLCANITEMMAS");
+                DataTable dt = ds.Tables["ASPTBLCANITEMMAS"];
+                CrystalDecisions.CrystalReports.Engine.ReportDocument reportdocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                reportdocument.Load(Application.StartupPath + "\\Report\\Canteen\\CanteenReport.rpt");
+                reportdocument.SetDataSource(dt);
+                reportdocument.PrintOptions.PrinterName = printDialog1.PrinterSettings.PrinterName;
+                reportdocument.PrintToPrinter(printDialog1.PrinterSettings.Copies, printDialog1.PrinterSettings.Collate, printDialog1.PrinterSettings.FromPage, printDialog1.PrinterSettings.ToPage);
+            }
+            else
+            {
+                //MessageBox.Show($"Compcode Mismatch: {txtcompcode.Text} === {Class.Users.HCompcode}");
+                mas.pop($"Compcode Mismatch: {txtcompcode.Text} === {Class.Users.HCompcode}", "", "");
+            }
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)

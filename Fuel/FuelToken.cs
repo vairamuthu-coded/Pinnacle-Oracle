@@ -139,101 +139,7 @@ namespace Pinnacle.Fuel
         Models.FuelTokenModel c = new Models.FuelTokenModel();
         Models.Validate va = new Models.Validate();
         bool ch = false;int rowcount = 0;
-        //private bool Checks()
-        //{
-
-        //    rowcount = 0;
-        //    rowcount = dataGridView1.Rows.Count;
-        //    if (combobunk.Text == "" || Convert.ToInt64(combobunk.SelectedValue) < 0)
-        //    {
-        //        MessageBox.Show("Bunk Name is empty");
-        //        this.Focus();
-        //        this.combobunk.Focus(); return false;
-        //    }
-
-        //    if (txtempname.Text == "" || Convert.ToInt64(combobunk.SelectedValue) < 0)
-        //    {
-        //        MessageBox.Show("Name is empty");
-        //        this.Focus();
-        //        this.txtempname.Focus(); return false;
-        //    }
-        //    if (Convert.ToInt64(combovechineno.SelectedValue) <= 0)
-        //    {
-        //        MessageBox.Show("Vechile Number is empty");
-        //        this.Focus();
-        //        this.combovechineno.Focus(); return false;
-        //    }
-        //    if (Convert.ToInt64("0" + combovechineno.SelectedValue) == 0)
-        //    {
-        //        MessageBox.Show("Vechile Number is empty");
-        //        this.Focus();
-        //        this.combovechineno.Focus(); return false;
-        //    }
-
-        //    if (combovechiletype.SelectedValue == null)
-        //    {
-        //        MessageBox.Show("Vehicle Type is empty");
-        //        this.combovechiletype.Focus();
-        //        return false;
-        //    }
-
-        //    Models.FuelTokenModelDet c1 = new Models.FuelTokenModelDet();
-
-
-        //    foreach (DataGridViewRow row in dataGridView1.Rows)
-        //    {
-
-        //        if (row.Cells["ITEMNAME"].EditedFormattedValue.ToString() != "")
-        //        {
-
-        //            c1.ITEMNAME = Convert.ToInt64(row.Cells["ITEMNAME"].Value.ToString());
-        //            c1.ITEMDESC = Convert.ToString(row.Cells["ITEMNAME"].FormattedValue.ToString());
-        //            c1.LITRES = Convert.ToString(row.Cells["LITRES"].Value.ToString());
-        //            if (c1.ITEMDESC == "LUBRICANT OIL")
-        //            {
-        //                c.LOILRKM = 0;
-        //                c.TOTALKM1 = 0;
-        //            }
-        //            else
-        //            {
-        //                Int64 RKM = Convert.ToInt64("0" + txtloilrtotal.Text) + Convert.ToInt64("0" + txtkm.Text);
-        //                c.LOILRKM = RKM;
-        //                c.TOTALKM1 = Convert.ToInt64("0" + txtloilrtotal.Text) + Convert.ToInt64("0" + txtkm.Text);
-        //                txtluboilremaining.Text = RKM.ToString();
-        //            }
-        //            if (va.IsInteger(Convert.ToInt64("0" + c1.ITEMNAME).ToString()) == false)
-        //            {
-
-        //                MessageBox.Show("ItemName Field is empty");
-
-        //                return false;
-        //            }
-        //            if (va.IsInteger(Convert.ToInt64("0" + c1.KM).ToString()) == false)
-        //            {
-        //                MessageBox.Show("KiloMeter Field is empty");
-        //                return false;
-        //            }
-        //            if (c1.LITRES == "0")
-        //            {
-        //                MessageBox.Show("Litres Field is empty");
-        //                return false;
-        //            }
-        //            if (va.IsStringNumberic1(Convert.ToString(c1.LITRES).ToString()) == false)
-        //            {
-        //                MessageBox.Show("Litres Field is empty");
-        //                return false;
-        //            }
-        //            if (c1.LITRES == "")
-        //            {
-        //                MessageBox.Show("Litres Field is empty");
-        //                return false;
-        //            }
-        //        }
-
-        //    }
-        //    return true;
-
-        //}
+       
         private bool Checks()
         {
             rowcount = dataGridView1.Rows.Count;
@@ -324,10 +230,9 @@ namespace Pinnacle.Fuel
                 if (Checks()==true)
                 {;
                     
-                                      string PREYEAR = "SELECT DISTINCT C.GTFINANCIALYEARID,C.FINYR FROM  ASPTBLINOUTMAS A JOIN GTCOMPMAST B ON A.COMPCODE=B.GTCOMPMASTID   JOIN GTFINANCIALYEAR C ON A.FINYEAR=C.GTFINANCIALYEARID WHERE C.finyr='" + combofinyear.Text + "' AND B.COMPCODE='" + combocompcode.Text + "' ";
+                   string PREYEAR = "SELECT DISTINCT C.GTFINANCIALYEARID,C.FINYR FROM  ASPTBLINOUTMAS A JOIN GTCOMPMAST B ON A.COMPCODE=B.GTCOMPMASTID   JOIN GTFINANCIALYEAR C ON A.FINYEAR=C.GTFINANCIALYEARID WHERE C.finyr='" + combofinyear.Text + "' AND B.COMPCODE='" + combocompcode.Text + "' ";
                     DataSet dsPREYEAR = Utility.ExecuteSelectQuery(PREYEAR, "ASPTBLINOUTMAS");
                     DataTable dtPREYEAR = dsPREYEAR.Tables["ASPTBLINOUTMAS"];
-
                     DataTable dt = new DataTable();
                     Cursor = Cursors.WaitCursor;
                     if (txtfuelid.Text == "") {

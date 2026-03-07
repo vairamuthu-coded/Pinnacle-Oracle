@@ -135,47 +135,101 @@ namespace Pinnacle.Transactions.Attendance
         {
             try
             {
+                DataTable dtgridview = new DataTable();
 
-                dtgridview.Rows.Clear(); dtgridview.Columns.Clear();
-                int i = 0;
-                System.Data.OleDb.OleDbConnection OledbConn;
-                System.Data.OleDb.OleDbCommand OledbCmd;
-                System.Data.OleDb.OleDbDataAdapter OledbAdapter;
-                string filePath = string.Empty;
-                string fileExt = string.Empty;
+                string filePath = "";
+                string fileExt = "";
+                string conn = "";
+
                 OpenFileDialog file = new OpenFileDialog();
-                string path = "";
-                if (file.ShowDialog() == System.Windows.Forms.DialogResult.OK) //if there is a file choosen by the user  
+
+                if (file.ShowDialog() == DialogResult.OK)
                 {
-                    filePath = file.FileName; //get the path of the file  
-                    fileExt = Path.GetExtension(filePath); //get the file extension  
-                    if (fileExt.CompareTo(".xls") == 0)
-                        
+                    filePath = file.FileName;
+                    fileExt = Path.GetExtension(filePath);
 
-                    path = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=yourfile.xlsx;Extended Properties=`Excel 12.0 Xml; HDR = Yes`;"; //for below excel 2007  
-                    else
-                        path = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=`Excel 12.0;HDR=NO`;"; //for above excel 2007  
-                    OledbConn = new System.Data.OleDb.OleDbConnection(path);
-                    OledbConn.Open();
-                    string qry1 = "Select * from [Sheet1$]";
-                    OledbAdapter = new OleDbDataAdapter(qry1, OledbConn);
-                    OledbAdapter.Fill(dtgridview);
-                    if (dtgridview.Rows.Count > 0)
+                    // Excel 97-2003
+                    if (fileExt == ".xls")
                     {
-                        dataGridView1.DataSource = dtgridview;
-
+                        conn = @"Provider=Microsoft.Jet.OLEDB.4.0;
+                     Data Source=" + filePath + @";
+                     Extended Properties='Excel 8.0;HDR=YES;'";
+                    }
+                    // Excel 2007 and above
+                    else if (fileExt == ".xlsx")
+                    {
+                        conn = @"Provider=Microsoft.ACE.OLEDB.12.0;
+                     Data Source=" + filePath + @";
+                     Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select Excel file.");
+                        return;
                     }
 
+                    using (OleDbConnection oledbConn = new OleDbConnection(conn))
+                    {
+                        oledbConn.Open();
+
+                        string qry = "SELECT * FROM [Sheet1$]";
+
+                        using (OleDbDataAdapter adapter = new OleDbDataAdapter(qry, oledbConn))
+                        {
+                            adapter.Fill(dtgridview);
+                        }
+                    }
+
+                    dataGridView1.DataSource = dtgridview;
                 }
-
-
-
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
             }
+            //try
+            //{
+
+            //    dtgridview.Rows.Clear(); dtgridview.Columns.Clear();
+            //    int i = 0;
+            //    System.Data.OleDb.OleDbConnection OledbConn;
+            //    System.Data.OleDb.OleDbCommand OledbCmd;
+            //    System.Data.OleDb.OleDbDataAdapter OledbAdapter;
+            //    string filePath = string.Empty;
+            //    string fileExt = string.Empty;
+            //    OpenFileDialog file = new OpenFileDialog();
+            //    string path = "";
+            //    if (file.ShowDialog() == System.Windows.Forms.DialogResult.OK) //if there is a file choosen by the user  
+            //    {
+            //        filePath = file.FileName; //get the path of the file  
+            //        fileExt = Path.GetExtension(filePath); //get the file extension  
+            //        if (fileExt.CompareTo(".xls") == 0)
+
+
+            //        path = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=yourfile.xlsx;Extended Properties=`Excel 12.0 Xml; HDR = Yes`;"; //for below excel 2007  
+            //        else
+            //            path = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=`Excel 12.0;HDR=NO`;"; //for above excel 2007  
+            //        OledbConn = new System.Data.OleDb.OleDbConnection(path);
+            //        OledbConn.Open();
+            //        string qry1 = "Select * from [Sheet1$]";
+            //        OledbAdapter = new OleDbDataAdapter(qry1, OledbConn);
+            //        OledbAdapter.Fill(dtgridview);
+            //        if (dtgridview.Rows.Count > 0)
+            //        {
+            //            dataGridView1.DataSource = dtgridview;
+
+            //        }
+
+            //    }
+
+
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
         }
 
         public void ChangeSkins()

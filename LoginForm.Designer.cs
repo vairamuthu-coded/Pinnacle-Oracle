@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.btn_sumbit = new System.Windows.Forms.Button();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,11 +57,10 @@
             // btn_sumbit
             // 
             this.btn_sumbit.BackColor = System.Drawing.Color.Transparent;
-            this.btn_sumbit.ContextMenuStrip = this.contextMenuStrip2;
             this.btn_sumbit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btn_sumbit.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_sumbit.ForeColor = System.Drawing.Color.Navy;
-            this.btn_sumbit.Location = new System.Drawing.Point(206, 164);
+            this.btn_sumbit.Location = new System.Drawing.Point(209, 164);
             this.btn_sumbit.Name = "btn_sumbit";
             this.btn_sumbit.Size = new System.Drawing.Size(93, 35);
             this.btn_sumbit.TabIndex = 4;
@@ -90,7 +88,7 @@
             this.btn_Exit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btn_Exit.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Exit.ForeColor = System.Drawing.Color.Navy;
-            this.btn_Exit.Location = new System.Drawing.Point(305, 164);
+            this.btn_Exit.Location = new System.Drawing.Point(314, 164);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Size = new System.Drawing.Size(86, 35);
             this.btn_Exit.TabIndex = 5;
@@ -164,10 +162,10 @@
             this.txt_password.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_password.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_password.ForeColor = System.Drawing.Color.Navy;
-            this.txt_password.Location = new System.Drawing.Point(208, 112);
+            this.txt_password.Location = new System.Drawing.Point(209, 112);
             this.txt_password.Name = "txt_password";
             this.txt_password.PasswordChar = '*';
-            this.txt_password.Size = new System.Drawing.Size(192, 23);
+            this.txt_password.Size = new System.Drawing.Size(191, 23);
             this.txt_password.TabIndex = 3;
             this.txt_password.Enter += new System.EventHandler(this.Txt_password_Enter);
             this.txt_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_password_KeyDown);
@@ -179,9 +177,9 @@
             this.txtusername.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtusername.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtusername.ForeColor = System.Drawing.Color.Navy;
-            this.txtusername.Location = new System.Drawing.Point(208, 86);
+            this.txtusername.Location = new System.Drawing.Point(209, 86);
             this.txtusername.Name = "txtusername";
-            this.txtusername.Size = new System.Drawing.Size(192, 23);
+            this.txtusername.Size = new System.Drawing.Size(191, 23);
             this.txtusername.TabIndex = 2;
             this.txtusername.Enter += new System.EventHandler(this.txtusername_Enter);
             this.txtusername.Validating += new System.ComponentModel.CancelEventHandler(this.txtusername_Validating);
@@ -189,6 +187,7 @@
             // buttblcreate
             // 
             this.buttblcreate.BackColor = System.Drawing.Color.Transparent;
+            this.buttblcreate.FlatAppearance.BorderSize = 0;
             this.buttblcreate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.buttblcreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttblcreate.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -241,9 +240,9 @@
             // 
             this.combo_compcode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.combo_compcode.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combo_compcode.Location = new System.Drawing.Point(208, 59);
+            this.combo_compcode.Location = new System.Drawing.Point(209, 59);
             this.combo_compcode.Name = "combo_compcode";
-            this.combo_compcode.Size = new System.Drawing.Size(192, 22);
+            this.combo_compcode.Size = new System.Drawing.Size(191, 22);
             this.combo_compcode.TabIndex = 1;
             this.combo_compcode.TextChanged += new System.EventHandler(this.combo_compcode_TextChanged);
             this.combo_compcode.Validating += new System.ComponentModel.CancelEventHandler(this.combo_compcode_Validating);
@@ -262,9 +261,9 @@
             this.combofinyear.Items.AddRange(new object[] {
             "",
             ""});
-            this.combofinyear.Location = new System.Drawing.Point(208, 35);
+            this.combofinyear.Location = new System.Drawing.Point(209, 31);
             this.combofinyear.Name = "combofinyear";
-            this.combofinyear.Size = new System.Drawing.Size(191, 21);
+            this.combofinyear.Size = new System.Drawing.Size(191, 22);
             this.combofinyear.TabIndex = 0;
             this.combofinyear.SelectedIndexChanged += new System.EventHandler(this.combofinyear_SelectedIndexChanged);
             // 
@@ -282,7 +281,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(443, 217);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.combofinyear);
@@ -300,9 +299,9 @@
             this.Controls.Add(this.btn_Exit);
             this.Controls.Add(this.btn_sumbit);
             this.DoubleBuffered = true;
-            this.ForeColor = System.Drawing.Color.White;
+            this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";

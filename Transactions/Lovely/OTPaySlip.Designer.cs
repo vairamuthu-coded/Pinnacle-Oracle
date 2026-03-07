@@ -1,7 +1,7 @@
 ﻿
 namespace Pinnacle.Transactions.Lovely
 {
-    partial class ALLSalarySlip
+    partial class OTPaySlip
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,10 @@ namespace Pinnacle.Transactions.Lovely
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.cachedCrystalReport41 = new Pinnacle.CachedCrystalReport4();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDialog2 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lblprogross4 = new System.Windows.Forms.Label();
@@ -55,8 +58,6 @@ namespace Pinnacle.Transactions.Lovely
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.combopayperiod = new System.Windows.Forms.ComboBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.combobranch = new System.Windows.Forms.ComboBox();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,14 +68,19 @@ namespace Pinnacle.Transactions.Lovely
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printDialog2
+            // 
+            this.printDialog2.UseEXDialog = true;
             // 
             // tabControl1
             // 
@@ -85,8 +91,8 @@ namespace Pinnacle.Transactions.Lovely
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1282, 477);
-            this.tabControl1.TabIndex = 55;
+            this.tabControl1.Size = new System.Drawing.Size(1239, 393);
+            this.tabControl1.TabIndex = 56;
             // 
             // tabPage3
             // 
@@ -96,10 +102,10 @@ namespace Pinnacle.Transactions.Lovely
             this.tabPage3.Controls.Add(this.panel6);
             this.tabPage3.Controls.Add(this.panel5);
             this.tabPage3.Controls.Add(this.listView2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1274, 448);
+            this.tabPage3.Size = new System.Drawing.Size(1231, 361);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Time Card  DownLoad";
             // 
@@ -111,7 +117,7 @@ namespace Pinnacle.Transactions.Lovely
             this.lblprogross4.Location = new System.Drawing.Point(66, 149);
             this.lblprogross4.Name = "lblprogross4";
             this.lblprogross4.Padding = new System.Windows.Forms.Padding(5);
-            this.lblprogross4.Size = new System.Drawing.Size(83, 25);
+            this.lblprogross4.Size = new System.Drawing.Size(101, 28);
             this.lblprogross4.TabIndex = 17;
             this.lblprogross4.Text = "Processing....";
             // 
@@ -128,10 +134,10 @@ namespace Pinnacle.Transactions.Lovely
             this.crystalReportViewer1.Font = new System.Drawing.Font("Roboto Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crystalReportViewer1.ForeColor = System.Drawing.Color.Transparent;
             this.crystalReportViewer1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(6, 78);
+            this.crystalReportViewer1.Location = new System.Drawing.Point(3, 74);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.PrintMode = CrystalDecisions.Windows.Forms.PrintMode.PrintOutputController;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(800, 343);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(833, 260);
             this.crystalReportViewer1.TabIndex = 16;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.crystalReportViewer1.ToolPanelWidth = 205;
@@ -144,9 +150,9 @@ namespace Pinnacle.Transactions.Lovely
             this.panel6.Controls.Add(this.progressBar2);
             this.panel6.Controls.Add(this.lbltotal2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(3, 424);
+            this.panel6.Location = new System.Drawing.Point(3, 337);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1268, 21);
+            this.panel6.Size = new System.Drawing.Size(1225, 21);
             this.panel6.TabIndex = 15;
             // 
             // lbllistviewcount
@@ -155,14 +161,14 @@ namespace Pinnacle.Transactions.Lovely
             this.lbllistviewcount.ForeColor = System.Drawing.Color.White;
             this.lbllistviewcount.Location = new System.Drawing.Point(1119, 3);
             this.lbllistviewcount.Name = "lbllistviewcount";
-            this.lbllistviewcount.Size = new System.Drawing.Size(0, 13);
+            this.lbllistviewcount.Size = new System.Drawing.Size(0, 16);
             this.lbllistviewcount.TabIndex = 18;
             // 
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(283, 3);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(532, 18);
+            this.progressBar2.Size = new System.Drawing.Size(532, 15);
             this.progressBar2.TabIndex = 16;
             // 
             // lbltotal2
@@ -170,9 +176,9 @@ namespace Pinnacle.Transactions.Lovely
             this.lbltotal2.AutoSize = true;
             this.lbltotal2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbltotal2.ForeColor = System.Drawing.Color.White;
-            this.lbltotal2.Location = new System.Drawing.Point(0, 8);
+            this.lbltotal2.Location = new System.Drawing.Point(0, 5);
             this.lbltotal2.Name = "lbltotal2";
-            this.lbltotal2.Size = new System.Drawing.Size(31, 13);
+            this.lbltotal2.Size = new System.Drawing.Size(35, 16);
             this.lbltotal2.TabIndex = 14;
             this.lbltotal2.Text = "Total";
             // 
@@ -199,7 +205,7 @@ namespace Pinnacle.Transactions.Lovely
             this.panel5.ForeColor = System.Drawing.Color.White;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1268, 69);
+            this.panel5.Size = new System.Drawing.Size(1225, 69);
             this.panel5.TabIndex = 13;
             // 
             // buttonok
@@ -275,7 +281,6 @@ namespace Pinnacle.Transactions.Lovely
             this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 15;
             this.label2.Text = "Gender";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // combogender
             // 
@@ -311,13 +316,11 @@ namespace Pinnacle.Transactions.Lovely
             this.combostatement.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combostatement.IntegralHeight = false;
             this.combostatement.Items.AddRange(new object[] {
-            "SALARYSLIP",
-            "STATEMENT"});
+            "SALARYSLIP"});
             this.combostatement.Location = new System.Drawing.Point(773, 37);
             this.combostatement.Name = "combostatement";
             this.combostatement.Size = new System.Drawing.Size(185, 24);
             this.combostatement.TabIndex = 12;
-            this.combostatement.SelectedIndexChanged += new System.EventHandler(this.combostatement_SelectedIndexChanged);
             // 
             // chechide
             // 
@@ -325,7 +328,7 @@ namespace Pinnacle.Transactions.Lovely
             this.chechide.AutoSize = true;
             this.chechide.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chechide.ForeColor = System.Drawing.Color.White;
-            this.chechide.Location = new System.Drawing.Point(1247, 7);
+            this.chechide.Location = new System.Drawing.Point(1204, 7);
             this.chechide.Name = "chechide";
             this.chechide.Size = new System.Drawing.Size(15, 14);
             this.chechide.TabIndex = 11;
@@ -338,7 +341,7 @@ namespace Pinnacle.Transactions.Lovely
             this.chkall.AutoSize = true;
             this.chkall.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkall.ForeColor = System.Drawing.Color.White;
-            this.chkall.Location = new System.Drawing.Point(1170, 6);
+            this.chkall.Location = new System.Drawing.Point(1127, 6);
             this.chkall.Name = "chkall";
             this.chkall.Size = new System.Drawing.Size(47, 19);
             this.chkall.TabIndex = 9;
@@ -356,7 +359,6 @@ namespace Pinnacle.Transactions.Lovely
             this.label5.Size = new System.Drawing.Size(53, 16);
             this.label5.TabIndex = 7;
             this.label5.Text = "Branch";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtsearch1
             // 
@@ -366,7 +368,7 @@ namespace Pinnacle.Transactions.Lovely
             this.txtsearch1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtsearch1.Location = new System.Drawing.Point(1045, 38);
             this.txtsearch1.Name = "txtsearch1";
-            this.txtsearch1.Size = new System.Drawing.Size(217, 26);
+            this.txtsearch1.Size = new System.Drawing.Size(174, 26);
             this.txtsearch1.TabIndex = 6;
             this.txtsearch1.TextChanged += new System.EventHandler(this.txtsearch1_TextChanged);
             // 
@@ -396,7 +398,6 @@ namespace Pinnacle.Transactions.Lovely
             // 
             this.combopayperiod.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.combopayperiod.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combopayperiod.ContextMenuStrip = this.contextMenuStrip1;
             this.combopayperiod.DropDownHeight = 100;
             this.combopayperiod.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combopayperiod.FormattingEnabled = true;
@@ -407,20 +408,6 @@ namespace Pinnacle.Transactions.Lovely
             this.combopayperiod.Name = "combopayperiod";
             this.combopayperiod.Size = new System.Drawing.Size(232, 24);
             this.combopayperiod.TabIndex = 1;
-            this.combopayperiod.SelectedIndexChanged += new System.EventHandler(this.combomonth_SelectedIndexChanged);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.refreshToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(114, 26);
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.refreshToolStripMenuItem.Text = "Refresh";
             // 
             // combobranch
             // 
@@ -436,7 +423,6 @@ namespace Pinnacle.Transactions.Lovely
             this.combobranch.Name = "combobranch";
             this.combobranch.Size = new System.Drawing.Size(274, 24);
             this.combobranch.TabIndex = 0;
-            this.combobranch.SelectedIndexChanged += new System.EventHandler(this.combobranch_SelectedIndexChanged);
             // 
             // listView2
             // 
@@ -462,10 +448,10 @@ namespace Pinnacle.Transactions.Lovely
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(812, 78);
+            this.listView2.Location = new System.Drawing.Point(842, 74);
             this.listView2.Name = "listView2";
             this.listView2.RightToLeftLayout = true;
-            this.listView2.Size = new System.Drawing.Size(453, 338);
+            this.listView2.Size = new System.Drawing.Size(380, 260);
             this.listView2.TabIndex = 11;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -499,7 +485,7 @@ namespace Pinnacle.Transactions.Lovely
             // columnHeader16
             // 
             this.columnHeader16.Text = "Employee Name";
-            this.columnHeader16.Width = 400;
+            this.columnHeader16.Width = 220;
             // 
             // columnHeader13
             // 
@@ -511,22 +497,18 @@ namespace Pinnacle.Transactions.Lovely
             this.columnHeader14.Text = "Payperiod";
             this.columnHeader14.Width = 0;
             // 
-            // printDialog1
+            // OTPaySlip
             // 
-            this.printDialog1.UseEXDialog = true;
-            // 
-            // ALLSalarySlip
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1284, 479);
+            this.ClientSize = new System.Drawing.Size(1241, 395);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "ALLSalarySlip";
+            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "OTPaySlip";
             this.Padding = new System.Windows.Forms.Padding(1);
-            this.Text = "ALLSalarySlip";
+            this.Text = "OTPaySlip";
             this.Load += new System.EventHandler(this.ALLSalarySlip_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -535,19 +517,34 @@ namespace Pinnacle.Transactions.Lovely
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        private CachedCrystalReport4 cachedCrystalReport41;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.PrintDialog printDialog2;
+        private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label lblprogross4;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label lbllistviewcount;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Label lbltotal2;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button buttonok;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboband;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox combotypename;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox combogender;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox combostatement;
+        private System.Windows.Forms.CheckBox chechide;
         private System.Windows.Forms.CheckBox chkall;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtsearch1;
@@ -556,6 +553,7 @@ namespace Pinnacle.Transactions.Lovely
         private System.Windows.Forms.ComboBox combopayperiod;
         private System.Windows.Forms.ComboBox combobranch;
         private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader15;
@@ -563,23 +561,5 @@ namespace Pinnacle.Transactions.Lovely
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.PrintDialog printDialog1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.CheckBox chechide;
-        private System.Windows.Forms.Label lbllistviewcount;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox combostatement;
-        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private System.Windows.Forms.Label lblprogross4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboband;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox combotypename;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox combogender;
-        private System.Windows.Forms.Button buttonok;
-        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

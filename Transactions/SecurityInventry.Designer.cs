@@ -110,8 +110,8 @@
             this.label21 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.tabEMPInOut = new System.Windows.Forms.TabPage();
-            this.butout = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.butout = new System.Windows.Forms.Button();
             this.bunin = new System.Windows.Forms.Button();
             this.tabEMPIn = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -184,7 +184,7 @@
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click_1);
             // 
@@ -211,6 +211,7 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(3);
             this.panel1.Size = new System.Drawing.Size(1268, 510);
             this.panel1.TabIndex = 28;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tabControl1
             // 
@@ -307,7 +308,6 @@
             // 
             this.tabGOODSIN.BackColor = System.Drawing.Color.White;
             this.tabGOODSIN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabGOODSIN.ContextMenuStrip = this.contextMenuStrip2;
             this.tabGOODSIN.Controls.Add(this.lblRecorddatetime1);
             this.tabGOODSIN.Controls.Add(this.txt_qrcodein);
             this.tabGOODSIN.Controls.Add(this.combofinyearIN);
@@ -381,7 +381,7 @@
             // txt_qrcodein
             // 
             this.txt_qrcodein.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_qrcodein.Location = new System.Drawing.Point(227, 158);
+            this.txt_qrcodein.Location = new System.Drawing.Point(227, 125);
             this.txt_qrcodein.MaxLength = 25;
             this.txt_qrcodein.Name = "txt_qrcodein";
             this.txt_qrcodein.Size = new System.Drawing.Size(583, 29);
@@ -785,7 +785,6 @@
             // 
             this.tabGOODSOut.BackColor = System.Drawing.Color.White;
             this.tabGOODSOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabGOODSOut.ContextMenuStrip = this.contextMenuStrip2;
             this.tabGOODSOut.Controls.Add(this.lblRecorddatetimeOUT1);
             this.tabGOODSOut.Controls.Add(this.txtqrcodeout);
             this.tabGOODSOut.Controls.Add(this.txtgatedcno1);
@@ -1236,8 +1235,8 @@
             // 
             this.tabEMPInOut.BackColor = System.Drawing.Color.White;
             this.tabEMPInOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.tabEMPInOut.Controls.Add(this.butout);
             this.tabEMPInOut.Controls.Add(this.pictureBox1);
+            this.tabEMPInOut.Controls.Add(this.butout);
             this.tabEMPInOut.Controls.Add(this.bunin);
             this.tabEMPInOut.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabEMPInOut.Location = new System.Drawing.Point(4, 28);
@@ -1247,6 +1246,19 @@
             this.tabEMPInOut.TabIndex = 1;
             this.tabEMPInOut.Text = "EMPLOYEE  ";
             this.tabEMPInOut.Click += new System.EventHandler(this.TabEMPInOut_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(464, 130);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(241, 179);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 66;
+            this.pictureBox1.TabStop = false;
             // 
             // butout
             // 
@@ -1267,19 +1279,6 @@
             this.butout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.butout.UseVisualStyleBackColor = false;
             this.butout.Click += new System.EventHandler(this.Butout_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(334, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(592, 341);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 64;
-            this.pictureBox1.TabStop = false;
             // 
             // bunin
             // 
@@ -1322,7 +1321,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel5.ContextMenuStrip = this.contextMenuStrip1;
             this.panel5.Controls.Add(this.checkpassmissed);
             this.panel5.Controls.Add(this.label33);
             this.panel5.Controls.Add(this.txtremarks);
@@ -1576,7 +1574,6 @@
             // 
             this.tabEMPOut.BackColor = System.Drawing.Color.White;
             this.tabEMPOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabEMPOut.ContextMenuStrip = this.contextMenuStrip1;
             this.tabEMPOut.Controls.Add(this.tabControl2);
             this.tabEMPOut.Controls.Add(this.btnoutclear);
             this.tabEMPOut.Controls.Add(this.panel9);
@@ -1922,7 +1919,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtipaddressout;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button BTNGoodsINEXIT;
         private System.Windows.Forms.Button btngoodsoutexit;
         private System.Windows.Forms.Button butout;
@@ -1971,5 +1967,6 @@
         private System.Windows.Forms.ToolStripMenuItem rToolStripMenuItem;
         private System.Windows.Forms.Label lblRecorddatetime1;
         private System.Windows.Forms.Label lblRecorddatetimeOUT1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

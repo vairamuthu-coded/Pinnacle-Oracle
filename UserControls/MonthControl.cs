@@ -35,6 +35,10 @@ namespace Pinnacle.UserControls
             get { return lblusermonth; }
             set { lblusermonth = value; }
         }
-       
+        public PictureBox SalarypictureBox
+        {
+            get { return pictureBox1; }
+            set { pictureBox1 = value; }
+        }
     }
 }

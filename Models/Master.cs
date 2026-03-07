@@ -19,13 +19,15 @@ namespace Pinnacle.Models
         {
             Tulpep.NotificationWindow.PopupNotifier p = new PopupNotifier();
             p = new PopupNotifier(); p.IsRightToLeft = false;
+            p.ImagePadding=new Padding(20, 10, 0, 0);
             p.Image = Properties.Resources.info2;
             p.BodyColor = Class.Users.Color1;
             p.HeaderColor = Class.Users.BackColors;
             p.ContentHoverColor = Class.Users.BackColors;
             p.HeaderHeight = 20; p.ShowOptionsButton = true;
-            p.TitleColor = Class.Users.BackColors;
-            p.TitleFont = new Font("Arial", 15, FontStyle.Bold);
+         p.TitlePadding = new Padding(20, 10, 0, 0);
+            p.TitleColor = Color.Red;
+            p.TitleFont = new Font("Roboto", 12, FontStyle.Bold);
             p.TitleText = s0;
             p.ContentFont = Class.Users.FontName;
             p.ContentText = " " + s1 + "   " + s2 + "";

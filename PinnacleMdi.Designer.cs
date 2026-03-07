@@ -157,6 +157,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtpanelsearch = new System.Windows.Forms.TextBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.TabCtrl = new Pinnacle.VisualStudioTabControl();
             this.colors1 = new Pinnacle.UserControls.Colors();
             this.customControl1 = new Pinnacle.CustomControl();
@@ -193,7 +194,7 @@
             this.butnext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.butnext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butnext.ForeColor = System.Drawing.Color.White;
-            this.butnext.Location = new System.Drawing.Point(717, 4);
+            this.butnext.Location = new System.Drawing.Point(793, 4);
             this.butnext.Margin = new System.Windows.Forms.Padding(0);
             this.butnext.Name = "butnext";
             this.butnext.Size = new System.Drawing.Size(33, 27);
@@ -212,7 +213,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1131, 8);
+            this.button1.Location = new System.Drawing.Point(1207, 8);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(17, 18);
@@ -231,7 +232,7 @@
             this.butprevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.butprevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butprevious.ForeColor = System.Drawing.Color.Transparent;
-            this.butprevious.Location = new System.Drawing.Point(763, 4);
+            this.butprevious.Location = new System.Drawing.Point(839, 4);
             this.butprevious.Margin = new System.Windows.Forms.Padding(0);
             this.butprevious.Name = "butprevious";
             this.butprevious.Size = new System.Drawing.Size(32, 26);
@@ -269,7 +270,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(804, 6);
+            this.button3.Location = new System.Drawing.Point(880, 6);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(146, 26);
@@ -439,7 +440,6 @@
             // 
             // cutToolStripMenuItem1
             // 
-            this.cutToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem1.Image")));
             this.cutToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem1.Name = "cutToolStripMenuItem1";
             this.cutToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
@@ -447,7 +447,6 @@
             // 
             // copyToolStripMenuItem1
             // 
-            this.copyToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem1.Image")));
             this.copyToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
             this.copyToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
@@ -455,7 +454,6 @@
             // 
             // pasteToolStripMenuItem1
             // 
-            this.pasteToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem1.Image")));
             this.pasteToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem1.Name = "pasteToolStripMenuItem1";
             this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
@@ -474,7 +472,6 @@
             // 
             // newToolStripMenuItem1
             // 
-            this.newToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem1.Image")));
             this.newToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
             this.newToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
@@ -482,7 +479,6 @@
             // 
             // openToolStripMenuItem1
             // 
-            this.openToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem1.Image")));
             this.openToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
             this.openToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
@@ -495,7 +491,6 @@
             // 
             // saveToolStripMenuItem1
             // 
-            this.saveToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem1.Image")));
             this.saveToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
             this.saveToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
@@ -514,7 +509,6 @@
             // 
             // printToolStripMenuItem1
             // 
-            this.printToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem1.Image")));
             this.printToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printToolStripMenuItem1.Name = "printToolStripMenuItem1";
             this.printToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
@@ -522,7 +516,6 @@
             // 
             // printPreviewToolStripMenuItem1
             // 
-            this.printPreviewToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem1.Image")));
             this.printPreviewToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPreviewToolStripMenuItem1.Name = "printPreviewToolStripMenuItem1";
             this.printPreviewToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
@@ -601,7 +594,6 @@
             // 
             // cutToolStripMenuItem
             // 
-            this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
@@ -610,7 +602,6 @@
             // 
             // copyToolStripMenuItem
             // 
-            this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
@@ -619,7 +610,6 @@
             // 
             // pasteToolStripMenuItem
             // 
-            this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
@@ -639,7 +629,6 @@
             // 
             // newToolStripMenuItem
             // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
@@ -648,7 +637,6 @@
             // 
             // openToolStripMenuItem
             // 
-            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
@@ -662,7 +650,6 @@
             // 
             // saveToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
@@ -682,7 +669,6 @@
             // 
             // printToolStripMenuItem
             // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
             this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
@@ -691,7 +677,6 @@
             // 
             // printPreviewToolStripMenuItem
             // 
-            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
             this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
             this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
@@ -748,10 +733,10 @@
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3,
             this.toolStripStatusLabel4});
-            this.statusStrip.Location = new System.Drawing.Point(0, 371);
+            this.statusStrip.Location = new System.Drawing.Point(0, 455);
             this.statusStrip.Margin = new System.Windows.Forms.Padding(5);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1159, 24);
+            this.statusStrip.Size = new System.Drawing.Size(1235, 24);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -790,7 +775,7 @@
             this.mdipanel.Location = new System.Drawing.Point(0, 34);
             this.mdipanel.Margin = new System.Windows.Forms.Padding(0);
             this.mdipanel.Name = "mdipanel";
-            this.mdipanel.Size = new System.Drawing.Size(1159, 337);
+            this.mdipanel.Size = new System.Drawing.Size(1235, 421);
             this.mdipanel.TabIndex = 10;
             // 
             // tabControl1
@@ -812,7 +797,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.ShowToolTips = true;
-            this.tabControl1.Size = new System.Drawing.Size(1159, 310);
+            this.tabControl1.Size = new System.Drawing.Size(1235, 394);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.Visible = false;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -824,7 +809,7 @@
             this.Masters.Location = new System.Drawing.Point(4, 29);
             this.Masters.Name = "Masters";
             this.Masters.Padding = new System.Windows.Forms.Padding(3);
-            this.Masters.Size = new System.Drawing.Size(1151, 277);
+            this.Masters.Size = new System.Drawing.Size(1227, 361);
             this.Masters.TabIndex = 0;
             this.Masters.Text = "         Masters         ";
             // 
@@ -837,7 +822,7 @@
             this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(5);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(1145, 271);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(1221, 355);
             this.flowLayoutPanel5.TabIndex = 0;
             // 
             // Transactions
@@ -847,7 +832,7 @@
             this.Transactions.Location = new System.Drawing.Point(4, 29);
             this.Transactions.Name = "Transactions";
             this.Transactions.Padding = new System.Windows.Forms.Padding(3);
-            this.Transactions.Size = new System.Drawing.Size(1151, 277);
+            this.Transactions.Size = new System.Drawing.Size(1227, 361);
             this.Transactions.TabIndex = 1;
             this.Transactions.Text = "         Transactions         ";
             // 
@@ -857,7 +842,7 @@
             this.flowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(1145, 271);
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(1221, 355);
             this.flowLayoutPanel6.TabIndex = 1;
             // 
             // Hostel
@@ -866,7 +851,7 @@
             this.Hostel.Controls.Add(this.flowLayoutPanel7);
             this.Hostel.Location = new System.Drawing.Point(4, 29);
             this.Hostel.Name = "Hostel";
-            this.Hostel.Size = new System.Drawing.Size(1151, 277);
+            this.Hostel.Size = new System.Drawing.Size(1227, 361);
             this.Hostel.TabIndex = 2;
             this.Hostel.Text = "Hostel";
             // 
@@ -876,7 +861,7 @@
             this.flowLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel7.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(1151, 277);
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(1227, 361);
             this.flowLayoutPanel7.TabIndex = 1;
             // 
             // Fuel
@@ -885,7 +870,7 @@
             this.Fuel.Controls.Add(this.flowLayoutPanel8);
             this.Fuel.Location = new System.Drawing.Point(4, 29);
             this.Fuel.Name = "Fuel";
-            this.Fuel.Size = new System.Drawing.Size(1151, 277);
+            this.Fuel.Size = new System.Drawing.Size(1227, 361);
             this.Fuel.TabIndex = 3;
             this.Fuel.Text = "         Fuel       ";
             // 
@@ -895,7 +880,7 @@
             this.flowLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel8.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(1151, 277);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(1227, 361);
             this.flowLayoutPanel8.TabIndex = 1;
             // 
             // Canteen
@@ -904,7 +889,7 @@
             this.Canteen.Controls.Add(this.flowLayoutPanel9);
             this.Canteen.Location = new System.Drawing.Point(4, 29);
             this.Canteen.Name = "Canteen";
-            this.Canteen.Size = new System.Drawing.Size(1151, 277);
+            this.Canteen.Size = new System.Drawing.Size(1227, 361);
             this.Canteen.TabIndex = 4;
             this.Canteen.Text = "Canteen";
             // 
@@ -914,7 +899,7 @@
             this.flowLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel9.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel9.Name = "flowLayoutPanel9";
-            this.flowLayoutPanel9.Size = new System.Drawing.Size(1151, 277);
+            this.flowLayoutPanel9.Size = new System.Drawing.Size(1227, 361);
             this.flowLayoutPanel9.TabIndex = 2;
             // 
             // Reports
@@ -923,7 +908,7 @@
             this.Reports.Controls.Add(this.flowLayoutPanel10);
             this.Reports.Location = new System.Drawing.Point(4, 29);
             this.Reports.Name = "Reports";
-            this.Reports.Size = new System.Drawing.Size(1151, 277);
+            this.Reports.Size = new System.Drawing.Size(1227, 361);
             this.Reports.TabIndex = 5;
             this.Reports.Text = "Reports";
             // 
@@ -933,7 +918,7 @@
             this.flowLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel10.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel10.Name = "flowLayoutPanel10";
-            this.flowLayoutPanel10.Size = new System.Drawing.Size(1151, 277);
+            this.flowLayoutPanel10.Size = new System.Drawing.Size(1227, 361);
             this.flowLayoutPanel10.TabIndex = 2;
             // 
             // TreeView
@@ -941,7 +926,7 @@
             this.TreeView.Controls.Add(this.flowLayoutPanel11);
             this.TreeView.Location = new System.Drawing.Point(4, 29);
             this.TreeView.Name = "TreeView";
-            this.TreeView.Size = new System.Drawing.Size(1151, 277);
+            this.TreeView.Size = new System.Drawing.Size(1227, 361);
             this.TreeView.TabIndex = 6;
             this.TreeView.Text = "TreeView";
             this.TreeView.UseVisualStyleBackColor = true;
@@ -952,7 +937,7 @@
             this.flowLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel11.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel11.Name = "flowLayoutPanel11";
-            this.flowLayoutPanel11.Size = new System.Drawing.Size(1151, 277);
+            this.flowLayoutPanel11.Size = new System.Drawing.Size(1227, 361);
             this.flowLayoutPanel11.TabIndex = 3;
             // 
             // Registration
@@ -961,7 +946,7 @@
             this.Registration.Location = new System.Drawing.Point(4, 29);
             this.Registration.Name = "Registration";
             this.Registration.Padding = new System.Windows.Forms.Padding(3);
-            this.Registration.Size = new System.Drawing.Size(1151, 277);
+            this.Registration.Size = new System.Drawing.Size(1227, 361);
             this.Registration.TabIndex = 7;
             this.Registration.Text = "Registration";
             this.Registration.UseVisualStyleBackColor = true;
@@ -972,7 +957,7 @@
             this.flowLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel12.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel12.Name = "flowLayoutPanel12";
-            this.flowLayoutPanel12.Size = new System.Drawing.Size(1145, 271);
+            this.flowLayoutPanel12.Size = new System.Drawing.Size(1221, 355);
             this.flowLayoutPanel12.TabIndex = 2;
             // 
             // GatePass
@@ -981,7 +966,7 @@
             this.GatePass.Location = new System.Drawing.Point(4, 29);
             this.GatePass.Name = "GatePass";
             this.GatePass.Padding = new System.Windows.Forms.Padding(3);
-            this.GatePass.Size = new System.Drawing.Size(1151, 277);
+            this.GatePass.Size = new System.Drawing.Size(1227, 361);
             this.GatePass.TabIndex = 8;
             this.GatePass.Text = "GatePass";
             this.GatePass.UseVisualStyleBackColor = true;
@@ -992,7 +977,7 @@
             this.flowLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel13.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel13.Name = "flowLayoutPanel13";
-            this.flowLayoutPanel13.Size = new System.Drawing.Size(1145, 271);
+            this.flowLayoutPanel13.Size = new System.Drawing.Size(1221, 355);
             this.flowLayoutPanel13.TabIndex = 3;
             // 
             // panelheader
@@ -1009,7 +994,7 @@
             this.panelheader.Location = new System.Drawing.Point(0, 0);
             this.panelheader.Name = "panelheader";
             this.panelheader.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.panelheader.Size = new System.Drawing.Size(1159, 29);
+            this.panelheader.Size = new System.Drawing.Size(1235, 29);
             this.panelheader.TabIndex = 2;
             // 
             // panel1
@@ -1019,7 +1004,7 @@
             this.panel1.Controls.Add(this.lblMarquee1);
             this.panel1.Location = new System.Drawing.Point(267, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(885, 25);
+            this.panel1.Size = new System.Drawing.Size(961, 25);
             this.panel1.TabIndex = 5;
             // 
             // lblMarquee1
@@ -1060,7 +1045,6 @@
             // 
             this.panelmenu.BackColor = System.Drawing.Color.Gainsboro;
             this.panelmenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelmenu.ContextMenuStrip = this.contextMenuStrip1;
             this.panelmenu.Controls.Add(this.colors1);
             this.panelmenu.Controls.Add(this.button3);
             this.panelmenu.Controls.Add(this.button2);
@@ -1074,7 +1058,7 @@
             this.panelmenu.Font = new System.Drawing.Font("Roboto Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelmenu.Location = new System.Drawing.Point(0, 0);
             this.panelmenu.Name = "panelmenu";
-            this.panelmenu.Size = new System.Drawing.Size(1159, 36);
+            this.panelmenu.Size = new System.Drawing.Size(1235, 36);
             this.panelmenu.TabIndex = 17;
             // 
             // labelsearch
@@ -1105,7 +1089,6 @@
             this.combosearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.combosearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combosearch.BackColor = System.Drawing.SystemColors.Info;
-            this.combosearch.ContextMenuStrip = this.contextMenuStrip1;
             this.combosearch.Font = new System.Drawing.Font("Roboto Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combosearch.FormattingEnabled = true;
             this.combosearch.IntegralHeight = false;
@@ -1272,9 +1255,7 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.DarkGray;
             this.toolStrip1.BackgroundImage = global::Pinnacle.Properties.Resources.Toolbar;
-            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.toolStrip1.ContextMenuStrip = this.contextMenuStrip1;
             this.toolStrip1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
@@ -1302,7 +1283,7 @@
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(1159, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1235, 25);
             this.toolStrip1.TabIndex = 20;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -1359,7 +1340,7 @@
             this.paneltree.Location = new System.Drawing.Point(0, 61);
             this.paneltree.Name = "paneltree";
             this.paneltree.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.paneltree.Size = new System.Drawing.Size(10, 310);
+            this.paneltree.Size = new System.Drawing.Size(10, 394);
             this.paneltree.TabIndex = 24;
             // 
             // butrightborder
@@ -1372,7 +1353,7 @@
             this.butrightborder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.butrightborder.Location = new System.Drawing.Point(4, 0);
             this.butrightborder.Name = "butrightborder";
-            this.butrightborder.Size = new System.Drawing.Size(1, 310);
+            this.butrightborder.Size = new System.Drawing.Size(1, 394);
             this.butrightborder.TabIndex = 3;
             this.butrightborder.UseVisualStyleBackColor = true;
             // 
@@ -1390,7 +1371,7 @@
             this.treeView1.Location = new System.Drawing.Point(0, 86);
             this.treeView1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(278, 224);
+            this.treeView1.Size = new System.Drawing.Size(278, 308);
             this.treeView1.TabIndex = 2;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
@@ -1435,6 +1416,12 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Anugraha_logo.jpg");
+            // 
             // TabCtrl
             // 
             this.TabCtrl.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -1458,7 +1445,7 @@
             this.TabCtrl.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.TabCtrl.ShowClosingButton = true;
             this.TabCtrl.ShowClosingMessage = false;
-            this.TabCtrl.Size = new System.Drawing.Size(1159, 307);
+            this.TabCtrl.Size = new System.Drawing.Size(1235, 391);
             this.TabCtrl.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.TabCtrl.TabIndex = 22;
             this.TabCtrl.TextColor = System.Drawing.Color.Black;
@@ -1470,7 +1457,7 @@
             this.colors1.BackColor = System.Drawing.Color.White;
             this.colors1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.colors1.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colors1.Location = new System.Drawing.Point(988, 4);
+            this.colors1.Location = new System.Drawing.Point(1064, 4);
             this.colors1.Name = "colors1";
             this.colors1.Size = new System.Drawing.Size(127, 27);
             this.colors1.TabIndex = 23;
@@ -1485,7 +1472,7 @@
             this.customControl1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.customControl1.ImageHeight = 28;
-            this.customControl1.ImageWidth = 277;
+            this.customControl1.ImageWidth = 301;
             this.customControl1.Location = new System.Drawing.Point(10, 10);
             this.customControl1.Margin = new System.Windows.Forms.Padding(10);
             this.customControl1.Name = "customControl1";
@@ -1498,9 +1485,10 @@
             // PinnacleMdi
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1159, 395);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(1235, 479);
             this.Controls.Add(this.paneltree);
             this.Controls.Add(this.TabCtrl);
             this.Controls.Add(this.toolStrip1);
@@ -1682,6 +1670,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.TabPage GatePass;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel13;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

@@ -22,6 +22,7 @@ namespace Pinnacle.Transactions.Tally
         string tableName = "MY_" + Class.Users.HCompcode;
         string tableName1 = "TO_" + Class.Users.HCompcode;
         DateTime dateForButton = DateTime.Now;
+
       
         string schema = Class.Users.ProjectID;
         string CleanColumn(string name)
@@ -37,15 +38,15 @@ namespace Pinnacle.Transactions.Tally
         int i = 0; int j = 1; string update1 = null;
         Models.Tally.TransactionCompenstate daimport = new Models.Tally.TransactionCompenstate();
         string Details = ""; string Details1 = "";
-        string matchfield = "", matchfield1 = "";
+        string matchfield = "", matchfield1 = ""; string fromCompany, toCompnay = "";
         public ReConciliation()
         {
             InitializeComponent();
-            DateTime today = DateTime.Today;
-            frmdate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1); ;
-            DateTime endOfMonth = new DateTime(today.Year,today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+            DateTime today = DateTime.Today;tabControl1.TabPages[0].Text = Class.Users.HCompcode;
+            frmdate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month-1, 1); ;
+            DateTime endOfMonth = new DateTime(today.Year,today.Month-1, DateTime.DaysInMonth(today.Year, today.Month-1));
             butmycompany.Text = Class.Users.HCompcode;
-            todate.Value = endOfMonth;
+            todate.Value = endOfMonth; Class.Users.UserTime = 0;
             Class.Users.IPADDRESS = GenFun.GetLocalIPAddress();
             string MODIFIED_BY = ", MODIFIED_BY ";
             string MODIFIED_ON = " MODIFIED_ON  ";
@@ -53,7 +54,7 @@ namespace Pinnacle.Transactions.Tally
             string CREATED_ON = " CREATED_ON  ";
             string USERID = " USERID  ";
             string PROJECTID = " PROJECTID ";
-            string IPADD = " IPADD ";
+            string IPADD = " IPADD "; 
 
             string MODIFIED_BY1 = ",'" + Class.Users.HUserName + "'";
             string MODIFIED_ON1 = "TO_DATE('" + System.DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss") + "','DD-MM-YYYY hh:mi:ss')";
@@ -65,6 +66,7 @@ namespace Pinnacle.Transactions.Tally
             Details = MODIFIED_BY + "," + MODIFIED_ON + "," + CREATED_BY + "," + CREATED_ON + "," + USERID + "," + PROJECTID + "," + IPADD;
             Details1 = MODIFIED_BY1 + "," + MODIFIED_ON1 + "," + CREATED_BY1 + "," + CREATED_ON1 + "," + USERID1 + "" + PROJECTID1 + "" + IPADD1;
             GlobalVariables.DownLoads.Text = "UpLoad";
+           
         }
         protected override bool ProcessCmdKey(ref Message message, Keys keys)
         {
@@ -115,15 +117,16 @@ namespace Pinnacle.Transactions.Tally
 
                     daimport.query = null;
                     dttbl2 = null;
-                    daimport.query = "select * from " + Class.Users.ProjectID + "." + s + " ORDER BY 1";
+                daimport.query ="select * from " + Class.Users.ProjectID + "." + s + " ORDER BY 1";
                     daimport.ds = Utility.ExecuteSelectQuery(daimport.query, s);
                     dttbl2 = daimport.ds.Tables[s];
                     DBColumn.Items.Clear(); int j = 0; matchfield = ""; fromquery = "";
                     if (dttbl2.Columns.Count > 0)
                     {
-
-                        i = 1;
-                        for (j = 0; j < dttbl2.Columns.Count; j++)
+                    DataTable dtTT = new DataTable();
+                    dtTT.Columns.Add("");
+                    i = 1; 
+                    for (j = 0; j < dttbl2.Columns.Count; j++)
                         {
 
                             if (DBColumn.Items.Contains(dttbl2.Columns[j].ToString()))
@@ -132,7 +135,8 @@ namespace Pinnacle.Transactions.Tally
                             }
                             else
                             {
-                                DBColumn.Items.Add(dttbl2.Columns[j].ToString());
+                         
+                            DBColumn.Items.Add(dttbl2.Columns[j].ToString());
                                 if (dttbl2.Columns.Count == i)
                                 {
                                     matchfield += "A." + dttbl2.Columns[j].ToString().Replace(" ", "") + "";
@@ -295,12 +299,10 @@ namespace Pinnacle.Transactions.Tally
                             dataGridView2.Rows[j].Cells[0].Value = k.ToString();
                             dataGridView2.Rows[j].Cells[1].Value = CleanColumn(dt2.Columns[j].ColumnName);
 
-                            if (j == 0)
-                            {
-                                dataGridView2.Rows[j].Cells[3].Value = "DATEID";
-                                dataGridView2.Rows[j].Cells[4].Value = "DATEID";
-                            }
-                            else if (j == 1)
+
+
+
+                            if (j == 1)
                             {
                                 dataGridView2.Rows[j].Cells[3].Value = "DATE1";
                                 dataGridView2.Rows[j].Cells[4].Value = "DATE1";
@@ -316,7 +318,14 @@ namespace Pinnacle.Transactions.Tally
                                 dataGridView2.Rows[j].Cells[3].Value = "VEHICLENO";
                                 dataGridView2.Rows[j].Cells[4].Value = "VEHICLE";
                             }
-
+                            else
+                            {
+                                if (j == 10)
+                                {
+                                    dataGridView2.Rows[j].Cells[3].Value = "RATE";
+                                    dataGridView2.Rows[j].Cells[4].Value = "RATE";
+                                }
+                            }
                             dataGridView2.Rows[j].DefaultCellStyle.BackColor =j % 2 == 0 ? Color.WhiteSmoke : Color.White;
 
                             k++;
@@ -338,13 +347,16 @@ namespace Pinnacle.Transactions.Tally
             GlobalVariables.DownLoads.Text = "UpLoad"; Class.Users.Intimation = "PAYROLL";
             Class.Users.Bisconnectclear = false;
             allip3.Items.Clear(); butmycompany.Text = "From Company"; buttosupplier.Text = "To Company";
-            allislug.Items.Clear();
+            allislug.Items.Clear(); Class.Users.UserTime = 0;
             allip3.Items.Clear(); progressBar1.Maximum = 0;
             Class.Users.TableName = null; Class.Users.TableNameGrid = null; Class.Users.TableName = ""; Class.Users.TableNameGrid = "";
             Class.Users.TableNameSubGrid = null; Class.Users.Prefix = null; Class.Users.Prefix = null;
             Class.Users.Description = null; Class.Users.Description = null;
             Class.Users.FieldName = null; Class.Users.FieldName = null;
             butheader.BackColor = Class.Users.BackColors;
+            label3.BackColor= Class.Users.BackColors; label6.BackColor = Class.Users.BackColors;
+            label8.BackColor = Class.Users.BackColors; label3.ForeColor = Class.Users.Color1; label6.ForeColor = Class.Users.Color1;
+            label8.ForeColor = Class.Users.Color1;
             this.BackColor = Class.Users.BackColors;
             panel2.BackColor = Class.Users.BackColors;
             panel3.BackColor = Class.Users.BackColors;
@@ -653,7 +665,7 @@ namespace Pinnacle.Transactions.Tally
 
             if (dataGridView2.Columns[e.ColumnIndex].Name == "Show")
             {
-     
+                checkFuel.Checked = false;
                 try
                 {
                     tabControl1.SelectTab(tabPage1);
@@ -691,14 +703,11 @@ namespace Pinnacle.Transactions.Tally
                             update1 = "";
                             update1 = Class.Users.TableNameGrid.Remove(Class.Users.TableNameGrid.Length - 4);
                             Class.Users.Query = "";
-                            string sel0 = $"SELECT DISTINCT  {matchfield}, CASE WHEN A.TOKENNO = B.INDNO then 'No' else 'Yes' end STS from { tableName} A  LEFT JOIN {tableName1}  B  ON " + update1 + "; ";
+                            string sel0 = $"SELECT DISTINCT  {matchfield}, CASE WHEN A.TOKENNO = B.INDNO THEN 'No' ELSE 'Yes' END STS from { tableName} A  LEFT JOIN {tableName1}  B  ON " + update1 + "; ";
                             textBox1.Text += sel0;                         
                             update1 = "";
                             update1 = Class.Users.TableNameSubGrid.Remove(Class.Users.TableNameSubGrid.Length - 4);
-
                             Class.Users.Query = $"SELECT DISTINCT  { matchfield1}, CASE WHEN B.TOKENNO = A.INDNO then 'No' else 'Yes' end STS from { tableName1} A  LEFT JOIN {tableName}  B  ON " + update1 + " ;";
-                           // DataSet ds1 = Utility.ExecuteSelectQuery(Class.Users.Query, tableName1);
-                           //DataTable dt1 = ds1.Tables[tableName1];
                             textBox1.Text += Class.Users.Query.ToString();
                             update1 = ""; Class.Users.Query = "";
                             string[]  split = textBox1.Text.Split(';');
@@ -706,14 +715,11 @@ namespace Pinnacle.Transactions.Tally
                             if (split[0].Length > 0)
                             {
                                 listView1.Items.Clear(); listfilterred.Items.Clear(); listfilterscreen.Items.Clear();
-                             fdebitamt = 0; fcreditamt = 0;
-                            tdebitamt = 0; tcreditamt = 0;
-                              
-                               
-                                string sel = "select distinct " + fromquery + ",x.sts from(" + split[0] + ") x  order by  4";
+                                fdebitamt = 0; fcreditamt = 0;
+                                tdebitamt = 0; tcreditamt = 0;
+                                string sel = "SELECT DISTINCT " + fromquery + ",X.STS from(" + split[0] + ") X  order by  2,4";
                                 listviewxl3(sel, tableName, tableName1, listView1);
 
-                                
                             }
                             else
                             {
@@ -726,7 +732,7 @@ namespace Pinnacle.Transactions.Tally
                                 i = 1;
                                 
                                   
-                                    string sel = "select distinct " + toquery + ",x.sts from(" + split[1] + ") x  order by  6";
+                                    string sel = "SELECT DISTINCT " + toquery + ",X.STS from(" + split[1] + ") X  order by  2,6";
                                     listviewxl4(sel, tableName, tableName1, listView2);
 
                                     
@@ -1703,50 +1709,47 @@ namespace Pinnacle.Transactions.Tally
                     i = 0;
                     foreach (string heders in hed2)
                     {
-                        listview.Columns.Add(heders.ToString().Replace("x.","").ToUpper());
-                        listview.Columns[i].Width =    i == 0 ? 30 :i ==4 ? 120 : i == 6 ? 250 : 80;                       
+                        listview.Columns.Add(heders.ToString().Replace("X.","").ToUpper());
+                        if (i == 0)
+                            listview.Columns[i].Width = 40;
+                        else if (i == 4)
+                            listview.Columns[i].Width = 120;
+                        else if (i == 6)
+                            listview.Columns[i].Width = 250;
+                        else
+                            listview.Columns[i].Width = 80;
                         i++;
                     }
                     i = 1;
-                        foreach (DataRow row in dt.Rows)
+                    progressBar1.Minimum = 0;
+                    progressBar1.Maximum = dt.Rows.Count;
+                    foreach (DataRow row in dt.Rows)
                     {
-                        ListViewItem list = new ListViewItem();
-                        int c = 0;
-                        for (c = 0; c < dt.Columns.Count; c++)
-                        {
-                            if (c == 0) { list.Text = i.ToString(); }
-                            else
-                            {
-                                list.SubItems.Add(row[c].ToString());
-                            }
-                            
-                        }
-                        if (row["STS"].ToString() == "No")
-                        {
-                            list.ForeColor = Color.Red;
-                            list.Font = new Font(list.Font, FontStyle.Bold);
-                        }
-                        else
-                        {
-                            list.ForeColor = Color.Black;
-                            list.Font = new Font(list.Font, FontStyle.Regular);
-                        }
-                        fdebitamt += Convert.ToDecimal("0");
-                        fcreditamt += Convert.ToDecimal("0");
-                  
-                        listview.Items.Add(list);
-                        unmatched = "";
-          
-                        Class.Users.Query = ""; unmatched = "";                      
-                        decimal per = ((decimal)(j + 1) / dt.Rows.Count) * 100;
-                        lblprogress1.Text = "" + (per).ToString("N0") + " %";
-                        lblprogress1.Refresh();
-                        progressBar1.Value = j; progressBar1.Maximum = dt.Rows.Count;
-                        i++; k++;
+                        ListViewItem list = new ListViewItem(i.ToString());
 
-                       
+                        for (int c = 1; c < dt.Columns.Count; c++)
+                        {
+                            list.SubItems.Add(row[c].ToString());
+                        }
+
+                        if (dt.Columns.Contains("STS") && row["STS"].ToString() == "Yes")
+                        {
+                            list.ForeColor = Color.White;
+                            list.BackColor = Class.Users.BackColors;
+                            list.Font = new Font(listview.Font, FontStyle.Bold);
+                        }
+
+                        listview.Items.Add(list);
+
+                        decimal per = ((decimal)(j + 1) / dt.Rows.Count) * 100;
+                        lblprogress1.Text = per.ToString("N0") + " %";
+
+                        progressBar1.Value = j;
+                        j++;
+                        i++;
                     }
-                    
+             
+
                 }
                 else
                 {
@@ -1755,7 +1758,7 @@ namespace Pinnacle.Transactions.Tally
 
             }
 
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show("From Table Column  MisMatch in Data Import Grid  'From Column' . " + ex.Message); }
             finally { listview.EndUpdate(); }
 
         }
@@ -1777,53 +1780,80 @@ namespace Pinnacle.Transactions.Tally
                 if (dt.Rows.Count>0 && tbl != "")
                 {
                     listfilterred1.Items.Clear(); listfilterscreen1.Items.Clear();
- fdebitamt = 0; fcreditamt = 0;
+                    fdebitamt = 0; fcreditamt = 0;
                    tdebitamt = 0; tcreditamt = 0;
                     i = 0;
                     foreach (string heders in hed2)
                     {
                         listView.Columns.Add(heders.ToString().Replace("x.", "").ToUpper());
-                        listView.Columns[i].Width = i == 0 ? 30 : i == 4 ? 100 : i == 6 ? 150 : 100;
+                        listView.Columns[i].Width = i == 0 ? 40 : i == 4 ? 100 : i == 6 ? 150 : 100;
                         i++;
                     }
                     i = 1;
                     foreach (DataRow row in dt.Rows)
                     {
-                        ListViewItem list = new ListViewItem();
+                        ListViewItem list = new ListViewItem(i.ToString());
 
-                        int c = 0;
-                        for (c = 0; c < dt.Columns.Count; c++)
+                        for (int c = 1; c < dt.Columns.Count; c++)
                         {
-                            if (c == 0) { list.Text = i.ToString(); }
-                            else
-                            {
-                                list.SubItems.Add(row[c].ToString());
-                            }
-
+                            list.SubItems.Add(row[c].ToString());
                         }
 
-                        if (row["STS"].ToString() == "No")
+                        if (dt.Columns.Contains("STS") && row["STS"].ToString() == "Yes")
                         {
-                            list.ForeColor = Color.Red;                            
-                            list.Font = new Font(list.Font.FontFamily, 10, FontStyle.Bold);
+                            list.ForeColor = Color.White;
+                            list.BackColor = Class.Users.BackColors;
+                            list.Font = new Font(listView.Font, FontStyle.Bold);
                         }
                         else
                         {
                             list.ForeColor = Color.Black;
-                            list.Font = new Font(list.Font, FontStyle.Regular);
+                            list.Font = new Font(listView.Font, FontStyle.Regular);
                         }
-                        unmatched = "";
-                        fdebitamt += Convert.ToDecimal("0" + row["Debit"].ToString());
-                        fcreditamt += Convert.ToDecimal("0" + row["Credit"].ToString());
-                        listView.Items.Add(list);i++;
+
+                        if (dt.Columns.Contains("Debit"))
+                            fdebitamt += Convert.ToDecimal(row["Debit"] == DBNull.Value ? 0 : row["Debit"]);
+
+                        if (dt.Columns.Contains("Credit"))
+                            fcreditamt += Convert.ToDecimal(row["Credit"] == DBNull.Value ? 0 : row["Credit"]);
+
+                        listView.Items.Add(list);
+                        i++;
                     }
+                    //foreach (DataRow row in dt.Rows)
+                    //{
+                    //    ListViewItem list =   new ListViewItem();
+
+                    //    int c = 0;
+                    //    for (c = 0; c < dt.Columns.Count; c++)
+                    //    {
+                    //        if (c == 0) { list.Text = i.ToString(); }
+                    //        else
+                    //        {
+                    //            list.SubItems.Add(row[c].ToString());
+                    //        }
+
+                    //    }
+
+                    //    if (row["STS"].ToString() == "No")
+                    //    {
+                    //        list.ForeColor = Color.White; list.BackColor = Class.Users.BackColors;
+                    //        list.Font = new Font(list.Font.FontFamily, 10, FontStyle.Bold);
+                    //    }
+                    //    else
+                    //    {
+                    //        list.ForeColor = Color.Black;
+                    //        list.Font = new Font(list.Font, FontStyle.Regular);
+                    //    }
+                    //    unmatched = "";
+                    //    fdebitamt += Convert.ToDecimal("0" + row["Debit"].ToString());
+                    //    fcreditamt += Convert.ToDecimal("0" + row["Credit"].ToString());
+                    //    listView.Items.Add(list);i++;
+                    //}
 
                     Class.Users.Query = ""; unmatched = "";
 
-                    decimal per = ((decimal)(k + 1) / dt.Rows.Count) * 100;
-                    lblprogress1.Text = "" + (per).ToString("N0") + " %";
-                    lblprogress1.Refresh();
-                    progressBar1.Value = j; progressBar1.Maximum = dt.Rows.Count;
+                 
                    
                      k++;
 
@@ -1831,7 +1861,7 @@ namespace Pinnacle.Transactions.Tally
                 }
 
             }
-            catch (Exception ex) { MessageBox.Show("From Table and To Table  Column MisMatch  . "+ex.Message); }
+            catch (Exception ex) { MessageBox.Show("To Table Column  MisMatch in Data Import Grid 'To Column' . " + ex.Message); }
             finally { listView.EndUpdate(); }
 
         }
@@ -2721,16 +2751,75 @@ namespace Pinnacle.Transactions.Tally
 
         }
 
+        private void checkNoMatch_CheckedChanged(object sender, EventArgs e)
+        {
+            checkFuel.Checked = false;
+            if (checkNoMatch.Checked == true)
+            {
+                try
+                {
+                    string checkTable = $"SELECT TRIGGER_NAME, TABLE_NAME, STATUS FROM USER_TRIGGERS  WHERE TABLE_NAME = '{tableName.ToUpper()}'";
+
+                    DataSet ds = Utility.ExecuteSelectQuery(checkTable, tableName);
+                    DataTable dt = ds.Tables[tableName];
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        listfilterdb.Items.Clear();
+                        dataGridView2.Rows.Clear();
+
+                        string sel2 = $"SELECT * FROM {tableName}";
+                        DataSet ds2 = Utility.ExecuteSelectQuery(sel2, tableName);
+                        DataTable dt2 = ds2.Tables[tableName];
+
+                        if (dt2.Rows.Count > 0)
+                        {
+                            int k = 1;
+
+                            for (int j = 0; j < dt2.Columns.Count; j++)
+                            {
+                                dataGridView2.Rows.Add();
+
+                                if (j == 0)
+                                    FromTable1.Items.Add(tableName1);
+
+                                dataGridView2.Rows[j].Cells[0].Value = k.ToString();
+                                dataGridView2.Rows[j].Cells[1].Value = CleanColumn(dt2.Columns[j].ColumnName);
+
+                               
+
+                                dataGridView2.Rows[j].DefaultCellStyle.BackColor = j % 2 == 0 ? Color.WhiteSmoke : Color.White;
+
+                                k++;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                GridLoad();
+            }
+        }
+        
+
         private void checkFuel_CheckedChanged(object sender, EventArgs e)
         {
+            fromCompany = "SELECT BB.DATEID, BB.DATE1, BB.COMPCODE, BB.TOKENNO, BB.VEHICLENO, BB.VEHTYPE, BB.EMPNAME, BB.DEPT, BB.ITEMNAME, BB.LITRES, BB.RATE, BB.BUNKNAME, BB.DEBIT, BB.STS FROM(SELECT y.DATEID, y.DATE1, y.COMPCODE, y.TOKENNO, y.VEHICLENO, y.VEHTYPE, y.EMPNAME, y.DEPT, y.ITEMNAME, y.LITRES, y.RATE, y.BUNKNAME, y.DEBIT, CASE WHEN y.TOKENNO = B.INDNO THEN 'No' ELSE 'Yes' END STS from (SELECT ROW_NUMBER() OVER (ORDER BY X.TOKENDATE) AS DATEID, TO_DATE(X.TOKENDATE, 'dd-MM-YY') AS DATE1, X.COMPCODE, X.TOKENNO,  X.VEHICLENO, X.VEHTYPE ,X.FNAME as EMPNAME, X.DEPT,  X.ITEMNAME,TO_NUMBER(X.LITRES) AS LITRES, ROUND(X.FUELRATE2, 2) AS RATE, X.BUNKNAME,ROUND(SUM(X.LITRES* X.FUELRATE2),2) AS DEBIT  FROM(SELECT A.ASPTBLVEHTOKENID, D.COMPCODE, SUBSTR(A.TOKENNO,11,10) AS TOKENNO, A.TOKENDATE,  (SELECT REPLACE(AA.VEHICLENO,' ','') AS VEHICLENO FROM HRVEHMAST AA JOIN HRVEHTYPEMAST Ab on AA.VEHICLETYPE=AB.HRVEHTYPEMASTID JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID= AA.COMPCODE    WHERE AA.HRVEHMASTID= A.VEHICLENO          UNION ALL           SELECT REPLACE(BA.VEHICLENO,' ','') AS VEHICLENO FROM ASPTBLVEHMAS BA JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID=BA.COMPCODE WHERE  BA.ASPTBLVEHMASID= A.VEHICLENO) AS VEHICLENO, (     SELECT  AB.VEHTYPE   FROM HRVEHMAST AA  JOIN HRVEHTYPEMAST Ab on AA.VEHICLETYPE = AB.HRVEHTYPEMASTID          JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID = AA.COMPCODE       WHERE  AA.HRVEHMASTID = A.VEHICLENO      UNION ALL       SELECT  BA.VCATEGORY as VEHTYPE FROM ASPTBLVEHMAS BA   JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID = BA.COMPCODE   WHERE  BA.ASPTBLVEHMASID = A.VEHICLENO     ) AS VEHTYPE, CONCAT(E.fname, concat('-', F.MIDCARD))  AS FNAME, J.MNNAME1 AS  DEPT,  H.ITEMNAME,  CASE B.LITRES  WHEN  'FULL' THEN '0'    ELSE B.LITRES END as LITRES, (SELECT max(AA.FUELRATE2) AS FUELRATE2 FROM ASPTBLFUELRATEMASDET AA JOIN GTCOMPMAST AB ON AA.COMPCODE = AB.GTCOMPMASTID JOIN GTGENITEMMAST AC ON AC.GTGENITEMMASTID = AA.ITEMNAME    WHERE AB.COMPCODE = D.COMPCODE AND AC.GTGENITEMMASTID = AA.ITEMNAME AND AA.BUNKNAME= A.BUNKNAME  AND AC.ITEMNAME = H.ITEMNAME  AND AA.ASPTBLFUELRATEMASDETID = (SELECT MAX(ZAA.ASPTBLFUELRATEMASDETID) FROM ASPTBLFUELRATEMASDET ZAA  JOIN GTCOMPMAST ZAB ON ZAA.COMPCODE = ZAB.GTCOMPMASTID JOIN GTGENITEMMAST ZAC ON ZAC.GTGENITEMMASTID = ZAA.ITEMNAME   WHERE ZAB.COMPCODE = AB.COMPCODE AND ZAA.BUNKNAME= A.BUNKNAME  AND ZAC.ITEMNAME = AC.ITEMNAME  AND ZAA.COMPCODE= D.GTCOMPMASTID AND ZAA.FUELDATE <= A.TOKENDATE  )  )  AS FUELRATE2, I.BUNKNAME,I.BUNKNAME AS ACTIVE,                A.REMARKS ,'March-2026' AS TODATE, A.TOTALKM AS ASPTBLVEHTOKENID1,F.MIDCARD AS LITRES1 FROM  ASPTBLVEHTOKEN A     JOIN ASPTBLVEHTOKENDET B ON A.ASPTBLVEHTOKENID=B.ASPTBLVEHTOKENID AND A.TOKENCANCEL='F'   JOIN GTCOMPMAST D ON D.GTCOMPMASTID=A.COMPCODE JOIN HREMPLOYMAST E ON E.HREMPLOYMASTID=A.EMPNAME JOIN hremploydetails F ON F.HREMPLOYMASTID= E.HREMPLOYMASTID  join HRVEHTYPEMAST G on G.HRVEHTYPEMASTid= A.VEHICLETYPE JOIN GTGENITEMMAST H ON H.GTGENITEMMASTID= B.ITEMNAME  JOIN ASPTBLPETMAS I ON I.COMPCODE= D.GTCOMPMASTID AND I.COMPCODE= A.COMPCODE   AND I.ASPTBLPETMASID= A.BUNKNAME join GTDEPTDESGMAST j on   J.GTDEPTDESGMASTID= F.DEPTNAME) X WHERE X.COMPCODE='" + Class.Users.HCompcode + "' AND X.TOKENDATE between TO_DATE('" + frmdate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy') AND TO_DATE('" + todate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy')  AND X.BUNKNAME='" + combobunk.Text + "' GROUP BY    X.TOKENDATE, X.COMPCODE, X.TOKENNO, X.VEHICLENO, X.VEHTYPE , X.FNAME, X.DEPT, X.ITEMNAME, X.LITRES, X.FUELRATE2, X.BUNKNAME ) y left  JOIN TO_AGF B ON  y.DATE1 = B.DATE1 AND  y.VEHICLENO = B.VEHICLE AND  y.TOKENNO = B.INDNO AND  y.RATE = B.RATE) BB ORDER BY 1,4";
+            toCompnay = "SELECT AA.DATEID,AA.DATE1,AA.PARTICULARS,AA.VCHTYPE,AA.VCHNO,AA.INDNO,AA.VEHICLE,AA.FUELQTY,AA.RATE,AA.LUB,AA.DEBIT,AA.CREDIT,CASE WHEN Y.TOKENNO = AA.INDNO THEN 'No' ELSE 'Yes' END STS FROM (SELECT ROW_NUMBER() OVER (ORDER BY X.TOKENDATE) AS DATEID,  TO_DATE(X.TOKENDATE, 'dd-MM-YY') AS DATE1, X.COMPCODE, X.TOKENNO,  X.VEHICLENO, X.VEHTYPE ,X.FNAME AS EMPNAME, X.DEPT,  X.ITEMNAME,TO_NUMBER(X.LITRES) AS LITRES,ROUND(X.FUELRATE2,2) AS RATE ,X.BUNKNAME,ROUND(SUM(X.LITRES*X.FUELRATE2),2) AS DEBIT  FROM  (  SELECT A.ASPTBLVEHTOKENID, D.COMPCODE,SUBSTR(A.TOKENNO,11,10) AS TOKENNO,  A.TOKENDATE,  (   SELECT  REPLACE(AA.VEHICLENO,' ','') AS VEHICLENO  FROM HRVEHMAST AA  JOIN HRVEHTYPEMAST AB ON AA.VEHICLETYPE=AB.HRVEHTYPEMASTID          JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID=AA.COMPCODE    WHERE  AA.HRVEHMASTID=A.VEHICLENO          UNION ALL           SELECT  REPLACE(BA.VEHICLENO,' ','') AS VEHICLENO FROM ASPTBLVEHMAS BA      JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID=BA.COMPCODE   WHERE  BA.ASPTBLVEHMASID=A.VEHICLENO     ) AS VEHICLENO , (     SELECT  AB.VEHTYPE   FROM HRVEHMAST AA  JOIN HRVEHTYPEMAST AB ON AA.VEHICLETYPE=AB.HRVEHTYPEMASTID          JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID=AA.COMPCODE       WHERE  AA.HRVEHMASTID=A.VEHICLENO      UNION ALL       SELECT  BA.VCATEGORY AS VEHTYPE FROM ASPTBLVEHMAS BA   JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID=BA.COMPCODE   WHERE  BA.ASPTBLVEHMASID=A.VEHICLENO     ) AS VEHTYPE ,CONCAT(E.FNAME, CONCAT('-', F.MIDCARD))  AS FNAME, J.MNNAME1 AS  DEPT,  H.ITEMNAME,  CASE B.LITRES  WHEN  'FULL' THEN '0'    ELSE B.LITRES END AS LITRES,    (SELECT MAX(AA.FUELRATE2) AS FUELRATE2         FROM ASPTBLFUELRATEMASDET AA JOIN GTCOMPMAST AB  ON AA.COMPCODE = AB.GTCOMPMASTID JOIN GTGENITEMMAST AC ON AC.GTGENITEMMASTID = AA.ITEMNAME    WHERE AB.COMPCODE = D.COMPCODE AND AC.GTGENITEMMASTID = AA.ITEMNAME AND AA.BUNKNAME=A.BUNKNAME  AND AC.ITEMNAME = H.ITEMNAME  AND AA.ASPTBLFUELRATEMASDETID = ( SELECT MAX(ZAA.ASPTBLFUELRATEMASDETID) FROM ASPTBLFUELRATEMASDET ZAA  JOIN GTCOMPMAST ZAB  ON ZAA.COMPCODE = ZAB.GTCOMPMASTID JOIN GTGENITEMMAST ZAC ON ZAC.GTGENITEMMASTID = ZAA.ITEMNAME   WHERE ZAB.COMPCODE = AB.COMPCODE AND ZAA.BUNKNAME=A.BUNKNAME  AND ZAC.ITEMNAME = AC.ITEMNAME  AND ZAA.COMPCODE=D.GTCOMPMASTID AND ZAA.FUELDATE <= A.TOKENDATE  )  )  AS FUELRATE2,I.BUNKNAME,I.BUNKNAME AS ACTIVE,                A.REMARKS ,'March-2026' AS TODATE ,A.TOTALKM AS ASPTBLVEHTOKENID1,F.MIDCARD AS LITRES1  FROM  ASPTBLVEHTOKEN A     JOIN ASPTBLVEHTOKENDET B ON A.ASPTBLVEHTOKENID=B.ASPTBLVEHTOKENID   AND A.TOKENCANCEL='F'   JOIN GTCOMPMAST D ON D.GTCOMPMASTID=A.COMPCODE  JOIN HREMPLOYMAST E ON E.HREMPLOYMASTID=A.EMPNAME       JOIN HREMPLOYDETAILS F ON F.HREMPLOYMASTID=E.HREMPLOYMASTID  JOIN HRVEHTYPEMAST G ON G.HRVEHTYPEMASTID=A.VEHICLETYPE JOIN GTGENITEMMAST H ON H.GTGENITEMMASTID=B.ITEMNAME  JOIN ASPTBLPETMAS I ON I.COMPCODE=D.GTCOMPMASTID AND I.COMPCODE=A.COMPCODE   AND  I.ASPTBLPETMASID=A.BUNKNAME JOIN GTDEPTDESGMAST J ON   J.GTDEPTDESGMASTID=F.DEPTNAME ) X  WHERE X.COMPCODE='" + Class.Users.HCompcode + "' AND   X.TOKENDATE between TO_DATE('" + frmdate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy') AND TO_DATE('" + todate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy')  AND X.BUNKNAME='" + combobunk.Text + "'  GROUP BY    X.TOKENDATE,X.COMPCODE,X.TOKENNO,  X.VEHICLENO, X.VEHTYPE ,X.FNAME, X.DEPT,  X.ITEMNAME,X.LITRES, X.FUELRATE2,X.BUNKNAME )  Y   RIGHT  JOIN TO_AGF AA  ON  Y.DATE1 = AA.DATE1  AND  Y.VEHICLENO = AA.VEHICLE AND  Y.TOKENNO = AA.INDNO AND  Y.RATE = AA.RATE  ORDER BY 1,6";
 
-            tabControl1.SelectTab(tabPage1);
+            tabControl1.SelectTab(tabPage1); checkNoMatch.Checked = false;
             if (checkFuel.Checked == true)
             {
-                string sel = "SELECT X.DATEID,X.DATE1,X.COMPCODE,X.TOKENNO,X.VEHICLENO,X.VEHTYPE,X.EMPNAME,X.DEPT,X.ITEMNAME,X.LITRES,X.FUELRATE2,X.BUNKNAME,X.TOTAL,X.STS FROM(SELECT DISTINCT  A.DATEID,A.DATE1,A.COMPCODE,A.TOKENNO,A.VEHICLENO,A.VEHTYPE,A.EMPNAME,A.DEPT,A.ITEMNAME,A.LITRES,A.FUELRATE2,A.BUNKNAME,A.TOTAL, CASE WHEN A.TOKENNO = B.INDNO THEN 'No' ELSE 'Yes' END STS FROM MY_AGF A  LEFT JOIN TO_AGF B  ON  A.DATEID = B.DATEID AND  A.DATE1 = B.DATE1 AND  A.VEHICLENO = B.VEHICLE AND  A.TOKENNO = B.INDNO AND  A.FUELRATE2 = B.RATE ) X  ORDER BY  4";
-                listviewxl3(sel, tableName, tableName1, listView1);
-                string sel0 = "select X.DATEID,X.DATE1,X.PARTICULARS,X.VCHTYPE,X.VCHNO,X.INDNO,X.VEHICLE,X.FUELQTY,X.RATE,X.LUB,X.DEBIT,X.CREDIT,x.sts from( SELECT DISTINCT  A.DATEID,A.DATE1,A.PARTICULARS,A.VCHTYPE,A.VCHNO,A.INDNO,A.VEHICLE,A.FUELQTY,A.RATE,A.LUB,A.DEBIT,A.CREDIT, CASE WHEN B.TOKENNO = A.INDNO then 'No' else 'Yes' end STS from TO_AGF A  LEFT JOIN MY_AGF B  ON A.DATEID = B.DATEID AND B.DATE1 = A.DATE1 AND  A.VEHICLE = B.VEHICLENO  AND  B.TOKENNO = A.INDNO AND  B.FUELRATE2 = A.RATE  ) x  order by  6";
-                listviewxl4(sel0, tableName, tableName1, listView2);
+                // string sel = "SELECT X.DATEID,X.DATE1,X.COMPCODE,X.TOKENNO,X.VEHICLENO,X.VEHTYPE,X.EMPNAME,X.DEPT,X.ITEMNAME,X.LITRES,X.RATE,X.BUNKNAME,X.DEBIT,X.STS FROM(SELECT DISTINCT  A.DATEID,A.DATE1,A.COMPCODE,A.TOKENNO,A.VEHICLENO,A.VEHTYPE,A.EMPNAME,A.DEPT,A.ITEMNAME,A.LITRES,A.RATE,A.BUNKNAME,A.TOTAL AS DEBIT, CASE WHEN A.TOKENNO = B.INDNO THEN 'No' ELSE 'Yes' END STS FROM MY_AGF A  LEFT JOIN TO_AGF B  ON  A.DATEID = B.DATEID AND  A.DATE1 = B.DATE1 AND  A.VEHICLENO = B.VEHICLE AND  A.TOKENNO = B.INDNO AND  A.RATE = B.RATE ) X  ORDER BY  4";
+
+                listviewxl3(fromCompany, tableName, tableName1, listView1);
+                //string sel0 = "select X.DATEID,X.DATE1,X.PARTICULARS,X.VCHTYPE,X.VCHNO,X.INDNO,X.VEHICLE,X.FUELQTY,X.RATE,X.LUB,X.DEBIT,X.CREDIT,x.sts from( SELECT DISTINCT  A.DATEID,A.DATE1,A.PARTICULARS,A.VCHTYPE,A.VCHNO,A.INDNO,A.VEHICLE,A.FUELQTY,A.RATE,A.LUB,A.DEBIT,A.CREDIT, CASE WHEN B.TOKENNO = A.INDNO then 'No' else 'Yes' end STS from TO_AGF A  LEFT JOIN MY_AGF B  ON A.DATEID = B.DATEID AND B.DATE1 = A.DATE1 AND  A.VEHICLE = B.VEHICLENO  AND  B.TOKENNO = A.INDNO AND  B.RATE = A.RATE  ) x  order by  6";
+                listviewxl4(toCompnay, tableName, tableName1, listView2);
             }
             else
             {
@@ -2750,9 +2839,11 @@ namespace Pinnacle.Transactions.Tally
 
             if (dataGridView1.Rows.Count <= 0)
             {
+                fromCompany = "";
+                fromCompany = "SELECT BB.DATE1, BB.COMPCODE, BB.TOKENNO, BB.VEHICLENO, BB.VEHTYPE, BB.EMPNAME, BB.DEPT, BB.ITEMNAME, BB.LITRES, BB.RATE, BB.BUNKNAME, BB.DEBIT FROM(SELECT y.DATEID, y.DATE1, y.COMPCODE, y.TOKENNO, y.VEHICLENO, y.VEHTYPE, y.EMPNAME, y.DEPT, y.ITEMNAME, y.LITRES, y.RATE, y.BUNKNAME, y.DEBIT from (SELECT ROW_NUMBER() OVER (ORDER BY X.TOKENDATE) AS DATEID, TO_DATE(X.TOKENDATE, 'dd-MM-YY') AS DATE1, X.COMPCODE, X.TOKENNO,  X.VEHICLENO, X.VEHTYPE ,X.FNAME as EMPNAME, X.DEPT,  X.ITEMNAME,TO_NUMBER(X.LITRES) AS LITRES, ROUND(X.FUELRATE2, 2) AS RATE, X.BUNKNAME,ROUND(SUM(X.LITRES* X.FUELRATE2),2) AS DEBIT  FROM(SELECT A.ASPTBLVEHTOKENID, D.COMPCODE, SUBSTR(A.TOKENNO,11,10) AS TOKENNO, A.TOKENDATE,  (SELECT REPLACE(AA.VEHICLENO,' ','') AS VEHICLENO FROM HRVEHMAST AA JOIN HRVEHTYPEMAST Ab on AA.VEHICLETYPE=AB.HRVEHTYPEMASTID JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID= AA.COMPCODE    WHERE AA.HRVEHMASTID= A.VEHICLENO          UNION ALL           SELECT REPLACE(BA.VEHICLENO,' ','') AS VEHICLENO FROM ASPTBLVEHMAS BA JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID=BA.COMPCODE WHERE  BA.ASPTBLVEHMASID= A.VEHICLENO) AS VEHICLENO, (     SELECT  AB.VEHTYPE   FROM HRVEHMAST AA  JOIN HRVEHTYPEMAST Ab on AA.VEHICLETYPE = AB.HRVEHTYPEMASTID          JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID = AA.COMPCODE       WHERE  AA.HRVEHMASTID = A.VEHICLENO      UNION ALL       SELECT  BA.VCATEGORY as VEHTYPE FROM ASPTBLVEHMAS BA   JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID = BA.COMPCODE   WHERE  BA.ASPTBLVEHMASID = A.VEHICLENO     ) AS VEHTYPE, CONCAT(E.fname, concat('-', F.MIDCARD))  AS FNAME, J.MNNAME1 AS  DEPT,  H.ITEMNAME,  CASE B.LITRES  WHEN  'FULL' THEN '0'    ELSE B.LITRES END as LITRES, (SELECT max(AA.FUELRATE2) AS FUELRATE2 FROM ASPTBLFUELRATEMASDET AA JOIN GTCOMPMAST AB ON AA.COMPCODE = AB.GTCOMPMASTID JOIN GTGENITEMMAST AC ON AC.GTGENITEMMASTID = AA.ITEMNAME    WHERE AB.COMPCODE = D.COMPCODE AND AC.GTGENITEMMASTID = AA.ITEMNAME AND AA.BUNKNAME= A.BUNKNAME  AND AC.ITEMNAME = H.ITEMNAME  AND AA.ASPTBLFUELRATEMASDETID = (SELECT MAX(ZAA.ASPTBLFUELRATEMASDETID) FROM ASPTBLFUELRATEMASDET ZAA  JOIN GTCOMPMAST ZAB ON ZAA.COMPCODE = ZAB.GTCOMPMASTID JOIN GTGENITEMMAST ZAC ON ZAC.GTGENITEMMASTID = ZAA.ITEMNAME   WHERE ZAB.COMPCODE = AB.COMPCODE AND ZAA.BUNKNAME= A.BUNKNAME  AND ZAC.ITEMNAME = AC.ITEMNAME  AND ZAA.COMPCODE= D.GTCOMPMASTID AND ZAA.FUELDATE <= A.TOKENDATE  )  )  AS FUELRATE2, I.BUNKNAME,I.BUNKNAME AS ACTIVE,                A.REMARKS ,'March-2026' AS TODATE, A.TOTALKM AS ASPTBLVEHTOKENID1,F.MIDCARD AS LITRES1 FROM  ASPTBLVEHTOKEN A     JOIN ASPTBLVEHTOKENDET B ON A.ASPTBLVEHTOKENID=B.ASPTBLVEHTOKENID AND A.TOKENCANCEL='F'   JOIN GTCOMPMAST D ON D.GTCOMPMASTID=A.COMPCODE JOIN HREMPLOYMAST E ON E.HREMPLOYMASTID=A.EMPNAME JOIN hremploydetails F ON F.HREMPLOYMASTID= E.HREMPLOYMASTID  join HRVEHTYPEMAST G on G.HRVEHTYPEMASTid= A.VEHICLETYPE JOIN GTGENITEMMAST H ON H.GTGENITEMMASTID= B.ITEMNAME  JOIN ASPTBLPETMAS I ON I.COMPCODE= D.GTCOMPMASTID AND I.COMPCODE= A.COMPCODE   AND I.ASPTBLPETMASID= A.BUNKNAME join GTDEPTDESGMAST j on   J.GTDEPTDESGMASTID= F.DEPTNAME) X WHERE X.COMPCODE='" + Class.Users.HCompcode + "' AND X.TOKENDATE between TO_DATE('" + frmdate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy') AND TO_DATE('" + todate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy')  AND X.BUNKNAME='" + combobunk.Text + "' GROUP BY    X.TOKENDATE, X.COMPCODE, X.TOKENNO, X.VEHICLENO, X.VEHTYPE , X.FNAME, X.DEPT, X.ITEMNAME, X.LITRES, X.FUELRATE2, X.BUNKNAME ) y left  JOIN TO_AGF B ON  y.DATE1 = B.DATE1 AND  y.VEHICLENO = B.VEHICLE AND  y.TOKENNO = B.INDNO AND  y.RATE = B.RATE) BB ORDER BY 1";
 
-                string sel2 = "SELECT TO_CHAR(X.TOKENDATE,'DD-MM-YY') AS DATE1, X.COMPCODE,X.TOKENNO,X.VEHICLENO, X.VEHTYPE ,X.FNAME as EMPNAME, X.DEPT,  X.ITEMNAME,TO_NUMBER(X.LITRES) AS LITRES,ROUND(X.FUELRATE2,2) AS FUELRATE2 ,X.BUNKNAME,  ROUND(SUM(X.LITRES*X.FUELRATE2),2) AS TOTAL FROM  (   SELECT A.ASPTBLVEHTOKENID, D.COMPCODE, substr(A.TOKENNO,11,10) as tokenno, A.TOKENDATE,  (   SELECT  AA.VEHICLENO   FROM HRVEHMAST AA  JOIN HRVEHTYPEMAST AB on AA.VEHICLETYPE=AB.HRVEHTYPEMASTID     JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID=AA.COMPCODE    WHERE  AA.HRVEHMASTID=A.VEHICLENO          UNION ALL            SELECT  BA.VEHICLENO FROM ASPTBLVEHMAS BA      JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID=BA.COMPCODE   WHERE  BA.ASPTBLVEHMASID=A.VEHICLENO     ) AS VEHICLENO , ( SELECT  AB.VEHTYPE   FROM HRVEHMAST AA  JOIN HRVEHTYPEMAST Ab on AA.VEHICLETYPE=AB.HRVEHTYPEMASTID          JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID=AA.COMPCODE   WHERE  AA.HRVEHMASTID=A.VEHICLENO      UNION ALL       SELECT  BA.VCATEGORY as VEHTYPE FROM ASPTBLVEHMAS BA   JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID=BA.COMPCODE  WHERE  BA.ASPTBLVEHMASID=A.VEHICLENO     ) AS VEHTYPE ,CONCAT(E.fname, concat('-', F.MIDCARD))  AS FNAME, J.MNNAME1 AS  DEPT,  H.ITEMNAME, CASE B.LITRES  WHEN  'FULL' THEN '0'    ELSE B.LITRES END as LITRES,    (SELECT max(AA.FUELRATE2) AS FUELRATE2       FROM ASPTBLFUELRATEMASDET AA JOIN GTCOMPMAST AB  ON AA.COMPCODE = AB.GTCOMPMASTID JOIN GTGENITEMMAST AC ON AC.GTGENITEMMASTID = AA.ITEMNAME  WHERE AB.COMPCODE = D.COMPCODE AND AC.GTGENITEMMASTID = AA.ITEMNAME AND AA.BUNKNAME=A.BUNKNAME  AND AC.ITEMNAME = H.ITEMNAME  AND AA.ASPTBLFUELRATEMASDETID = ( SELECT MAX(ZAA.ASPTBLFUELRATEMASDETID) FROM ASPTBLFUELRATEMASDET ZAA JOIN GTCOMPMAST ZAB  ON ZAA.COMPCODE = ZAB.GTCOMPMASTID JOIN GTGENITEMMAST ZAC ON ZAC.GTGENITEMMASTID = ZAA.ITEMNAME  WHERE ZAB.COMPCODE = AB.COMPCODE AND ZAA.BUNKNAME=A.BUNKNAME  AND ZAC.ITEMNAME = AC.ITEMNAME  AND ZAA.COMPCODE=D.GTCOMPMASTID AND ZAA.FUELDATE <= A.TOKENDATE  )  )  AS FUELRATE2,I.BUNKNAME,  A.REMARKS  FROM  ASPTBLVEHTOKEN A     JOIN ASPTBLVEHTOKENDET B ON A.ASPTBLVEHTOKENID=B.ASPTBLVEHTOKENID   AND A.TOKENCANCEL='F'   JOIN GTCOMPMAST D ON D.GTCOMPMASTID=A.COMPCODE  JOIN HREMPLOYMAST E ON E.HREMPLOYMASTID=A.EMPNAME       JOIN hremploydetails F ON F.HREMPLOYMASTID=E.HREMPLOYMASTID  join HRVEHTYPEMAST G on G.HRVEHTYPEMASTid=A.VEHICLETYPE JOIN GTGENITEMMAST H ON H.GTGENITEMMASTID=B.ITEMNAME  JOIN ASPTBLPETMAS I ON I.COMPCODE=D.GTCOMPMASTID AND I.COMPCODE=A.COMPCODE   AND  I.ASPTBLPETMASID=A.BUNKNAME join GTDEPTDESGMAST j on   J.GTDEPTDESGMASTID=F.DEPTNAME ) X WHERE X.COMPCODE='" + Class.Users.HCompcode + "' AND   X.TOKENDATE between TO_DATE('" + frmdate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy') AND TO_DATE('" + todate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy')  AND X.BUNKNAME='" + combobunk.Text + "' GROUP BY X.TOKENDATE, X.COMPCODE,X.TOKENNO,X.VEHICLENO, X.VEHTYPE ,X.FNAME, X.DEPT,  X.ITEMNAME,X.LITRES, X.FUELRATE2,X.BUNKNAME,X.REMARKS ORDER BY 1";
-                DataSet ds2 = Utility.ExecuteSelectQuery(sel2, "ASPTBLVEHTOKEN");
+                //"SELECT TO_CHAR(X.TOKENDATE,'DD-MM-YY') AS DATE1, X.COMPCODE,X.TOKENNO,X.VEHICLENO, X.VEHTYPE ,X.FNAME as EMPNAME, X.DEPT,  X.ITEMNAME,TO_NUMBER(X.LITRES) AS LITRES,ROUND(X.FUELRATE2,2) AS RATE ,X.BUNKNAME,  ROUND(SUM(X.LITRES*X.FUELRATE2),2) AS TOTAL FROM  (   SELECT A.ASPTBLVEHTOKENID, D.COMPCODE, substr(A.TOKENNO,11,10) as tokenno, A.TOKENDATE,  (   SELECT  AA.VEHICLENO   FROM HRVEHMAST AA  JOIN HRVEHTYPEMAST AB on AA.VEHICLETYPE=AB.HRVEHTYPEMASTID     JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID=AA.COMPCODE    WHERE  AA.HRVEHMASTID=A.VEHICLENO          UNION ALL            SELECT  BA.VEHICLENO FROM ASPTBLVEHMAS BA      JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID=BA.COMPCODE   WHERE  BA.ASPTBLVEHMASID=A.VEHICLENO     ) AS VEHICLENO , ( SELECT  AB.VEHTYPE   FROM HRVEHMAST AA  JOIN HRVEHTYPEMAST Ab on AA.VEHICLETYPE=AB.HRVEHTYPEMASTID          JOIN GTCOMPMAST AC ON AC.GTCOMPMASTID=AA.COMPCODE   WHERE  AA.HRVEHMASTID=A.VEHICLENO      UNION ALL       SELECT  BA.VCATEGORY as VEHTYPE FROM ASPTBLVEHMAS BA   JOIN GTCOMPMAST BC ON BC.GTCOMPMASTID=BA.COMPCODE  WHERE  BA.ASPTBLVEHMASID=A.VEHICLENO     ) AS VEHTYPE ,CONCAT(E.fname, concat('-', F.MIDCARD))  AS FNAME, J.MNNAME1 AS  DEPT,  H.ITEMNAME, CASE B.LITRES  WHEN  'FULL' THEN '0'    ELSE B.LITRES END as LITRES,    (SELECT max(AA.FUELRATE2) AS FUELRATE2       FROM ASPTBLFUELRATEMASDET AA JOIN GTCOMPMAST AB  ON AA.COMPCODE = AB.GTCOMPMASTID JOIN GTGENITEMMAST AC ON AC.GTGENITEMMASTID = AA.ITEMNAME  WHERE AB.COMPCODE = D.COMPCODE AND AC.GTGENITEMMASTID = AA.ITEMNAME AND AA.BUNKNAME=A.BUNKNAME  AND AC.ITEMNAME = H.ITEMNAME  AND AA.ASPTBLFUELRATEMASDETID = ( SELECT MAX(ZAA.ASPTBLFUELRATEMASDETID) FROM ASPTBLFUELRATEMASDET ZAA JOIN GTCOMPMAST ZAB  ON ZAA.COMPCODE = ZAB.GTCOMPMASTID JOIN GTGENITEMMAST ZAC ON ZAC.GTGENITEMMASTID = ZAA.ITEMNAME  WHERE ZAB.COMPCODE = AB.COMPCODE AND ZAA.BUNKNAME=A.BUNKNAME  AND ZAC.ITEMNAME = AC.ITEMNAME  AND ZAA.COMPCODE=D.GTCOMPMASTID AND ZAA.FUELDATE <= A.TOKENDATE  )  )  AS FUELRATE2,I.BUNKNAME,  A.REMARKS  FROM  ASPTBLVEHTOKEN A     JOIN ASPTBLVEHTOKENDET B ON A.ASPTBLVEHTOKENID=B.ASPTBLVEHTOKENID   AND A.TOKENCANCEL='F'   JOIN GTCOMPMAST D ON D.GTCOMPMASTID=A.COMPCODE  JOIN HREMPLOYMAST E ON E.HREMPLOYMASTID=A.EMPNAME       JOIN hremploydetails F ON F.HREMPLOYMASTID=E.HREMPLOYMASTID  join HRVEHTYPEMAST G on G.HRVEHTYPEMASTid=A.VEHICLETYPE JOIN GTGENITEMMAST H ON H.GTGENITEMMASTID=B.ITEMNAME  JOIN ASPTBLPETMAS I ON I.COMPCODE=D.GTCOMPMASTID AND I.COMPCODE=A.COMPCODE   AND  I.ASPTBLPETMASID=A.BUNKNAME join GTDEPTDESGMAST j on   J.GTDEPTDESGMASTID=F.DEPTNAME ) X WHERE X.COMPCODE='" + Class.Users.HCompcode + "' AND   X.TOKENDATE between TO_DATE('" + frmdate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy') AND TO_DATE('" + todate.Value.ToString("dd-MM-yyyy") + "','dd-MM-yyyy')  AND X.BUNKNAME='" + combobunk.Text + "' GROUP BY X.TOKENDATE, X.COMPCODE,X.TOKENNO,X.VEHICLENO, X.VEHTYPE ,X.FNAME, X.DEPT,  X.ITEMNAME,X.LITRES, X.FUELRATE2,X.BUNKNAME,X.REMARKS ORDER BY 1";
+                DataSet ds2 = Utility.ExecuteSelectQuery(fromCompany, "ASPTBLVEHTOKEN");
                 DataTable dt2 = ds2.Tables["ASPTBLVEHTOKEN"];
 
                 dataGridView1.DataSource = dt2;
@@ -2801,9 +2892,11 @@ namespace Pinnacle.Transactions.Tally
                             {
                                 
 
-                                columnDef += "dateid INTEGER PRIMARY KEY, date1 DATE";
+                                columnDef += "dateid INTEGER PRIMARY KEY ,DATE1 DATE";
                                 columnList += colName;
+                                
                             }
+                           
                             else
                             {
                                 columnDef += "," + colName + " VARCHAR2(100)";
@@ -2962,12 +3055,7 @@ namespace Pinnacle.Transactions.Tally
 
                         if (i == 0)
                         {
-                            //if (colName != "date")
-                            //{
-                            //    MessageBox.Show("First Column Should be Date Column in Excel");
-                            //    return;
-                            //}
-
+                           
                             columnDef += "dateid INTEGER PRIMARY KEY, date1 DATE";
                             columnList += colName+"1";
                         }

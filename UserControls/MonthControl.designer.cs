@@ -34,7 +34,9 @@ namespace Pinnacle.UserControls
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblusermonth = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblusercompcode
@@ -69,13 +71,14 @@ namespace Pinnacle.UserControls
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lblusermonth);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.lblusercompcode);
             this.panel1.Controls.Add(this.lbluserfinyear);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(281, 99);
+            this.panel1.Size = new System.Drawing.Size(304, 81);
             this.panel1.TabIndex = 3;
             // 
             // lblusermonth
@@ -87,7 +90,7 @@ namespace Pinnacle.UserControls
             this.lblusermonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblusermonth.Location = new System.Drawing.Point(9, 21);
             this.lblusermonth.Name = "lblusermonth";
-            this.lblusermonth.Size = new System.Drawing.Size(257, 61);
+            this.lblusermonth.Size = new System.Drawing.Size(244, 43);
             this.lblusermonth.TabIndex = 4;
             this.lblusermonth.Text = "Month";
             this.lblusermonth.UseVisualStyleBackColor = true;
@@ -99,23 +102,36 @@ namespace Pinnacle.UserControls
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(277, 5);
+            this.panel2.Size = new System.Drawing.Size(300, 5);
             this.panel2.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(259, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(38, 43);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // MonthControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "MonthControl";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(290, 108);
+            this.Size = new System.Drawing.Size(313, 90);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -127,5 +143,6 @@ namespace Pinnacle.UserControls
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button lblusermonth;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
