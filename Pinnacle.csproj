@@ -195,6 +195,12 @@
       <HintPath>packages\CrystalReports.Windows.Forms.13.0.4000\lib\net40\CrystalDecisions.Windows.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.20.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.20.0\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <HintPath>packages\CrystalReports.FlashControlV71.13.0.3500\lib\net20\FlashControlV71.dll</HintPath>
     </Reference>
@@ -214,6 +220,10 @@
       <HintPath>packages\Microsoft.Office.Interop.Excel.12.0.4518.1014\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -291,6 +301,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tulpep.NotificationWindow, Version=1.1.38.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -668,6 +681,8 @@
     <Compile Include="Models\MsSQLAcc.cs" />
     <Compile Include="Models\NHdaymodel.cs" />
     <Compile Include="Models\SMSResponse.cs" />
+    <Compile Include="Models\Tally\FinYearModel.cs" />
+    <Compile Include="Models\Tally\TransactionCompenstate.cs" />
     <Compile Include="Models\ToolStripAccess.cs" />
     <Compile Include="OracleHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -715,8 +730,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OutPassReport.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\BuyerSampleReport.cs">
       <SubType>Form</SubType>
@@ -733,8 +748,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CanteenReport.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\CompanyVehicleCrystalReport.cs">
       <AutoGen>True</AutoGen>
@@ -1369,6 +1384,12 @@
     <Compile Include="Transactions\SecurityInventry.Designer.cs">
       <DependentUpon>SecurityInventry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\Tally\ReConciliation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Tally\ReConciliation.designer.cs">
+      <DependentUpon>ReConciliation.cs</DependentUpon>
+    </Compile>
     <Compile Include="TreeView\ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1900,6 +1921,9 @@
     <EmbeddedResource Include="Transactions\SecurityDelivery.resx">
       <DependentUpon>SecurityDelivery.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Tally\ReConciliation.resx">
+      <DependentUpon>ReConciliation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Colors.resx">
       <DependentUpon>Colors.cs</DependentUpon>
     </EmbeddedResource>
@@ -2308,6 +2332,33 @@
     <None Include="Resources\tea1" />
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="Acrobat">
+      <Guid>{E64169B3-3592-47D2-816E-602C5C13F328}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AcrobatAccessLib">
+      <Guid>{C523F390-9C83-11D3-9094-00104BD0D535}</Guid>
+      <VersionMajor>3</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AcroBrokerLib">
+      <Guid>{41738EEA-442F-477F-92CF-2889BD6CD7E7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
@@ -2368,6 +2419,7 @@
     <None Include="Resources\print.png" />
     <None Include="Resources\Prints1.jpg" />
     <None Include="Resources\Prints2.jpg" />
+    <None Include="Resources\info2.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

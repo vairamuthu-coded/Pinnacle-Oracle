@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+using Tulpep.NotificationWindow;
+using System.Drawing;
+
 namespace Pinnacle.Models
 {
     class Master
@@ -12,7 +15,23 @@ namespace Pinnacle.Models
         public StringBuilder sb { get; set; }
         public string panel1 { get; set; }
         public string panel2 { get; set; }
-
+        public Tulpep.NotificationWindow.PopupNotifier pop(string s0, string s1, string s2)
+        {
+            Tulpep.NotificationWindow.PopupNotifier p = new PopupNotifier();
+            p = new PopupNotifier(); p.IsRightToLeft = false;
+            p.Image = Properties.Resources.info2;
+            p.BodyColor = Class.Users.Color1;
+            p.HeaderColor = Class.Users.BackColors;
+            p.ContentHoverColor = Class.Users.BackColors;
+            p.HeaderHeight = 20; p.ShowOptionsButton = true;
+            p.TitleColor = Class.Users.BackColors;
+            p.TitleFont = new Font("Arial", 15, FontStyle.Bold);
+            p.TitleText = s0;
+            p.ContentFont = Class.Users.FontName;
+            p.ContentText = " " + s1 + "   " + s2 + "";
+            p.Popup();
+            return p;
+        }
         public void DatabaseCheck(CheckBox chk)
         {
             if (chk.Checked == true)

@@ -233,6 +233,16 @@ namespace Pinnacle.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap info2 {
+            get {
+                object obj = ResourceManager.GetObject("info2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lodingimage {
             get {
                 object obj = ResourceManager.GetObject("lodingimage", resourceCulture);

@@ -695,8 +695,10 @@ namespace Pinnacle
                     case "CompanyMaster":
                         CommonFunctions.ShowPopUpForm(Master.CompanyMaster.Instance, this);
                         break;
-
-
+                    case "ReConciliation":
+                        CommonFunctions.ShowPopUpForm(Pinnacle.Transactions.Tally.ReConciliation.Instance, this);
+                        break;
+                        
 
                     case "PartyMaster":
                         CommonFunctions.ShowPopUpForm(Master.PartyMaster.Instance, this); button1.Show(); return;

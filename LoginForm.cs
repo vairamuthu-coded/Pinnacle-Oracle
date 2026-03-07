@@ -420,7 +420,7 @@ namespace Pinnacle
         {
             try
             {
-                txtusername.Text = ""; txt_password.Text = "";               
+                txtusername.Text = "PLANNING"; txt_password.Text = "PLANNING";               
                 systemuser = Environment.UserName;
                 Class.Users.Intimation = "PAYROLL";
                 Class.Users.HUserName = txtusername.Text;

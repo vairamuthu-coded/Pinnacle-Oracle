@@ -301,7 +301,7 @@ namespace Pinnacle.ReportFormate
                         DataSet ds2 = Utility.ExecuteSelectQuery(sel2, "ASPTBLVEHTOKEN");
                         DataTable dt2 = ds2.Tables["ASPTBLVEHTOKEN"];
                         crystalReportViewer1.ReportSource = null;
-                        rd.SetDataSource(dt2);
+                        rd.SetDataSource(dt2); 
 
                         crystalReportViewer1.ReportSource = rd;
 

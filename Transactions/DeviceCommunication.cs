@@ -52,8 +52,9 @@ namespace Pinnacle.Transactions
         public DeviceCommunication()
         {
             InitializeComponent(); Class.Users.Intimation = "PAYROLL";
-            DateTime dateForButton = DateTime.Now; Class.Users.SessionID = 9; checkBox1.Text = Class.Users.SessionID.ToString() + "  Index"; ;
+            Class.Users.SessionID = 9; checkBox1.Text = Class.Users.SessionID.ToString() + "  Index"; ;
             Class.Users.IPADDRESS = GenFun.GetLocalIPAddress();
+            DateTime dateForButton = DateTime.Now;
             frmdate.Value = dateForButton.AddDays(-1);
             GlobalVariables.HeaderName.Text = Class.Users.ScreenName;
             SecondtabControl2.TabPages.Remove(tab2RemovefrmMachine);

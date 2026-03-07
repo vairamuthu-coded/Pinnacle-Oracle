@@ -271,18 +271,18 @@ namespace Pinnacle
 
             return result;
         }
-
-        public static bool ExecuteNonQuery(string query)
+        public  static bool ExecuteNonQuery(string query)
         {
             if (con.State == ConnectionState.Closed)
             {
                 Connect();
-            } 
+            }
             cmd = new OracleCommand(query, con);
             cmd.ExecuteNonQuery();
             DisConnect();
             return true;
         }
+      
 
         //public static bool ExecuteNonQuery1(string query)
         //{

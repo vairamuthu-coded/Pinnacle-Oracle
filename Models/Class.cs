@@ -8,6 +8,12 @@ using System.Web;
 using System.Windows;
 using System.Windows.Forms;
 using Pinnacle.UserControls;
+using System.IO;
+using OfficeOpenXml;
+using System.Data.OleDb;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace Pinnacle
 {
@@ -48,12 +54,17 @@ public static string Password { get; set; }
             public static string TableName { get; set; }
             public static double Sequenceno { get; set; }
             public static string Intimation { get; set; }
+            public static string DocID { get; set; }
+
+      
+            public static int Indexer { get; set; }
+            public static string Query { get; set; }
             public static string TableNameGrid { get; set; }
             public static string TableNameSubGrid { get; set; }
             public static string ConString { get; set; }
             public static string ConString1 { get; set; }
             public static string MySqlConString { get; set; }
-           
+            public static string CompCode1 { get; set; }
             public static string HCompcode { get; set; }
             public static string HUnit { get; set; }
             public static string HUnitSub { get; set; }
@@ -143,7 +154,130 @@ public static string Password { get; set; }
 
         public class Master
         {
-            
+            internal static string LoadWordFile(string filepath)
+            {
+                Word.Application app = null;
+                Word.Document doc = null;
+                string data = string.Empty;
+                try
+                {
+                    app = new Word.Application();
+                    app.Visible = false;
+
+                    doc = app.Documents.Open(filepath);
+
+                    data = doc.Content.Text;
+
+
+
+                    doc.Close(false);   // Close document
+                    app.Quit();         // Quit Word
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+                finally
+                {
+                    if (doc != null)
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(doc);
+
+                    if (app != null)
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
+
+                    doc = null;
+                    app = null;
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+
+                }
+                return data;
+            }
+            internal static DataTable ImportExcelToDataTable(string filePath)
+            {
+                DataTable dt = new DataTable();
+
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (ExcelPackage package = new ExcelPackage(fs))
+                    {
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets[1];
+
+                        bool hasHeader = true;
+                        int startRow = hasHeader ? 2 : 1;
+
+                        // Create Columns
+                        for (int col = 1; col <= worksheet.Dimension.End.Column; col++)
+                        {
+                            dt.Columns.Add(hasHeader
+                                ? worksheet.Cells[1, col].Text
+                                : "Column" + col);
+                        }
+
+                        // Add Rows
+                        for (int row = startRow; row <= worksheet.Dimension.End.Row; row++)
+                        {
+                            DataRow newRow = dt.NewRow();
+
+                            for (int col = 1; col <= worksheet.Dimension.End.Column; col++)
+                            {
+                                newRow[col - 1] = worksheet.Cells[row, col].Text;
+                            }
+
+                            dt.Rows.Add(newRow);
+                        }
+                    }
+                }
+
+                return dt;
+            }
+            internal static DataTable ReadWordToDataTable(string filePath)
+            {
+                DataTable dt = new DataTable();
+                //dt.Columns.Add("Line No");
+                //dt.Columns.Add("Content");
+
+                using (WordprocessingDocument wordDoc =
+                       WordprocessingDocument.Open(filePath, false))
+                {
+                    Body body = wordDoc.MainDocumentPart.Document.Body;
+
+                    int lineNumber = 1;
+
+                    foreach (Paragraph para in body.Elements<Paragraph>())
+                    {
+                        string text = para.InnerText;
+
+                        if (!string.IsNullOrWhiteSpace(text))
+                        {
+                            dt.Rows.Add(lineNumber, text);
+                            lineNumber++;
+                        }
+                    }
+                }
+
+                return dt;
+            }
+            internal static DataTable ReadExcel(string fileName, string fileExt)
+            {
+                string conn = string.Empty;
+                DataTable dtexcel = new DataTable();
+                if (fileExt.CompareTo(".xls") == 0)
+                    conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
+                else
+                    conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=NO';"; //for above excel 2007  
+                using (System.Data.OleDb.OleDbConnection con = new OleDbConnection(conn))
+                {
+                    try
+                    {
+                        System.Data.OleDb.OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [Sheet1$]", con); //here we read data from sheet1  
+                        oleAdpt.Fill(dtexcel); //fill excel data into dataTable  
+                    }
+                    catch { }
+                }
+                return dtexcel;
+            }
             public static DataTable company()
             {
                 Class.Users.ds = null;
